@@ -18,7 +18,7 @@ function update() {
 
 export default (canvas, { height } = { height: 680 }) => {
   const config = {
-    type: Phaser.CANVAS,
+    type: Phaser.WEBGL,
     width: 1000,
     height,
     scene: {
@@ -28,6 +28,9 @@ export default (canvas, { height } = { height: 680 }) => {
     },
     canvas,
     context: canvas.getContext('2d'),
+    render: {
+      transparent: true,
+    },
   };
   return new Phaser.Game(config);
 };
