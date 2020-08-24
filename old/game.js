@@ -74,7 +74,7 @@ class Cultivo {
 
     constructor(game) {
         this.game = game;
-        this.queue = [];
+        this.mazetas = [];
     }
 
     load() {
@@ -84,6 +84,7 @@ class Cultivo {
 
     create() {
         this._createMatrix();
+        this._createShadow();
         setInterval(this.move.bind(this), 1000);
     }
 
@@ -98,13 +99,13 @@ class Cultivo {
             const coordinate = new CultivoCoordinate(lineNumber, i);
             const mazeta = new Mazeta(this.game, coordinate);
             mazeta.create();
-            this.queue.push(mazeta);
+            this.mazetas.push(mazeta);
         }
     }
 
     move() {
-        for(let i = 0; i < this.queue.length; i++) {
-            const current = this.queue[i];
+        for(let i = 0; i < this.mazetas.length; i++) {
+            const current = this.mazetas[i];
             current.move();
         }
     }
@@ -119,10 +120,6 @@ class Mazeta {
         };
     }
 
-    /**
-     * @param {Phaser.Game} game
-     * @param {CultivoCoordinate} matrixIndex
-     */
     constructor(game, coordinate) {
         this.game = game;
         this.coordinate = coordinate;
@@ -135,14 +132,7 @@ class Mazeta {
     create() {
         this.position = this.coordinate.toRealPosition();
         console.log(this.position);
-        this._createShadow();
         this._createSprite();
-    }
-
-    _createShadow() {
-        this.shadow = this.game.add.sprite(this.position.x + this.offset.x, this.position.y + this.offset.y, 'mazeta').setOrigin(0, 0);
-        this.shadow.tint = 0x000000;
-        this.shadow.alpha = 1;
     }
 
     _createSprite() {
@@ -150,7 +140,6 @@ class Mazeta {
     }
 
     move() {
-        //this.shadow.x -= this.movement;
         this.sprite.y += this.movement;
         this.movement = this.movement * -1;
     }
