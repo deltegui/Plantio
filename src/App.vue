@@ -1,8 +1,10 @@
 <template>
-<div id="main-container">
-  <Game/>
-  <Console/>
-  <DayNightCycle/>
+<div>
+   <DayNightCycle/>
+  <div id="main-container">
+    <Game/>
+    <Console/>
+  </div>
 </div>
 </template>
 
@@ -22,18 +24,18 @@ export default {
 </script>
 
 <style>
-body {
-  padding: 0px;
-  margin: 0px;
-}
-
-.left-panel {
-  float: left;
-}
-
 #main-container {
+  max-width: 1430px;
   margin-left: auto;
   margin-right: auto;
-  width: 1460px;
+  display: flex;
+
+  z-index: 1000;
+}
+
+@media only screen and (max-width: 890px) {
+  #main-container {
+    flex-direction: column;
+  }
 }
 </style>

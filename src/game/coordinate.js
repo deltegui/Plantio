@@ -22,11 +22,12 @@ export default class CropCoordinate {
   }
 
   toRealPosition() {
+    const yMargin = 140;
     const linePos = this.calculateLinePosition();
     const yOffset = this.x * Flowerpot.size.y;
     return {
       x: linePos.x + (this.x * Flowerpot.size.x),
-      y: yOffset + this.y * Flowerpot.size.y,
+      y: yOffset + yMargin + this.y * Flowerpot.size.y,
     };
   }
 

@@ -19,6 +19,12 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  z-index: -1;
 }
 </style>
 
@@ -51,22 +57,16 @@ const colours = [
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(21,8,0,0)' },
 ];
 
-function* gradients() {
-  let i = 0;
-  for (;;) {
-    i %= colours.length;
-    yield colours[i++];
-  }
+function randomGradient() {
+  const number = Math.floor(Math.random() * colours.length) - 1;
+  return colours[number];
 }
 
 export default {
   mounted: () => {
     const filter = document.getElementById('bg-filter');
-    const gradientGen = gradients();
-    setInterval(() => {
-      const gradient = gradientGen.next().value;
-      filter.style.backgroundImage = `linear-gradient(${gradient.upper}, ${gradient.bottom})`;
-    }, 2000);
+    const gradient = randomGradient();
+    filter.style.backgroundImage = `linear-gradient(${gradient.upper}, ${gradient.bottom})`;
   },
 };
 </script>

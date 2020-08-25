@@ -44,9 +44,11 @@ export default {
   background-color: #272727;
   color: #E5E5E5;
 
-  width: 430px;
+  widows: 430px;
+  min-width: 430px;
   height: 90vh;
   margin-top: 5vh;
+  margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
 
@@ -69,5 +71,14 @@ export default {
 @keyframes blink {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@media only screen and (max-width: 890px) {
+  #text-console {
+    widows: 100%;
+    min-width: 100%;
+    margin-top: 0vh;
+    margin-right: 0px;
+  }
 }
 </style>
