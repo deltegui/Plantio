@@ -1,13 +1,34 @@
 <template>
 <div id="text-console">
-> Hello maverick! <br/>
-> The time is 13:44 and there is 22 degrees outside <br/>
-> _
+  <p id="console-io">
+  </p>
 </div>
 </template>
 
 <script>
 export default {
+  mounted() {
+    const consoleIO = document.getElementById('console-io');
+    const write = (str) => {
+      consoleIO.innerHTML += str;
+    };
+    write('> ');
+    document.onkeydown = (evt) => {
+      evt.preventDefault();
+      if (evt.keyCode === 8) { // Backspace
+        if (consoleIO.innerText.endsWith('> ')) {
+          return;
+        }
+        consoleIO.innerHTML = consoleIO.innerHTML.substring(0, consoleIO.innerHTML.length - 1);
+        return;
+      }
+      if (evt.keyCode === 13) { // Enter
+        write('<br /> > ');
+        return;
+      }
+      write(String.fromCharCode(evt.keyCode));
+    };
+  },
 };
 </script>
 
@@ -33,5 +54,20 @@ export default {
   overflow: scroll;
 
   font-family: consoles;
+}
+
+#text-console ::after {
+  content: "_";
+  opacity: 0;
+
+  animation-name: blink;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+@keyframes blink {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 </style>

@@ -17,7 +17,6 @@ export default class CropCoordinate {
   }
 
   constructor(x, y) {
-    console.log(`Created coordinate { ${x}, ${y} }`);
     this.x = x;
     this.y = y;
   }

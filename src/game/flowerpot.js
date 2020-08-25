@@ -19,7 +19,6 @@ export default class Flowerpot {
 
   create() {
     this.position = this.coordinate.toRealPosition();
-    console.log(this.position);
     this.createSprite();
   }
 

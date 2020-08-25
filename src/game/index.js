@@ -6,7 +6,6 @@ let crop;
 function preload() {
   crop = new Crop(this);
   crop.load();
-  this.cameras.main.setBackgroundColor('#FFFFFF');
 }
 
 function create() {
@@ -16,10 +15,10 @@ function create() {
 function update() {
 }
 
-export default (canvas, { height } = { height: 680 }) => {
+export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
   const config = {
-    type: Phaser.WEBGL,
-    width: 1000,
+    type: Phaser.CANVAS,
+    width,
     height,
     scene: {
       preload,

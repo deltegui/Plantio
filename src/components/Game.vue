@@ -9,7 +9,8 @@ export default {
   mounted: () => {
     const canvas = document.getElementById('gameCanvas');
     createGame(canvas, {
-      height: window.innerHeight,
+      height: 826,
+      width: 1000,
     });
   },
 };

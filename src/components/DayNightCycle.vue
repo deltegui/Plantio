@@ -49,7 +49,6 @@ const colours = [
   { upper: 'rgba(0,0,12,0)', bottom: 'rgb(47,17,7)' },
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(75,29,6,.4)' },
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(21,8,0,0)' },
-  { upper: 'rgba(0,0,12,0)', bottom: 'rgba(0,0,12,0)' },
 ];
 
 function* gradients() {
@@ -67,7 +66,7 @@ export default {
     setInterval(() => {
       const gradient = gradientGen.next().value;
       filter.style.backgroundImage = `linear-gradient(${gradient.upper}, ${gradient.bottom})`;
-    }, 1000);
+    }, 2000);
   },
 };
 </script>
