@@ -5,7 +5,7 @@
     <span>Password</span>
     <input class="field" type="password"/>
     <button class="field fynd-btn">Login</button>
-    <button class="field fynd-btn">Logout</button>
+    <button class="field fynd-btn">Register</button>
   </div>
 </template>
 
@@ -34,6 +34,7 @@ input {
           flex-grow: 18;
   border-width: 0px;
   font-size: 20px;
+
   padding-left: 7px;
   background-color: #353535;
   color: white;
@@ -42,16 +43,24 @@ input {
 
 .field {
   width: 100%;
-  display: -webkit-box;
-  display: flex;
   height: 40px;
   margin-bottom: 10px;
   overflow: hidden;
+
   border-style: solid;
   border-width: 1px;
   border-color: #353535;
-  box-shadow: 2px 2px 1px black;
   border-radius: 5px 5px 5px 5px;
+
+  box-shadow: 2px 2px 1px black;
+  box-sizing: border-box;
+
+  display: -webkit-box;
+  display: flex;
+
+  font-size: 14px;
+  font-family: consoles;
+
   -webkit-transition: border-color 0.5s;
   transition: border-color 0.5s;
 }
@@ -62,15 +71,20 @@ input {
 }
 
 .fynd-btn {
-  text-align: center;
   padding: 10px;
+
   border-style: solid;
   border-radius: 10px 10px 10px 10px;
   border-width: 1px;
   border-color: #00d1b2;
+
   background-color: #252525;
   color: white;
-  font-size: 16px;
+
+  text-align: center;
+  font-size: 14px;
+  font-family: consoles;
+
   -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }

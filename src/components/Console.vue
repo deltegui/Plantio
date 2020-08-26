@@ -23,6 +23,7 @@ export default {
       }
       if (evt.keyCode === 13) { // Enter
         write('<br /> > ');
+        consoleIO.scrollTop = consoleIO.scrollHeight;
         return;
       }
       write(String.fromCharCode(evt.keyCode));
@@ -32,6 +33,11 @@ export default {
 </script>
 
 <style scoped>
+#console-io {
+  overflow: scroll;
+  height: 98%;
+}
+
 #console-io::after {
   content: "_";
   opacity: 0;

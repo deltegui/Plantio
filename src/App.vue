@@ -24,6 +24,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: consoles;
+  src: url(/console.ttf);
+}
+
+body {
+  font-family: consoles;
+}
+
 #main-container {
   max-width: 1430px;
   margin-left: auto;

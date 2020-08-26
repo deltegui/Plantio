@@ -12,7 +12,7 @@ import Login from './Login.vue';
 export default {
   name: 'LeftPanel',
   data: () => ({
-    logged: false,
+    logged: true,
   }),
   components: {
     Console,
@@ -22,11 +22,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: consoles;
-  src: url(/console.ttf);
-}
-
 #text-console {
   box-sizing: border-box;
 
@@ -40,10 +35,5 @@ export default {
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
-
-  float: left;
-  overflow: scroll;
-
-  font-family: consoles;
 }
 </style>
