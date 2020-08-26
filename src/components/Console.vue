@@ -52,13 +52,4 @@ export default {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
-@media only screen and (max-width: 890px) {
-  #text-console {
-    widows: 100%;
-    min-width: 100%;
-    margin-top: 0vh;
-    margin-right: 0px;
-  }
-}
 </style>

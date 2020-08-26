@@ -12,7 +12,7 @@ import Login from './Login.vue';
 export default {
   name: 'LeftPanel',
   data: () => ({
-    logged: true,
+    logged: false,
   }),
   components: {
     Console,
@@ -35,5 +35,18 @@ export default {
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 890px) {
+  body {
+    overflow: scroll;
+  }
+
+  #text-console {
+    width: 100%;
+    min-width: 100%;
+    margin-top: 0vh;
+    margin-right: 0px;
+  }
 }
 </style>
