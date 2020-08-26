@@ -3,21 +3,21 @@
    <DayNightCycle/>
   <div id="main-container">
     <Game/>
-    <Console/>
+    <LeftPanel/>
   </div>
 </div>
 </template>
 
 <script>
 import Game from './components/Game.vue';
-import Console from './components/Console.vue';
+import LeftPanel from './components/LeftPanel.vue';
 import DayNightCycle from './components/DayNightCycle.vue';
 
 export default {
   name: 'App',
   components: {
     Game,
-    Console,
+    LeftPanel,
     DayNightCycle,
   },
 };

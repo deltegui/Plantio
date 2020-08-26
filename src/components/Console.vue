@@ -1,12 +1,11 @@
 <template>
-<div id="text-console">
-  <p id="console-io">
-  </p>
-</div>
+<p id="console-io">
+</p>
 </template>
 
 <script>
 export default {
+  name: 'Console',
   mounted() {
     const consoleIO = document.getElementById('console-io');
     const write = (str) => {
@@ -33,32 +32,7 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: consoles;
-  src: url(/console.ttf);
-}
-
-#text-console {
-  box-sizing: border-box;
-
-  background-color: #272727;
-  color: #E5E5E5;
-
-  widows: 430px;
-  min-width: 430px;
-  height: 90vh;
-  margin-top: 5vh;
-  margin-right: 5px;
-  padding: 5px;
-  border-radius: 10px;
-
-  float: left;
-  overflow: scroll;
-
-  font-family: consoles;
-}
-
-#text-console ::after {
+#console-io::after {
   content: "_";
   opacity: 0;
 
