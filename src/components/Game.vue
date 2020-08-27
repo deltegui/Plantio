@@ -6,6 +6,7 @@
 import createGame from '../game';
 
 export default {
+  name: 'Game',
   mounted: () => {
     const canvas = document.getElementById('gameCanvas');
     const size = {

@@ -12,7 +12,6 @@ export default class Flowerpot {
     this.game = game;
     this.coordinate = coordinate;
     this.offset = new Phaser.Geom.Point(0, 30);
-    this.movement = 10;
     this.shadow = null;
     this.sprite = null;
   }
@@ -26,8 +25,7 @@ export default class Flowerpot {
     this.sprite = this.game.add.sprite(this.position.x, this.position.y, 'mazeta').setOrigin(0, 0);
   }
 
-  move() {
-    this.sprite.y += this.movement;
-    this.movement *= -1;
+  move(movement) {
+    this.sprite.y += movement;
   }
 }

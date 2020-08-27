@@ -1,12 +1,15 @@
 import CropCoordinate from './coordinate';
 import Flowerpot from './flowerpot';
+import movable from './movable';
+import Entity from './entity';
 
-export default class Crop {
+export default class Crop extends Entity {
   static get size() {
     return CropCoordinate.MaxSize;
   }
 
   constructor(game) {
+    super();
     this.game = game;
     this.mazetas = [];
   }
@@ -18,7 +21,7 @@ export default class Crop {
 
   create() {
     this.createMatrix();
-    setInterval(this.move.bind(this), 1000);
+    movable.add(this.move.bind(this));
   }
 
   createMatrix() {
@@ -36,10 +39,10 @@ export default class Crop {
     }
   }
 
-  move() {
+  move(movement) {
     for (let i = 0; i < this.mazetas.length; i++) {
       const current = this.mazetas[i];
-      current.move();
+      current.move(movement);
     }
   }
 }

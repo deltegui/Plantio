@@ -1,15 +1,26 @@
 import Phaser from 'phaser';
 import Crop from './crop';
+import MatrixIndex from './matrix_index';
+import movable from './movable';
 
-let crop;
+const entities = [
+  Crop,
+  MatrixIndex,
+];
+
+const loadedEntities = [];
 
 function preload() {
-  crop = new Crop(this);
-  crop.load();
+  entities.forEach((Entity) => {
+    const e = new Entity(this);
+    loadedEntities.push(e);
+    e.load();
+  });
 }
 
 function create() {
-  crop.create();
+  loadedEntities.forEach((entity) => entity.create());
+  movable.startMoving();
 }
 
 function update() {
