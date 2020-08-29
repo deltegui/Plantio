@@ -1,0 +1,9 @@
+{
+	"url": "localhost:8080",
+	"database": {
+		"hostname": "127.0.0.1",
+		"username": "root",
+		"password": "root",
+		"db": "plantio"
+	}
+}
