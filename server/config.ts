@@ -3,10 +3,11 @@ import { fs, log } from "./deps.ts";
 export type Configuration = {
   url: string,
   database: {
-    host: string,
-    username: string,
+    hostname: string,
+    user: string,
     password: string,
-    db: string,
+    database: string,
+    port: number,
   },
 };
 

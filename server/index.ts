@@ -4,10 +4,10 @@ import createApi from "./api.ts";
 
 const app = new oak.Application();
 
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
   const request = ctx.request;
   log.info(`[${request.method}] ${request.url}`);
-  next();
+  await next();
 });
 
 createApi(app);

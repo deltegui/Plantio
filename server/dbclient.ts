@@ -1,7 +1,7 @@
-import { mysql } from "./deps.ts";
+import { psql } from "./deps.ts";
 import { config } from "./config.ts";
 
-const client = await new mysql.Client();
-client.connect(config.database);
+const client = new psql.Client(config.database);
+await client.connect();
 
 export default client;

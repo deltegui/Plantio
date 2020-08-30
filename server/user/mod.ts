@@ -1,6 +1,7 @@
 import { UserController } from "./user.controller.ts";
-import { Controller } from "../controller.ts";
+import { PsqlUserRepository } from "./user.repo.ts";
 
-const controller: Controller = new UserController();
+const repo = new PsqlUserRepository();
+const controller = new UserController(repo);
 
 export default controller;

@@ -1,9 +1,19 @@
 import { oak } from "../deps.ts";
 import { Controller } from "../controller.ts";
+import { UserRepository } from "./gateways.ts";
 
 export class UserController implements Controller {
-  public hello(ctx: oak.Context): void {
-    ctx.response.body = "Hello users!";
+  private readonly userRepo: UserRepository;
+
+  constructor(userRepo: UserRepository) {
+    this.userRepo = userRepo;
+  }
+
+  public async hello(ctx: oak.Context): Promise<void> {
+    const user = await this.userRepo.getByName('diego');
+    user.lastConnection = new Date();
+    await this.userRepo.update(user);
+    ctx.response.body = user;
   }
 
   public map(router: oak.Router): void {

@@ -2,8 +2,9 @@
 	"url": "localhost:8080",
 	"database": {
 		"hostname": "127.0.0.1",
-		"username": "root",
+		"user": "postgres",
 		"password": "root",
-		"db": "plantio"
+		"database": "plantio",
+		"port": 5432
 	}
 }
