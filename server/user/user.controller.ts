@@ -1,22 +1,21 @@
-import { oak } from "../deps.ts";
-import { Controller } from "../controller.ts";
-import { UserRepository } from "./gateways.ts";
+import { oak } from '../deps.ts';
+import { Controller } from '../system/controller.ts';
+import { User } from './gateways.ts';
+import { UserService } from './user.service.ts';
 
 export class UserController implements Controller {
-  private readonly userRepo: UserRepository;
+  constructor(private userService: UserService) {}
 
-  constructor(userRepo: UserRepository) {
-    this.userRepo = userRepo;
-  }
+  public async register(ctx: oak.Context): Promise<void> {
+    const body = ctx.request.body()
+    if(body.type !== 'json') {
 
-  public async hello(ctx: oak.Context): Promise<void> {
-    const user = await this.userRepo.getByName('diego');
-    user.lastConnection = new Date();
-    await this.userRepo.update(user);
-    ctx.response.body = user;
+    }
+    const user = await body.value as User;
+    ctx.response.body = this.userService.createUser(user);
   }
 
   public map(router: oak.Router): void {
-    router.get("/", this.hello.bind(this));
+    router.get("/", this.register.bind(this));
   }
 }

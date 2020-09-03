@@ -1,5 +1,5 @@
 import { oak, log } from "./deps.ts";
-import { config } from "./config.ts";
+import { config } from "./system/config.ts";
 import createApi from "./api.ts";
 
 const app = new oak.Application();

@@ -1,6 +1,6 @@
 import { log } from '../deps.ts';
-import { UserRepository, User } from "./gateways.ts";
-import client from "../dbclient.ts";
+import { UserRepository, User } from './gateways.ts';
+import client from '../system/db.ts';
 
 const rawToUser = (data: [string, string, Date]) => ({
   name: data[0],
@@ -13,7 +13,7 @@ const gmtMinutesOffsetToUTC = (offset: number): string => {
   return sign + formatNumber(Math.abs(offset/60)) + ':' + formatNumber(Math.abs(offset%60));
 }
 
-const formatNumber = (n: number) => ("0" + n).slice(-2);
+const formatNumber = (n: number) => ('0' + n).slice(-2);
 
 const dateToRaw = (d: Date): string =>
   `${d.getUTCFullYear()}-${formatNumber(d.getUTCMonth()+1)}-${formatNumber(d.getUTCDate())} ` +
@@ -28,11 +28,11 @@ export class PsqlUserRepository implements UserRepository {
   }
 
   async save(user: User): Promise<User> {
-    return await this.runQuery(user, "insert into users (name, password, last_connection) values ($1, $2, $3)");
+    return await this.runQuery(user, 'insert into users (name, password, last_connection) values ($1, $2, $3)');
   }
 
   async update(user: User): Promise<User> {
-    return await this.runQuery(user, "update users set password=$2, last_connection=$3 where name=$1");
+    return await this.runQuery(user, 'update users set password=$2, last_connection=$3 where name=$1');
   }
 
   private async runQuery({ name, password, lastConnection }: User, query: string): Promise<User> {
@@ -42,14 +42,15 @@ export class PsqlUserRepository implements UserRepository {
         text: query,
         args: [name, password, formattedDate],
       });
+      return { name, password, lastConnection };
     } catch(err) {
       log.error(err);
+      return Promise.reject();
     }
-    return { name, password, lastConnection };
   }
 
   async getByName(name: string): Promise<User> {
-    const result = await client.query("select name, password, last_connection from users");
+    const result = await client.query('select name, password, last_connection from users');
     if(!result || result.rowCount == undefined || result.rowCount <= 0) {
       return Promise.reject();
     }

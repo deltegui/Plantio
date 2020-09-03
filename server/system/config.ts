@@ -1,4 +1,4 @@
-import { fs, log } from "./deps.ts";
+import { fs, log } from "../deps.ts";
 
 export type Configuration = {
   url: string,

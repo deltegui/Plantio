@@ -1,5 +1,5 @@
 import { oak } from "./deps.ts";
-import { Controller } from "./controller.ts";
+import { Controller } from "./system/controller.ts";
 import userController from "./user/mod.ts";
 
 const controllers: Controller[] = [

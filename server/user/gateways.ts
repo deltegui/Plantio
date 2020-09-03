@@ -10,3 +10,7 @@ export type User = {
   password: string,
   lastConnection: Date,
 };
+
+export interface IUserService {
+  createUser(user: User): Promise<User>;
+}
