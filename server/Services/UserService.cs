@@ -19,7 +19,7 @@ namespace plantio.Services{
 
         public async Task<User> Register(RegisterUserRequest request) {
             if (await this.userRepository.ExistsWithName(request.Name)) {
-                throw DomainException.FromError(UserDomainErrors.AlreadyExist);
+                throw DomainException.FromError(UserErrors.AlreadyExist);
             }
             var user = User.FirstTime(request.Name, request.Password);
             user.Password = this.passwordHasher.HashPassword(user, request.Password);

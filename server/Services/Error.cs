@@ -23,7 +23,7 @@ namespace plantio.Services {
         }
     }
 
-    public static class UserDomainErrors {
+    public static class UserErrors {
         public static readonly DomainError NotFound =
             new DomainError(100, "User not found", "Create a user and try again");
         public static readonly DomainError AlreadyExist =
