@@ -49,14 +49,7 @@ namespace plantio.Tests.Services {
         public async void LoginShouldReturnATokenForValidUser() {
             string expectedToken = "JC9RVxfQjUbgHmLDseTpaw==";
             var request = UserServiceBuilder.DefaultChangeUserRequest;
-            UserService userService = new UserServiceBuilder()
-                .WithUserRepository()
-                    .WhenGetByNameReturn(User.FirstTime(request.Name, request.Password))
-                    .And()
-                .WithPasswordHasher()
-                    .WhenVerifyReturnResult(PasswordVerificationResult.Success)
-                    .And()
-                .Build();
+            UserService userService = GetUserServiceForLoginOk(request).Build();
             var token = await userService.Login(request);
             output.WriteLine(token);
             Assert.Equal(expectedToken, token);
@@ -79,5 +72,31 @@ namespace plantio.Tests.Services {
             new object?[] { new ChangeUserRequest() { Name = "Manolo", Password = "1234" }, null, UserErrors.NotFound },
             new object?[] { new ChangeUserRequest() { Name = "Javier", Password = "invalid" }, User.FirstTime("Javier", "escuela"), UserErrors.InvalidCredentials },
         };
+
+        [Fact]
+        public async void LoginShouldSaveOrReplaceToken() {
+            var request = UserServiceBuilder.DefaultChangeUserRequest;
+            string expectedHash = "JC9RVxfQjUbgHmLDseTpaw==";
+            Token savedToken = new Token();
+            var userService = GetUserServiceForLoginOk(request)
+                .WithPasswordHasher()
+                    .WhenHashReturn(expectedHash)
+                    .And()
+                .WithTokenRepository()
+                    .WhenSaveDo(token => savedToken = token)
+                    .And()
+                .Build();
+            await userService.Login(request);
+            Assert.Equal(savedToken.Owner.Name, request.Name);
+            Assert.Equal(savedToken.Value, expectedHash);
+        }
+
+        private UserServiceBuilder GetUserServiceForLoginOk(ChangeUserRequest request) => new UserServiceBuilder()
+            .WithUserRepository()
+                .WhenGetByNameReturn(User.FirstTime(request.Name, request.Password))
+                .And()
+            .WithPasswordHasher()
+                .WhenVerifyReturnResult(PasswordVerificationResult.Success)
+                .And();
     }
 }

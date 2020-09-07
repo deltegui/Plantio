@@ -12,11 +12,13 @@ namespace plantio.Services{
         private readonly UserRepository userRepository;
         private readonly IPasswordHasher<User> passwordHasher;
         private readonly UserTokenizer tokenizer;
+        private readonly TokenRepository tokenRepository;
 
-        public UserService(UserRepository userRepository, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
+        public UserService(UserRepository userRepository, TokenRepository tokenRepository, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
             this.userRepository = userRepository;
             this.passwordHasher = passwordHasher;
             this.tokenizer = tokenizer;
+            this.tokenRepository = tokenRepository;
         }
 
         public async Task<User> Register(ChangeUserRequest request) {
@@ -38,7 +40,17 @@ namespace plantio.Services{
             if (verification == PasswordVerificationResult.Failed) {
                 throw DomainException.FromError(UserErrors.InvalidCredentials);
             }
-            return this.tokenizer.Tokenize(user);
+            var token = this.tokenizer.Tokenize(user);
+            this.SaveOrReplaceToken(token);
+            return token.Value;
+        }
+
+        private void SaveOrReplaceToken(Token token) {
+            var oldToken = this.tokenRepository.GetToken(token.Owner);
+            if (oldToken != null) {
+                this.tokenRepository.DeleteToken(oldToken);
+            }
+            this.tokenRepository.Save(token);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace plantio.Tests.Utils {
     public class UserServiceBuilder {
         private UserRepositoryBuilder userRepository;
         private PasswordHasherBuilder passwordHasher;
+        private TokenRepositoryBuilder tokenRepository;
 
         public static ChangeUserRequest DefaultChangeUserRequest { get; } = new ChangeUserRequest() {
             Name = "MyUserExample",
@@ -16,19 +17,25 @@ namespace plantio.Tests.Utils {
         public UserServiceBuilder() {
             this.userRepository = new UserRepositoryBuilder();
             this.passwordHasher = new PasswordHasherBuilder();
+            this.tokenRepository = new TokenRepositoryBuilder();
         }
 
-        public PasswordHasherBuilderWrapper WithPasswordHasher() {
-            return new PasswordHasherBuilderWrapper(this, this.passwordHasher);
-        }
+        public PasswordHasherBuilderWrapper WithPasswordHasher() =>
+            new PasswordHasherBuilderWrapper(this, this.passwordHasher);
 
-        public UserRepositoryBuilderWrapper WithUserRepository() {
-            return new UserRepositoryBuilderWrapper(this, this.userRepository);
-        }
+        public UserRepositoryBuilderWrapper WithUserRepository() =>
+            new UserRepositoryBuilderWrapper(this, this.userRepository);
+
+        public TokenRepositoryBuilderWrapper WithTokenRepository() =>
+            new TokenRepositoryBuilderWrapper(this, this.tokenRepository);
 
         public UserService Build() {
             var tokenizer = new FakeUserTokenizer();
-            return new UserService(userRepository.Build(), passwordHasher.Build(), tokenizer);
+            return new UserService(
+                userRepository.Build(),
+                tokenRepository.Build(),
+                passwordHasher.Build(),
+                tokenizer);
         }
     }
 
@@ -39,9 +46,7 @@ namespace plantio.Tests.Utils {
             this.serviceBuilder = serviceBuilder;
         }
 
-        public UserServiceBuilder And() {
-            return this.serviceBuilder;
-        }
+        public UserServiceBuilder And() => this.serviceBuilder;
     }
 
     public class PasswordHasherBuilderWrapper: Wrapper {
@@ -81,6 +86,34 @@ namespace plantio.Tests.Utils {
 
         public UserRepositoryBuilderWrapper WhenGetByNameReturn(User? user) {
             this.builder.WhenGetByNameReturn(user);
+            return this;
+        }
+    }
+
+    public class TokenRepositoryBuilderWrapper: Wrapper {
+        private readonly TokenRepositoryBuilder builder;
+
+        public TokenRepositoryBuilderWrapper(UserServiceBuilder serviceBuilder, TokenRepositoryBuilder builder): base(serviceBuilder) {
+            this.builder = builder;
+        }
+
+        public TokenRepositoryBuilderWrapper WhenSaveDo(Action<Token> action) {
+            this.builder.WhenSaveDo(action);
+            return this;
+        }
+
+        public TokenRepositoryBuilderWrapper WhenGetTokenReturn(Token token) {
+            this.builder.WhenGetTokenReturn(token);
+            return this;
+        }
+
+        public TokenRepositoryBuilderWrapper WhenGetTokenReturn(string tokenValue) {
+            this.builder.WhenGetTokenReturn(tokenValue);
+            return this;
+        }
+
+        public TokenRepositoryBuilderWrapper WhenDeleteTokenDo(Action<Token> action) {
+            this.WhenDeleteTokenDo(action);
             return this;
         }
     }

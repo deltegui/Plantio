@@ -20,8 +20,6 @@ namespace plantio.Tests.Utils {
             return this;
         }
 
-        public IPasswordHasher<User> Build() {
-            return this.hasher.Object;
-        }
+        public IPasswordHasher<User> Build() => this.hasher.Object;
     }
 }

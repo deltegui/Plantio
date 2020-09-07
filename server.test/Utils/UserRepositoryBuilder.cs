@@ -12,7 +12,7 @@ namespace plantio.Tests.Utils {
         public UserRepositoryBuilder WhenExistsWithNameReturn(bool data) {
             repository
                 .Setup(obj => obj.ExistsWithName(It.IsAny<string>()))
-                .Returns<string>(str => Task.FromResult(data));
+                .Returns<string>(_ => Task.FromResult(data));
             return this;
         }
 
@@ -26,12 +26,10 @@ namespace plantio.Tests.Utils {
         public UserRepositoryBuilder WhenGetByNameReturn(User? user) {
             repository
                 .Setup(obj => obj.GetByName(It.IsAny<string>()))
-                .Returns<string>(str => Task.FromResult<User?>(user));
+                .Returns<string>(_ => Task.FromResult<User?>(user));
             return this;
         }
 
-        public UserRepository Build() {
-            return this.repository.Object;
-        }
+        public UserRepository Build() => this.repository.Object;
     }
 }

@@ -14,7 +14,12 @@ namespace plantio.Model {
             this.secret = key;
         }
 
-        public string Tokenize(User user) {
+        public Token Tokenize(User user) {
+            var rawToken = this.CreateRawToken(user);
+            return Token.Create(rawToken, user);
+        }
+
+        private string CreateRawToken(User user) {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(this.secret);
             var tokenDescriptor = new SecurityTokenDescriptor {

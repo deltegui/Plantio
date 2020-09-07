@@ -10,7 +10,7 @@ namespace plantio.Tests.Model {
         public void ShouldReturnNewTokenFromUser(string key, User user) {
             var tokenizer = new JwtUserTokenizer(key);
             var token = tokenizer.Tokenize(user);
-            Assert.Equal(ExpectedKeyLength, token.Length);
+            Assert.Equal(ExpectedKeyLength, token.Value.Length);
         }
 
         public static IEnumerable<object[]> Data => new List<object[]> {
