@@ -1,18 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Xunit;
-using Xunit.Abstractions;
 using plantio.Tests.Utils;
 using plantio.Services;
 using plantio.Domain;
 
 namespace plantio.Tests.Services {
     public class UserServiceTest {
-        private readonly ITestOutputHelper output;
 
-        public UserServiceTest(ITestOutputHelper output) {
-            this.output = output;
-        }
         [Fact]
         public async void RegisterShouldSaveAUser() {
             var request = UserServiceBuilder.DefaultChangeUserRequest;
@@ -51,7 +46,6 @@ namespace plantio.Tests.Services {
             var request = UserServiceBuilder.DefaultChangeUserRequest;
             UserService userService = GetUserServiceForLoginOk(request).Build();
             var token = await userService.Login(request);
-            output.WriteLine(token);
             Assert.Equal(expectedToken, token);
         }
 

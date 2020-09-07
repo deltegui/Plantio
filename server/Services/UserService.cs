@@ -32,17 +32,21 @@ namespace plantio.Services{
         }
 
         public async Task<string> Login(ChangeUserRequest request) {
-            var user = await this.userRepository.GetByName(request.Name);
+            User? user = await this.userRepository.GetByName(request.Name);
             if (user == null) {
                 throw DomainException.FromError(UserErrors.NotFound);
             }
-            var verification = this.passwordHasher.VerifyHashedPassword(user, user.Password, request.Password);
-            if (verification == PasswordVerificationResult.Failed) {
+            if (IsPasswordIncorrect(user, request.Password)) {
                 throw DomainException.FromError(UserErrors.InvalidCredentials);
             }
             var token = this.tokenizer.Tokenize(user);
             this.SaveOrReplaceToken(token);
             return token.Value;
+        }
+
+        private bool IsPasswordIncorrect(User user, string password) {
+            var verification = this.passwordHasher.VerifyHashedPassword(user, user.Password, password);
+            return verification == PasswordVerificationResult.Failed;
         }
 
         private void SaveOrReplaceToken(Token token) {
