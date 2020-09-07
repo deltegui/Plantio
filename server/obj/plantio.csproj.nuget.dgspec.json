@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/diego/code/plantio/server/plantio.csproj": {}
+    "D:\\code\\plantio\\server\\plantio.csproj": {}
   },
   "projects": {
-    "/Users/diego/code/plantio/server/plantio.csproj": {
+    "D:\\code\\plantio\\server\\plantio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/diego/code/plantio/server/plantio.csproj",
+        "projectUniqueName": "D:\\code\\plantio\\server\\plantio.csproj",
         "projectName": "plantio",
-        "projectPath": "/Users/diego/code/plantio/server/plantio.csproj",
-        "packagesPath": "/Users/diego/.nuget/packages/",
-        "outputPath": "/Users/diego/code/plantio/server/obj/",
+        "projectPath": "D:\\code\\plantio\\server\\plantio.csproj",
+        "packagesPath": "C:\\Users\\friki\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\plantio\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/diego/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\friki\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -49,6 +49,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.7.1, )"
             }
           },
           "imports": [
@@ -69,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

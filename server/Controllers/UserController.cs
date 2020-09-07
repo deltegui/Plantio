@@ -13,7 +13,7 @@ namespace plantio.Controllers {
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(RegisterUserRequest registerUser) {
+        public async Task<IActionResult> Create(ChangeUserRequest registerUser) {
             try {
                 return Ok(await this.userService.Register(registerUser));
             } catch (DomainException domainException) {

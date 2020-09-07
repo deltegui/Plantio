@@ -28,5 +28,7 @@ namespace plantio.Services {
             new DomainError(100, "User not found", "Create a user and try again");
         public static readonly DomainError AlreadyExist =
             new DomainError(101, "User already exists", "Use the existing user instead");
+        public static readonly DomainError InvalidCredentials =
+            new DomainError(102, "User's name or password are invalid", "Retry");
     }
 }

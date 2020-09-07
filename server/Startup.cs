@@ -22,13 +22,17 @@ namespace plantio {
             services.AddMvc();
             services.AddDbContext<PlantioContext>(opt => opt.UseNpgsql(Configuration["db"]));
             services.AddControllers();
-            services.AddTransient<IPasswordHasher<User>>(services => new PasswordHasher<User>());
+            ConfigureUserServices(services);
+        }
 
+        private void ConfigureUserServices(IServiceCollection services) {
+            services.AddTransient<IPasswordHasher<User>>(services => new PasswordHasher<User>());
             services.AddTransient<UserRepository>(services => {
                 var ctx = services.GetService<PlantioContext>();
                 return new EFUserRepository(ctx);
             });
             services.AddTransient<UserService>();
+            services.AddTransient<UserTokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
