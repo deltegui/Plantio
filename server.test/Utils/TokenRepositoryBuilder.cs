@@ -17,7 +17,7 @@ namespace plantio.Tests.Utils {
 
         public TokenRepositoryBuilder WhenGetTokenReturn(Token token) {
             repository
-                .Setup(obj => obj.GetToken(It.IsAny<User>()))
+                .Setup(obj => obj.GetForUser(It.IsAny<User>()))
                 .Returns<User>(_ => token);
             return this;
         }
@@ -29,7 +29,7 @@ namespace plantio.Tests.Utils {
 
         public TokenRepositoryBuilder WhenDeleteTokenDo(Action<Token> action) {
             repository
-                .Setup(obj => obj.DeleteToken(It.IsAny<Token>()))
+                .Setup(obj => obj.Delete(It.IsAny<Token>()))
                 .Callback(action);
             return this;
         }
