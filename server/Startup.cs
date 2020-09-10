@@ -27,9 +27,13 @@ namespace plantio {
 
         private void ConfigureUserServices(IServiceCollection services) {
             services.AddTransient<IPasswordHasher<User>>(services => new PasswordHasher<User>());
-            services.AddTransient<UserRepository>(services => {
+            services.AddScoped<UserRepository>(services => {
                 var ctx = services.GetService<PlantioContext>();
                 return new EFUserRepository(ctx);
+            });
+            services.AddScoped<TokenRepository>(services => {
+                var ctx = services.GetService<PlantioContext>();
+                return new EFTokenRepository(ctx);
             });
             services.AddTransient<UserService>();
             services.AddTransient<UserTokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));

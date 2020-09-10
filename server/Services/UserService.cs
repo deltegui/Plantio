@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using plantio.Domain;
@@ -6,6 +7,12 @@ namespace plantio.Services{
     public struct ChangeUserRequest {
         public string Name { get; set; }
         public string Password { get; set; }
+    }
+
+    public struct LoginResponse {
+        public string Token { get; set; }
+        public string User { get; set; }
+        public DateTime Expiration { get; set; }
     }
 
     public class UserService {
@@ -31,7 +38,7 @@ namespace plantio.Services{
             return user;
         }
 
-        public async Task<string> Login(ChangeUserRequest request) {
+        public async Task<LoginResponse> Login(ChangeUserRequest request) {
             User? user = await this.userRepository.GetByName(request.Name);
             if (user == null) {
                 throw DomainException.FromError(UserErrors.NotFound);
@@ -41,7 +48,11 @@ namespace plantio.Services{
             }
             var token = this.tokenizer.Tokenize(user);
             this.SaveOrReplaceToken(token);
-            return token.Value;
+            return new LoginResponse() {
+                Token = token.Value,
+                User = user.Name,
+                Expiration = token.Expiration,
+            };
         }
 
         private bool IsPasswordIncorrect(User user, string password) {
@@ -49,12 +60,12 @@ namespace plantio.Services{
             return verification == PasswordVerificationResult.Failed;
         }
 
-        private void SaveOrReplaceToken(Token token) {
+        private async void SaveOrReplaceToken(Token token) {
             var oldToken = this.tokenRepository.GetForUser(token.Owner);
             if (oldToken != null) {
-                this.tokenRepository.Delete(oldToken);
+                await this.tokenRepository.Delete(oldToken);
             }
-            this.tokenRepository.Save(token);
+            await this.tokenRepository.Save(token);
         }
     }
 }

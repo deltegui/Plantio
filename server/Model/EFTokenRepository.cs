@@ -9,14 +9,14 @@ namespace plantio.Model {
         public EFTokenRepository(PlantioContext ctx): base(ctx) {
         }
 
-        public async void Save(Token token) {
+        public async Task<bool> Save(Token token) {
             this.ctx.Tokens.Add(token);
-            await this.Sync();
+            return await this.Sync();
         }
 
-        public async void Delete(Token token) {
+        public async Task<bool> Delete(Token token) {
             this.ctx.Tokens.Remove(token);
-            await this.Sync();
+            return await this.Sync();
         }
 
         public Token? GetForUser(User user) {

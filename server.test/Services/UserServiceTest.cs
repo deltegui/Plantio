@@ -45,8 +45,8 @@ namespace plantio.Tests.Services {
             string expectedToken = "JC9RVxfQjUbgHmLDseTpaw==";
             var request = UserServiceBuilder.DefaultChangeUserRequest;
             UserService userService = GetUserServiceForLoginOk(request).Build();
-            var token = await userService.Login(request);
-            Assert.Equal(expectedToken, token);
+            var response = await userService.Login(request);
+            Assert.Equal(expectedToken, response.Token);
         }
 
         [Theory]

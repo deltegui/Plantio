@@ -22,9 +22,9 @@ namespace plantio.Model {
             return await this.Sync();
         }
 
-        public async void Delete(User user) {
+        public async Task<bool> Delete(User user) {
             this.ctx.Users.Remove(user);
-            await this.Sync();
+            return await this.Sync();
         }
 
         public Task<User?> GetByName(string name) {

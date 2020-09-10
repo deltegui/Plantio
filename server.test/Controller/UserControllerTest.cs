@@ -71,7 +71,7 @@ namespace plantio.Tests.Controller {
 
             Assert.NotNull(result);
             if (result == null) return;
-            Assert.IsType<string>(result.Value);
+            Assert.IsType<LoginResponse>(result.Value);
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
 

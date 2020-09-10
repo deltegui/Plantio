@@ -6,7 +6,7 @@ namespace plantio.Services {
         Task<bool> ExistsWithName(string name);
         Task<bool> Save(User user);
         Task<bool> Update(User user);
-        void Delete(User user);
+        Task<bool> Delete(User user);
         Task<User?> GetByName(string name);
     }
 }

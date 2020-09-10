@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using plantio.Domain;
 
 namespace plantio.Services {
     public interface TokenRepository {
-        void Save(Token token);
+        Task<bool> Save(Token token);
         Token? GetForUser(User user);
-        void Delete(Token token);
+        Task<bool> Delete(Token token);
     }
 }
