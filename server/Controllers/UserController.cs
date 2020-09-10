@@ -5,20 +5,19 @@ using plantio.Services;
 namespace plantio.Controllers {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase {
-        public readonly UserService userService;
+    public class UserController: ControllerBase {
+        private readonly UserService userService;
 
         public UserController(UserService userService) {
             this.userService = userService;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create(ChangeUserRequest registerUser) {
-            try {
-                return Ok(await this.userService.Register(registerUser));
-            } catch (DomainException domainException) {
-                return StatusCode(400, domainException.Error);
-            }
-        }
+        public Task<IActionResult> CreateUser(ChangeUserRequest registerUser) =>
+            this.SafeDomainCall(async () => Ok(await this.userService.Register(registerUser)));
+
+        [HttpPost("login")]
+        public Task<IActionResult> LoginUser(ChangeUserRequest request) =>
+            this.SafeDomainCall(async () => Ok(await this.userService.Login(request)));
     }
 }

@@ -11,12 +11,18 @@ namespace plantio.Services {
         }
     }
 
+    public enum ErrorCode {
+        UserNotFound = 100,
+        UserAlreadyExist = 101,
+        UserInvalidCredentials = 102,
+    };
+
     public sealed class DomainError {
-        public int Code { get; }
+        public ErrorCode Code { get; }
         public string Message { get; }
         public string Fix { get; }
 
-        public DomainError(int code, string message, string fix) {
+        public DomainError(ErrorCode code, string message, string fix) {
             this.Code = code;
             this.Message = message;
             this.Fix = fix;
@@ -25,10 +31,10 @@ namespace plantio.Services {
 
     public static class UserErrors {
         public static readonly DomainError NotFound =
-            new DomainError(100, "User not found", "Create a user and try again");
+            new DomainError(ErrorCode.UserNotFound, "User not found", "Create a user and try again");
         public static readonly DomainError AlreadyExist =
-            new DomainError(101, "User already exists", "Use the existing user instead");
+            new DomainError(ErrorCode.UserAlreadyExist, "User already exists", "Use the existing user instead");
         public static readonly DomainError InvalidCredentials =
-            new DomainError(102, "User's name or password are invalid", "Retry");
+            new DomainError(ErrorCode.UserInvalidCredentials, "User's name or password are invalid", "Retry");
     }
 }

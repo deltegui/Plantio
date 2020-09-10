@@ -50,9 +50,9 @@ namespace plantio.Services{
         }
 
         private void SaveOrReplaceToken(Token token) {
-            var oldToken = this.tokenRepository.GetToken(token.Owner);
+            var oldToken = this.tokenRepository.GetForUser(token.Owner);
             if (oldToken != null) {
-                this.tokenRepository.DeleteToken(oldToken);
+                this.tokenRepository.Delete(oldToken);
             }
             this.tokenRepository.Save(token);
         }
