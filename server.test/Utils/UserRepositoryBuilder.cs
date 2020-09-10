@@ -3,11 +3,15 @@ using System.Threading.Tasks;
 using Moq;
 using plantio.Services;
 using plantio.Domain;
+using plantio.Model;
 
 
 namespace plantio.Tests.Utils {
     public class UserRepositoryBuilder {
         private readonly Moq.Mock<UserRepository> repository = new Moq.Mock<UserRepository>();
+
+        public static UserRepository BuildProduction(PlantioContext ctx) =>
+            new EFUserRepository(ctx);
 
         public UserRepositoryBuilder WhenExistsWithNameReturn(bool data) {
             repository

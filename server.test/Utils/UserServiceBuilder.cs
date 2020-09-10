@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Identity;
 using plantio.Services;
 using plantio.Domain;
+using plantio.Model;
 
 namespace plantio.Tests.Utils {
     public class UserServiceBuilder {
@@ -13,6 +14,14 @@ namespace plantio.Tests.Utils {
             Name = "MyUserExample",
             Password = "MyUserPassword",
         };
+
+        public static UserService BuildProduction(PlantioContext ctx) {
+            var userRepo = UserRepositoryBuilder.BuildProduction(ctx);
+            var tokenRepo = new TokenRepositoryBuilder().Build(); // TODO change this
+            var passwordHasher = new PasswordHasher<User>();
+            var tokenizer = new JwtUserTokenizer("bla bla my key bla bla");
+            return new UserService(userRepo, tokenRepo, passwordHasher, tokenizer);
+        }
 
         public UserServiceBuilder() {
             this.userRepository = new UserRepositoryBuilder();
@@ -29,14 +38,11 @@ namespace plantio.Tests.Utils {
         public TokenRepositoryBuilderWrapper WithTokenRepository() =>
             new TokenRepositoryBuilderWrapper(this, this.tokenRepository);
 
-        public UserService Build() {
-            var tokenizer = new FakeUserTokenizer();
-            return new UserService(
-                userRepository.Build(),
-                tokenRepository.Build(),
-                passwordHasher.Build(),
-                tokenizer);
-        }
+        public UserService Build() => new UserService(
+            userRepository.Build(),
+            tokenRepository.Build(),
+            passwordHasher.Build(),
+            new FakeUserTokenizer());
     }
 
     public class Wrapper {
