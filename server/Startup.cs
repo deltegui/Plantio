@@ -1,3 +1,6 @@
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,31 +23,44 @@ namespace plantio {
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc();
-            services.AddDbContext<PlantioContext>(opt => opt.UseNpgsql(Configuration["db"]));
+            services.AddDbContext<PlantioContext>(opt => opt.UseNpgsql(Configuration["db"]), ServiceLifetime.Scoped);
             services.AddControllers();
+            ConfigureAuthentication(services);
             ConfigureUserServices(services);
         }
 
+        private void ConfigureAuthentication(IServiceCollection services) {
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(configure => {
+                configure.RequireHttpsMetadata = false;
+                configure.SaveToken = true;
+                configure.TokenValidationParameters = new TokenValidationParameters() {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt_secret"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+            services.AddSingleton<UserTokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));
+        }
+
         private void ConfigureUserServices(IServiceCollection services) {
-            services.AddTransient<IPasswordHasher<User>>(services => new PasswordHasher<User>());
-            services.AddScoped<UserRepository>(services => {
-                var ctx = services.GetService<PlantioContext>();
-                return new EFUserRepository(ctx);
-            });
-            services.AddScoped<TokenRepository>(services => {
-                var ctx = services.GetService<PlantioContext>();
-                return new EFTokenRepository(ctx);
-            });
+            services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddTransient<UserRepository, EFUserRepository>();
             services.AddTransient<UserService>();
-            services.AddTransient<UserTokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
-            // app.UseHttpsRedirection();
+            if (env.IsProduction()) {
+                app.UseHttpsRedirection();
+            }
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

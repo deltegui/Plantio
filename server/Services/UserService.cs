@@ -12,20 +12,17 @@ namespace plantio.Services{
     public struct LoginResponse {
         public string Token { get; set; }
         public string User { get; set; }
-        public DateTime Expiration { get; set; }
     }
 
     public class UserService {
         private readonly UserRepository userRepository;
         private readonly IPasswordHasher<User> passwordHasher;
         private readonly UserTokenizer tokenizer;
-        private readonly TokenRepository tokenRepository;
 
-        public UserService(UserRepository userRepository, TokenRepository tokenRepository, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
+        public UserService(UserRepository userRepository, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
             this.userRepository = userRepository;
             this.passwordHasher = passwordHasher;
             this.tokenizer = tokenizer;
-            this.tokenRepository = tokenRepository;
         }
 
         public async Task<User> Register(ChangeUserRequest request) {
@@ -47,25 +44,15 @@ namespace plantio.Services{
                 throw DomainException.FromError(UserErrors.InvalidCredentials);
             }
             var token = this.tokenizer.Tokenize(user);
-            this.SaveOrReplaceToken(token);
             return new LoginResponse() {
-                Token = token.Value,
+                Token = token,
                 User = user.Name,
-                Expiration = token.Expiration,
             };
         }
 
         private bool IsPasswordIncorrect(User user, string password) {
             var verification = this.passwordHasher.VerifyHashedPassword(user, user.Password, password);
             return verification == PasswordVerificationResult.Failed;
-        }
-
-        private async void SaveOrReplaceToken(Token token) {
-            var oldToken = this.tokenRepository.GetForUser(token.Owner);
-            if (oldToken != null) {
-                await this.tokenRepository.Delete(oldToken);
-            }
-            await this.tokenRepository.Save(token);
         }
     }
 }

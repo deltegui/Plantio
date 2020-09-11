@@ -67,24 +67,6 @@ namespace plantio.Tests.Services {
             new object?[] { new ChangeUserRequest() { Name = "Javier", Password = "invalid" }, User.FirstTime("Javier", "escuela"), UserErrors.InvalidCredentials },
         };
 
-        [Fact]
-        public async void LoginShouldSaveOrReplaceToken() {
-            var request = UserServiceBuilder.DefaultChangeUserRequest;
-            string expectedHash = "JC9RVxfQjUbgHmLDseTpaw==";
-            Token savedToken = new Token();
-            var userService = GetUserServiceForLoginOk(request)
-                .WithPasswordHasher()
-                    .WhenHashReturn(expectedHash)
-                    .And()
-                .WithTokenRepository()
-                    .WhenSaveDo(token => savedToken = token)
-                    .And()
-                .Build();
-            await userService.Login(request);
-            Assert.Equal(savedToken.Owner.Name, request.Name);
-            Assert.Equal(savedToken.Value, expectedHash);
-        }
-
         private UserServiceBuilder GetUserServiceForLoginOk(ChangeUserRequest request) => new UserServiceBuilder()
             .WithUserRepository()
                 .WhenGetByNameReturn(User.FirstTime(request.Name, request.Password))

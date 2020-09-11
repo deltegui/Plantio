@@ -14,16 +14,13 @@ namespace plantio.Model {
             this.secret = key;
         }
 
-        public Token Tokenize(User user) {
-            var rawToken = this.CreateRawToken(user);
-            return Token.Create(rawToken, user);
-        }
-
-        private string CreateRawToken(User user) {
+        public String Tokenize(User user) {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(this.secret);
             var tokenDescriptor = new SecurityTokenDescriptor {
-                Subject = new ClaimsIdentity(new[] { new Claim("name", user.Name) }),
+                Subject = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, user.Name)
+                }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             };

@@ -10,7 +10,7 @@ namespace plantio.Tests.Model {
         public void ShouldReturnNewTokenFromUser(string key, User user) {
             var tokenizer = new JwtUserTokenizer(key);
             var token = tokenizer.Tokenize(user);
-            Assert.Equal(ExpectedKeyLength, token.Value.Length);
+            Assert.Equal(ExpectedKeyLength, token.Length);
         }
 
         public static IEnumerable<object[]> Data => new List<object[]> {
@@ -19,6 +19,6 @@ namespace plantio.Tests.Model {
         };
 
         public static string Key => "En boca cerrada no entran moscas pero entran pollas como roscas";
-        public static int ExpectedKeyLength => 172;
+        public static int ExpectedKeyLength => 181;
     }
 }

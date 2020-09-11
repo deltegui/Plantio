@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using plantio.Services;
 
 namespace plantio.Controllers {
@@ -19,5 +20,11 @@ namespace plantio.Controllers {
         [HttpPost("login")]
         public Task<IActionResult> LoginUser(ChangeUserRequest request) =>
             this.SafeDomainCall(async () => Ok(await this.userService.Login(request)));
+
+        [Authorize]
+        [HttpGet("hello")]
+        public IActionResult Hello() {
+            return Ok("Hola puto");
+        }
     }
 }
