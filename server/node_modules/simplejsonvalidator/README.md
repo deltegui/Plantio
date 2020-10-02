@@ -28,6 +28,16 @@ validator.create(t => ({
 }), 'validatorName');
 ```
 
+or
+
+```javascript
+const myValidator = validator.create(t => ({
+  user: t.string.required,  
+  age: t.number,
+  text: t.string.max(10).required,
+}));
+```
+
 Finally, you can validate any json using 'validate' function:
 
 ```javascript
@@ -42,14 +52,43 @@ validator.validate(json, 'validatorName');
 You can also nest objects like this:
 
 ```javascript
-validator.create(t => ({
+const demoValidator = validator.create(t => ({
   user: t.string.required,
   age: t.number,
   text: t.string.max(10).required,
   data: {
     token: t.string,
   },
-}), 'demoValidator');
+}));
+```
+
+And you can check why a json is invalid:
+
+```javascript
+const errors = demoValidator.errors();
+```
+
+Errors looks like this:
+
+```javascript
+[
+  {
+    message: 'element "key" must be string',
+    type: 'string',
+  },
+  {
+    message: 'key "user.name" should be upper than 10',
+    type: 'string',
+  },
+  {
+    message: 'key "user.age" should be positive',
+    type: 'number',
+  },
+  {
+    message: 'element "user.connection" must be date',
+    type: 'date',
+  },
+]
 ```
 
 ## Types

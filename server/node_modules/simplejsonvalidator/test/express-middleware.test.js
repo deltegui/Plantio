@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 const validator = require('../index')();
 const expect = require('chai').expect;
 
@@ -14,7 +13,7 @@ describe('Express MiddleWare', () => {
   };
 
   before(() => {
-    validator.create(t => ({
+    validator.create((t) => ({
       name: t.string.min(1).required,
       age: t.number.positive.required,
       data: {

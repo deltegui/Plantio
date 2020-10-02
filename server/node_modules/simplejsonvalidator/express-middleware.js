@@ -8,9 +8,13 @@ function sendInvalidJsonError(res, jsonError, statusCode) {
   res.status(status).send(jsonError);
 }
 
-function expressMiddleware(validatorObj, jsonError = defaultJsonError, statusCode = 400) {
+function expressMiddleware(
+    validatorObj,
+    jsonError = defaultJsonError,
+    statusCode = 400,
+) {
   return (req, res, next) => {
-    if(validatorObj.validate(req.body)) {
+    if (validatorObj.validate(req.body)) {
       next();
     } else sendInvalidJsonError(res, jsonError, statusCode);
   };

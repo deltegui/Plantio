@@ -2,18 +2,24 @@ const validator = require('simplejsonvalidator')();
 
 const userValidator = validator.create((t) => ({
   name: t.string.min(1).required,
-  password: t.string.min(6).required,
+  password: t.string.required,
 }));
 
 class UserController {
+  constructor(loginService) {
+    this.loginService = loginService;
+  }
+
   login(req, res) {
     const user = req.body;
     if (!userValidator.validate(user)) {
       return res.json({
-        error: 'puto',
+        code: 0,
+        errors: userValidator.errors,
       });
     }
-    res.json(user);
+    this.loginService.loginUser(user)
+        .then(res.json.bind(res));
   }
 }
 

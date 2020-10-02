@@ -3,7 +3,7 @@ const jsonValidator = require('../index')();
 const expect = require('chai').expect;
 
 describe('Validator', () => {
-  const structure = jsonValidator.create(t => ({
+  const structure = jsonValidator.create((t) => ({
     name: t.string.required,
     age: t.number.required,
     email: t.string,
