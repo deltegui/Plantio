@@ -8,18 +8,26 @@ const {
 
 const {
   LoginService,
+  RegisterService,
 } = require('./application');
 
 const UserController = require('./user.controller');
 
-const service = new LoginService(userRepository, hasher, jwt);
-const controller = new UserController(service);
+const loginService = new LoginService(userRepository, hasher, jwt);
+const registerService = new RegisterService(userRepository, hasher, jwt);
+const controller = new UserController(loginService, registerService);
 
 module.exports = [
   {
     bind: controller,
     handler: controller.login,
     endpoint: '/login',
+    method: post,
+  },
+  {
+    bind: controller,
+    handler: controller.register,
+    endpoint: '/',
     method: post,
   },
 ];

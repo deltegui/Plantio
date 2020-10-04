@@ -6,8 +6,9 @@ const userValidator = validator.create((t) => ({
 }));
 
 class UserController {
-  constructor(loginService) {
+  constructor(loginService, registerService) {
     this.loginService = loginService;
+    this.registerService = registerService;
   }
 
   login(req, res) {
@@ -19,6 +20,18 @@ class UserController {
       });
     }
     this.loginService.loginUser(user)
+        .then(res.json.bind(res));
+  }
+
+  register(req, res) {
+    const user = req.body;
+    if (!userValidator.validate(user)) {
+      return res.json({
+        code: 0,
+        errors: userValidator.errors,
+      });
+    }
+    this.registerService.registerUser(user)
         .then(res.json.bind(res));
   }
 }

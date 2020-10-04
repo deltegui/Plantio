@@ -23,7 +23,7 @@ class LoginService {
     if (!await this.hasher.check(password, user.password)) {
       return userErrors.invalidCredentials;
     }
-    await this.updateLastConnection(user);
+    await this._updateLastConnection(user);
     return {
       name,
       lastConnection: user.lastConnection,
@@ -31,7 +31,7 @@ class LoginService {
     };
   }
 
-  async updateLastConnection(user) {
+  async _updateLastConnection(user) {
     user.lastConnection = new Date();
     await this.userRepository.save(user);
   }
