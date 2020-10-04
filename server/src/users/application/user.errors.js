@@ -1,6 +1,14 @@
 module.exports = {
   alreadyExists: {
     code: 100,
-    fix: 'User already exists',
+    message: 'User already exists',
+  },
+  notFound: {
+    code: 101,
+    message: 'User not found',
+  },
+  invalidCredentials: {
+    code: 102,
+    message: 'Password does not match. Try again',
   },
 };

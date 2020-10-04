@@ -1,17 +1,20 @@
 const knex = require('knex');
+const config = require('../knexfile');
 
-const env = process.env;
-const connection = {
-  host: env.MYSQL_URL,
-  user: env.MYSQL_USER,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DB,
-};
-console.log(`DB connection host: ${connection.host} ` +
-  `user: ${connection.user} database: ${connection.database}`);
-const instance = knex({
-  client: 'mysql',
-  connection,
-});
+let knexconfig = config.production;
+
+if (process.env.NODE_ENV === 'test') {
+  knexconfig = config.test;
+}
+if (process.env.NODE_ENV === 'development') {
+  knexconfig = config.development;
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  console.log(`DB connection host: ${config.connection.host} ` +
+    `user: ${config.connection.user} database: ${config.connection.database}`);
+}
+
+const instance = knex(knexconfig);
 
 module.exports = instance;

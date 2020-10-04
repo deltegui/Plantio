@@ -1,22 +1,6 @@
-require('dotenv').config();
-const express = require('express');
-const mappings = require('./mappings');
+const app = require('./app');
 
-function addToRouter(router, {bind, handler, method, endpoint}) {
-  router[method](endpoint, handler.bind(bind));
-  return router;
-}
-
-function mapEndpoints(app, mappings) {
-  mappings.forEach(({mountpoint, routes}) => {
-    const router = routes.reduce(addToRouter, new express.Router());
-    app.use(mountpoint, router);
-  });
-}
-
-const app = express();
-app.use(express.json());
-mapEndpoints(app, mappings);
+console.log(`Environment: ${process.env.NODE_ENV}`);
 
 app.listen(process.env.LISTEN_URL, () => {
   console.log(`Listening on ${process.env.LISTEN_URL}`);

@@ -16,10 +16,14 @@ class LoginService {
    * @return {Promise<{name: String, lastConnection: Date, jwt: String}>}
    */
   async loginUser({name, password}) {
-    if (await this.userRepository.existsWithName(name)) {
-      return userErrors.alreadyExists;
+    if (!await this.userRepository.existsWithName(name)) {
+      return userErrors.notFound;
     }
-    const user = await this._save({name, password});
+    const user = await this.userRepository.getByName(name);
+    if (!await this.hasher.check(password, user.password)) {
+      return userErrors.invalidCredentials;
+    }
+    await this.updateLastConnection(user);
     return {
       name,
       lastConnection: user.lastConnection,
@@ -27,14 +31,9 @@ class LoginService {
     };
   }
 
-  async _save({name, password}) {
-    const hashed = await this.hasher.hash(password);
-    const user = {
-      name,
-      password: hashed,
-      lastConnection: new Date(),
-    };
-    return this.userRepository.create(user);
+  async updateLastConnection(user) {
+    user.lastConnection = new Date();
+    await this.userRepository.save(user);
   }
 }
 
