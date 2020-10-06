@@ -33,5 +33,6 @@ module.exports = {
     client: 'sqlite3',
     connection: ':memory:',
     migrations,
+    useNullAsDefault: true,
   },
 };

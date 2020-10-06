@@ -4,6 +4,7 @@ const {
   hasher,
   jwt,
   userRepository,
+  tokenRepository,
 } = require('./implementation');
 
 const {
@@ -14,7 +15,12 @@ const {
 const UserController = require('./user.controller');
 
 const loginService = new LoginService(userRepository, hasher, jwt);
-const registerService = new RegisterService(userRepository, hasher, jwt);
+const registerService = new RegisterService(
+    userRepository,
+    tokenRepository,
+    hasher,
+    jwt,
+);
 const controller = new UserController(loginService, registerService);
 
 module.exports = [

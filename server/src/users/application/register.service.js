@@ -1,8 +1,9 @@
 const userErrors = require('./user.errors');
 
 class RegisterService {
-  constructor(userRepository, hasher, jwt) {
+  constructor(userRepository, tokenRepository, hasher, jwt) {
     this.userRepository = userRepository;
+    this.tokenRepository = tokenRepository;
     this.hasher = hasher;
     this.jwt = jwt;
   }
@@ -18,10 +19,12 @@ class RegisterService {
       return userErrors.alreadyExists;
     }
     const user = await this._save({name, password});
+    const token = this.jwt.generateFor(user);
+    await this.tokenRepository.save(user, {token, created: new Date()});
     return {
       name,
       lastConnection: user.lastConnection,
-      jwt: this.jwt.generateFor(user),
+      jwt: token,
     };
   }
 

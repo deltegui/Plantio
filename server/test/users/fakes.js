@@ -36,8 +36,21 @@ function userRepositoryFake({
   };
 }
 
+function tokensRepositoryFake({
+  saveReturn,
+} = {
+  saveReturn: null,
+}) {
+  return {
+    async save(user, token) {
+      return saveReturn ? saveReturn : token;
+    },
+  };
+}
+
 module.exports = {
   hasherFake,
   jwtFake,
   userRepositoryFake,
+  tokensRepositoryFake,
 };

@@ -5,6 +5,7 @@ const {
   userRepositoryFake,
   hasherFake,
   jwtFake,
+  tokensRepositoryFake,
 } = require('./fakes');
 
 describe.only('RegisterService', () => {
@@ -16,6 +17,7 @@ describe.only('RegisterService', () => {
     const expectedJwt = 'myjwtforrodrox';
     const registerService = new RegisterService(
         userRepositoryFake({existsWithNameReturn: false}),
+        tokensRepositoryFake(),
         hasherFake(),
         jwtFake({jwt: expectedJwt}),
     );
@@ -33,6 +35,7 @@ describe.only('RegisterService', () => {
     };
     const registerService = new RegisterService(
         userRepositoryFake({existsWithNameReturn: true}),
+        tokensRepositoryFake(),
         hasherFake(),
         jwtFake(),
     );

@@ -1,7 +1,5 @@
 const knex = require('../../db');
 
-const userKnex = knex('users');
-
 module.exports = {
   /**
    * Creates a new user
@@ -9,7 +7,7 @@ module.exports = {
    * @return {Promise<User>}
    */
   async create({name, password, lastConnection}) {
-    return userKnex.insert({
+    return knex('users').insert({
       name,
       password,
       lastConnection,
@@ -27,7 +25,7 @@ module.exports = {
    */
   async existsWithName(name) {
     return this.getByName(name)
-        .then((user) => user !== null);
+        .then((user) => !!user);
   },
 
   /**
@@ -39,14 +37,9 @@ module.exports = {
    * @return {Promise<User|null>}
    */
   async getByName(name) {
-    return userKnex
+    return knex('users')
         .where({name})
-        .then((rows) => {
-          if (rows.length <= 0) {
-            return null;
-          }
-          return rows[0];
-        });
+        .first();
   },
 
   /**
@@ -54,7 +47,6 @@ module.exports = {
    * @param {User} user
    */
   async save(user) {
-    await userKnex
-        .insert(user);
+    await knex('users').insert(user);
   },
 };

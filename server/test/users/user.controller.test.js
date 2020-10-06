@@ -1,14 +1,13 @@
 const request = require('supertest');
-const {src} = require('../utils');
+const {src, db} = require('../utils');
+const knex = require(src('/db'));
 const app = require(src('/app'));
-const db = require(src('/db'));
+
+beforeAll(db.initialize);
+afterAll(knex.destroy.bind(knex));
+beforeEach(db.reset);
 
 describe('UserController', () => {
-  beforeEach(async () => {
-    await db.migrate.rollback();
-    await db.migrate.latest();
-  });
-
   describe('register endpoint', () => {
     it('should return logged user', async () => {
       await request(app)
@@ -32,8 +31,10 @@ describe('UserController', () => {
           .then(async (res) => {
             const token = res.body.jwt;
             const name = res.body.name;
-            const storedTokens = await db('tokens').where({user: name});
-            expect(token).toBe(storedTokens[0].value);
+            const storedToken = await knex('tokens')
+                .where({user: name})
+                .first();
+            expect(token).toBe(storedToken.value);
           });
     });
   });
