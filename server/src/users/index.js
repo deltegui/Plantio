@@ -14,7 +14,12 @@ const {
 
 const UserController = require('./user.controller');
 
-const loginService = new LoginService(userRepository, hasher, jwt);
+const loginService = new LoginService(
+    userRepository,
+    tokenRepository,
+    hasher,
+    jwt,
+);
 const registerService = new RegisterService(
     userRepository,
     tokenRepository,

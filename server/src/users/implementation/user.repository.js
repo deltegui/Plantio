@@ -43,10 +43,10 @@ module.exports = {
   },
 
   /**
-   * Saves a user.
+   * Updates a user.
    * @param {User} user
    */
-  async save(user) {
-    await knex('users').insert(user);
+  async update({password, lastConnection}) {
+    await knex('users').update({password, lastConnection});
   },
 };

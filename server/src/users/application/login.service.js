@@ -1,8 +1,9 @@
 const userErrors = require('./user.errors');
 
 class LoginService {
-  constructor(userRepository, hasher, jwt) {
+  constructor(userRepository, tokenRepository, hasher, jwt) {
     this.userRepository = userRepository;
+    this.tokenRepository = tokenRepository;
     this.hasher = hasher;
     this.jwt = jwt;
   }
@@ -24,16 +25,18 @@ class LoginService {
       return userErrors.invalidCredentials;
     }
     await this._updateLastConnection(user);
+    const token = this.jwt.generateFor(user);
+    this.tokenRepository.save(user, {token, created: new Date()});
     return {
       name,
       lastConnection: user.lastConnection,
-      jwt: this.jwt.generateFor(user),
+      jwt: token,
     };
   }
 
   async _updateLastConnection(user) {
     user.lastConnection = new Date();
-    await this.userRepository.save(user);
+    await this.userRepository.update(user);
   }
 }
 

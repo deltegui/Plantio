@@ -1,4 +1,5 @@
 const knex = require('../src/db');
+const hasher = require('../src/users/implementation/hasher');
 
 module.exports = {
   db: {
@@ -15,4 +16,12 @@ module.exports = {
     },
   },
   src: (path) => `../../src${path}`,
+  async createUser() {
+    return {
+      name: 'elver',
+      password: await hasher.hash('gadura'),
+      clearPassword: 'gadura',
+      lastConnection: new Date(1234),
+    };
+  },
 };

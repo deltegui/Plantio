@@ -5,6 +5,7 @@ const {
   userRepositoryFake,
   hasherFake,
   jwtFake,
+  tokensRepositoryFake,
 } = require('./fakes');
 
 describe('LoginService', () => {
@@ -24,6 +25,7 @@ describe('LoginService', () => {
             lastConnection: new Date(),
           },
         }),
+        tokensRepositoryFake(),
         hasherFake(),
         jwtFake({jwt: expectedJwt}),
     );
@@ -41,6 +43,7 @@ describe('LoginService', () => {
     };
     const loginService = new LoginService(
         userRepositoryFake({existsWithNameReturn: false}),
+        tokensRepositoryFake(),
         hasherFake(),
         jwtFake(),
     );
@@ -61,6 +64,7 @@ describe('LoginService', () => {
             password: 'notmine',
           },
         }),
+        tokensRepositoryFake(),
         hasherFake({
           checkResult: false,
         }),

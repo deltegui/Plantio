@@ -32,7 +32,7 @@ function userRepositoryFake({
     },
     existsWithName: () => existsWithNameReturn,
     getByName: () => getByNameReturn,
-    save: () => undefined,
+    update: () => undefined,
   };
 }
 

@@ -16,6 +16,6 @@ module.exports = {
    * @return {Promise<boolean>}
    */
   async check(password, hashed) {
-    return bcrypt.compare(passrod, hashed);
+    return bcrypt.compare(password, hashed);
   },
 };
