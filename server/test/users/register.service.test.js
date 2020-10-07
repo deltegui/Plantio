@@ -8,7 +8,7 @@ const {
   tokensRepositoryFake,
 } = require('./fakes');
 
-describe.only('RegisterService', () => {
+describe('RegisterService', () => {
   it('should return registered and logged user', async () => {
     const user = {
       name: 'rodrigo',
