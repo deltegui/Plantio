@@ -7,10 +7,10 @@ module.exports = {
    * @param {{token: string, created: date}} token
    * @return {Promise}
    */
-  async save(user, {token, created}) {
+  async save(user, {value, created}) {
     const data = {
       created,
-      value: token,
+      value,
       user: user.name,
     };
     return knex('tokens').insert(data).then(() => data);

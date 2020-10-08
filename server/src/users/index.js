@@ -2,7 +2,7 @@ const {post} = require('../methods');
 
 const {
   hasher,
-  jwt,
+  tokenizer,
   userRepository,
   tokenRepository,
 } = require('./implementation');
@@ -18,13 +18,13 @@ const loginService = new LoginService(
     userRepository,
     tokenRepository,
     hasher,
-    jwt,
+    tokenizer,
 );
 const registerService = new RegisterService(
     userRepository,
     tokenRepository,
     hasher,
-    jwt,
+    tokenizer,
 );
 const controller = new UserController(loginService, registerService);
 

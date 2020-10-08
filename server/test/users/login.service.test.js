@@ -32,11 +32,13 @@ describe('LoginService', () => {
     const result = await loginService.loginUser(user);
     expect(result).toMatchObject({
       name: user.name,
-      jwt: expectedJwt,
+      token: {
+        value: expectedJwt,
+      },
     });
   });
 
-  it('should return error if you login a missing user', async () => {
+  it('should return error if you login a missing user', () => {
     const user = {
       name: 'manolo',
       password: 'man',
@@ -47,11 +49,11 @@ describe('LoginService', () => {
         hasherFake(),
         jwtFake(),
     );
-    const expectedError = await loginService.loginUser(user);
-    expect(expectedError).toBe(userErrors.notFound);
+    const expectedError = loginService.loginUser(user);
+    expect(expectedError).rejects.toBe(userErrors.notFound);
   });
 
-  it('should return error if you login with invalid password', async () => {
+  it('should return error if you login with invalid password', () => {
     const user = {
       name: 'manolo',
       password: 'man',
@@ -70,7 +72,7 @@ describe('LoginService', () => {
         }),
         jwtFake(),
     );
-    const expectedError = await loginService.loginUser(user);
-    expect(expectedError).toBe(userErrors.invalidCredentials);
+    const expectedError = loginService.loginUser(user);
+    expect(expectedError).rejects.toBe(userErrors.invalidCredentials);
   });
 });

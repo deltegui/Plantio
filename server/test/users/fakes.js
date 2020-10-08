@@ -13,7 +13,10 @@ function hasherFake({
 
 function jwtFake({jwt} = {jwt: 'thisismyfakejwt'}) {
   return {
-    generateFor: () => jwt,
+    generateFor: () => ({
+      value: jwt,
+      created: new Date(),
+    }),
   };
 }
 

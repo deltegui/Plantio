@@ -1,11 +1,11 @@
 const userErrors = require('./user.errors');
 
 class LoginService {
-  constructor(userRepository, tokenRepository, hasher, jwt) {
+  constructor(userRepository, tokenRepository, hasher, tokenizer) {
     this.userRepository = userRepository;
     this.tokenRepository = tokenRepository;
     this.hasher = hasher;
-    this.jwt = jwt;
+    this.tokenizer = tokenizer;
   }
 
   /**
@@ -17,20 +17,20 @@ class LoginService {
    * @return {Promise<{name: String, lastConnection: Date, jwt: String}>}
    */
   async loginUser({name, password}) {
-    if (!await this.userRepository.existsWithName(name)) {
-      return userErrors.notFound;
+    if (! await this.userRepository.existsWithName(name)) {
+      throw userErrors.notFound;
     }
     const user = await this.userRepository.getByName(name);
-    if (!await this.hasher.check(password, user.password)) {
-      return userErrors.invalidCredentials;
+    if (! await this.hasher.check(password, user.password)) {
+      throw userErrors.invalidCredentials;
     }
     await this._updateLastConnection(user);
-    const token = this.jwt.generateFor(user);
-    this.tokenRepository.save(user, {token, created: new Date()});
+    const token = this.tokenizer.generateFor(user);
+    this.tokenRepository.save(user, token);
     return {
       name,
       lastConnection: user.lastConnection,
-      jwt: token,
+      token,
     };
   }
 

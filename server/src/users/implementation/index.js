@@ -1,5 +1,5 @@
 module.exports = {
-  jwt: require('./jwt'),
+  tokenizer: require('./tokenizer'),
   hasher: require('./hasher'),
   userRepository: require('./user.repository'),
   tokenRepository: require('./token.repository'),

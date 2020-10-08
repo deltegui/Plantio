@@ -1,11 +1,11 @@
 const userErrors = require('./user.errors');
 
 class RegisterService {
-  constructor(userRepository, tokenRepository, hasher, jwt) {
+  constructor(userRepository, tokenRepository, hasher, tokenizer) {
     this.userRepository = userRepository;
     this.tokenRepository = tokenRepository;
     this.hasher = hasher;
-    this.jwt = jwt;
+    this.tokenizer = tokenizer;
   }
 
   /**
@@ -16,15 +16,15 @@ class RegisterService {
    */
   async registerUser({name, password}) {
     if (await this.userRepository.existsWithName(name)) {
-      return userErrors.alreadyExists;
+      throw userErrors.alreadyExists;
     }
     const user = await this._save({name, password});
-    const token = this.jwt.generateFor(user);
-    await this.tokenRepository.save(user, {token, created: new Date()});
+    const token = this.tokenizer.generateFor(user);
+    await this.tokenRepository.save(user, token);
     return {
       name,
       lastConnection: user.lastConnection,
-      jwt: token,
+      token,
     };
   }
 

@@ -10,6 +10,9 @@ module.exports = {
    * @return {String}
    */
   generateFor(payload) {
-    return jwt.sign(payload, privateKey);
+    return {
+      value: jwt.sign(payload, privateKey),
+      created: new Date(),
+    };
   },
 };

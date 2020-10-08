@@ -23,7 +23,7 @@ describe('UserController', () => {
             expect(user.name).toBe('manolo');
             expect(user.password).toBeFalsy;
             expect(user.lastConnection).toBeTruthly;
-            expect(user.jwt.length).toBe(284);
+            expect(user.token.value.length).toBe(284);
           });
     });
 
@@ -33,7 +33,7 @@ describe('UserController', () => {
           .send({name: 'manolo', password: 'man'})
           .expect(200)
           .then(async (res) => {
-            const token = res.body.jwt;
+            const token = res.body.token.value;
             const name = res.body.name;
             const storedToken = await knex('tokens')
                 .where({user: name})
@@ -57,7 +57,7 @@ describe('UserController', () => {
       await request(app)
           .post('/user')
           .send({name, password: clearPassword})
-          .expect(200)
+          .expect(400)
           .then(async (res) => {
             expect(res.body).toMatchObject({
               code: 100,
@@ -119,12 +119,12 @@ describe('UserController', () => {
           .send({name: expectedUser.name, password: expectedUser.clearPassword})
           .expect(200)
           .then(async (res) => {
-            const token = res.body.jwt;
+            const token = res.body.token;
             const name = res.body.name;
             const storedToken = await knex('tokens')
                 .where({user: name})
                 .first();
-            expect(token).toBe(storedToken.value);
+            expect(token.value).toBe(storedToken.value);
           });
     });
   });

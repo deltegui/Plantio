@@ -24,11 +24,13 @@ describe('RegisterService', () => {
     const result = await registerService.registerUser(user);
     expect(result).toMatchObject({
       name: user.name,
-      jwt: expectedJwt,
+      token: {
+        value: expectedJwt,
+      },
     });
   });
 
-  it('should error if you try create a user that already exists', async () => {
+  it('should error if you try create a user that already exists', () => {
     const user = {
       name: 'manolo',
       password: 'man',
@@ -39,7 +41,7 @@ describe('RegisterService', () => {
         hasherFake(),
         jwtFake(),
     );
-    const expectedError = await registerService.registerUser(user);
-    expect(expectedError).toBe(userErrors.alreadyExists);
+    const expectedError = registerService.registerUser(user);
+    expect(expectedError).rejects.toBe(userErrors.alreadyExists);
   });
 });
