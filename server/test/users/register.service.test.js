@@ -8,6 +8,22 @@ const {
   tokensRepositoryFake,
 } = require('./fakes');
 
+const registerServiceMother = {
+  happyPath: (token) => new RegisterService(
+      userRepositoryFake({existsWithNameReturn: false}),
+      tokensRepositoryFake(),
+      hasherFake(),
+      jwtFake({jwt: token}),
+  ),
+
+  withAlwaysExistsWithName: (token) => new RegisterService(
+      userRepositoryFake({existsWithNameReturn: true}),
+      tokensRepositoryFake(),
+      hasherFake(),
+      jwtFake({jwt: token}),
+  ),
+};
+
 describe('RegisterService', () => {
   it('should return registered and logged user', async () => {
     const user = {
@@ -15,12 +31,7 @@ describe('RegisterService', () => {
       password: 'rodrox',
     };
     const expectedJwt = 'myjwtforrodrox';
-    const registerService = new RegisterService(
-        userRepositoryFake({existsWithNameReturn: false}),
-        tokensRepositoryFake(),
-        hasherFake(),
-        jwtFake({jwt: expectedJwt}),
-    );
+    const registerService = registerServiceMother.happyPath(expectedJwt);
     const result = await registerService.registerUser(user);
     expect(result).toMatchObject({
       name: user.name,
@@ -35,12 +46,7 @@ describe('RegisterService', () => {
       name: 'manolo',
       password: 'man',
     };
-    const registerService = new RegisterService(
-        userRepositoryFake({existsWithNameReturn: true}),
-        tokensRepositoryFake(),
-        hasherFake(),
-        jwtFake(),
-    );
+    const registerService = registerServiceMother.withAlwaysExistsWithName();
     const expectedError = registerService.registerUser(user);
     expect(expectedError).rejects.toBe(userErrors.alreadyExists);
   });

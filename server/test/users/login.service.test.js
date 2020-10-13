@@ -8,15 +8,9 @@ const {
   tokensRepositoryFake,
 } = require('./fakes');
 
-describe('LoginService', () => {
-  it('should return logged user without password and with token', async () => {
-    const user = {
-      name: 'rodrigo',
-      password: 'rodrox',
-    };
-    const expectedJwt = 'myjwtforrodrox';
-    const hashedPassword = 'jaskj23049$$';
-    const loginService = new LoginService(
+const loginServiceMother = {
+  happyPath: ({user, hashedPassword, token}) =>
+    new LoginService(
         userRepositoryFake({
           existsWithNameReturn: true,
           getByNameReturn: {
@@ -27,8 +21,45 @@ describe('LoginService', () => {
         }),
         tokensRepositoryFake(),
         hasherFake(),
-        jwtFake({jwt: expectedJwt}),
-    );
+        jwtFake({jwt: token}),
+    ),
+
+  missingUser: () => new LoginService(
+      userRepositoryFake({existsWithNameReturn: false}),
+      tokensRepositoryFake(),
+      hasherFake(),
+      jwtFake(),
+  ),
+
+  invalidPassword: (user) => new LoginService(
+      userRepositoryFake({
+        existsWithNameReturn: true,
+        getByNameReturn: {
+          name: user.name,
+          password: 'notmine',
+        },
+      }),
+      tokensRepositoryFake(),
+      hasherFake({
+        checkResult: false,
+      }),
+      jwtFake(),
+  ),
+};
+
+describe('LoginService', () => {
+  it('should return logged user without password and with token', async () => {
+    const user = {
+      name: 'rodrigo',
+      password: 'rodrox',
+    };
+    const expectedJwt = 'myjwtforrodrox';
+    const hashedPassword = 'jaskj23049$$';
+    const loginService = loginServiceMother.happyPath({
+      user,
+      hashedPassword,
+      token: expectedJwt,
+    });
     const result = await loginService.loginUser(user);
     expect(result).toMatchObject({
       name: user.name,
@@ -43,12 +74,7 @@ describe('LoginService', () => {
       name: 'manolo',
       password: 'man',
     };
-    const loginService = new LoginService(
-        userRepositoryFake({existsWithNameReturn: false}),
-        tokensRepositoryFake(),
-        hasherFake(),
-        jwtFake(),
-    );
+    const loginService = loginServiceMother.missingUser();
     const expectedError = loginService.loginUser(user);
     expect(expectedError).rejects.toBe(userErrors.notFound);
   });
@@ -58,20 +84,7 @@ describe('LoginService', () => {
       name: 'manolo',
       password: 'man',
     };
-    const loginService = new LoginService(
-        userRepositoryFake({
-          existsWithNameReturn: true,
-          getByNameReturn: {
-            name: user.name,
-            password: 'notmine',
-          },
-        }),
-        tokensRepositoryFake(),
-        hasherFake({
-          checkResult: false,
-        }),
-        jwtFake(),
-    );
+    const loginService = loginServiceMother.invalidPassword(user);
     const expectedError = loginService.loginUser(user);
     expect(expectedError).rejects.toBe(userErrors.invalidCredentials);
   });
