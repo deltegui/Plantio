@@ -1,0 +1,5 @@
+{
+    "ListenURL": "localhost:8080",
+    "DbConn": "root:root@tcp(127.0.0.1:3306)/plantio",
+    "JWTKey": "blabla esta es mi clave blabla"
+}
