@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"database/sql"
+	"net/http"
 	"plantio/src/configuration"
 	"plantio/src/domain"
 	"plantio/src/persistence"
@@ -10,6 +11,12 @@ import (
 
 	"github.com/deltegui/phoenix"
 )
+
+func corsMiddle(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		w.Header().Add("Access-Control-Allow-Origin", "*")
+	}
+}
 
 func databaseConnection(app phoenix.App) {
 	config := app.Injector.Get(configuration.Configuration{}).(configuration.Configuration)

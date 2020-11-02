@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Phaser from 'phaser';
 import Crop from './crop';
 import MatrixIndex from './matrix_index';
@@ -42,5 +44,5 @@ export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
       transparent: true,
     },
   };
-  return new Phaser.Game(config);
+  // return new Phaser.Game(config);
 };
