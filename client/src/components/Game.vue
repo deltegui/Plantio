@@ -20,8 +20,9 @@ export default {
 
 <style scoped>
 #gameCanvas {
-  padding-bottom: 30vw;
-  padding-top: 5px;
+  max-height: 100vh;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 @media only screen and (max-width: 890px) {
@@ -29,8 +30,7 @@ export default {
     width: 90vw;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 0vw;
-    padding-top: 0px;
+    margin-top: 0px;
   }
 }
 </style>

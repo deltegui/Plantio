@@ -1,12 +1,12 @@
 <template>
-<div>
+<main>
   <DayNightCycle/>
   <InfoPanel/>
   <div id="main-container">
     <Game/>
     <LeftPanel/>
   </div>
-</div>
+</main>
 </template>
 
 <script>
@@ -41,13 +41,12 @@ body {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-
-  z-index: 1000;
 }
 
 @media only screen and (max-width: 890px) {
   #main-container {
     flex-direction: column;
+    height: 100vh;
   }
 }
 </style>

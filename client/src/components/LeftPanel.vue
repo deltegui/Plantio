@@ -45,8 +45,9 @@ export default {
   #text-console {
     width: 100%;
     min-width: 100%;
-    margin-top: 0vh;
-    margin-right: 0px;
+    position: absolute;
+    bottom: 0px;
+    height: auto;
   }
 }
 </style>
