@@ -1,7 +1,7 @@
 <template>
 <div id="text-console">
   <Console v-if="logged"/>
-  <Login v-else/>
+  <Login :onLogin="onLogin.bind(this)" v-else/>
 </div>
 </template>
 
@@ -17,6 +17,12 @@ export default {
   components: {
     Console,
     Login,
+  },
+  methods: {
+    onLogin() {
+      console.log("loging");
+      this.logged = true;
+    },
   },
 };
 </script>
@@ -45,9 +51,10 @@ export default {
   #text-console {
     width: 100%;
     min-width: 100%;
+    max-height: 360px;
+    height: 360px;
     position: absolute;
     bottom: 0px;
-    height: auto;
   }
 }
 </style>

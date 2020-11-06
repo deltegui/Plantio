@@ -4,24 +4,57 @@
     <input v-model="username" id="username" class="field" type="text"/>
     <label for="password">Password</label>
     <input v-model="password" id="password" class="field" type="password"/>
-    <button v-on:click="doLogin" class="field fynd-btn">Login</button>
-    <button class="field fynd-btn">Register</button>
+    <button-spin @click="login" text="Login"/>
+    <button-spin @click="register" text="Register"/>
+    <div class="field danger-field" v-if="error">
+      {{error}}
+    </div>
   </div>
 </template>
 
 <script>
-// import store from '../store';
+import api from '../api';
+import ButtonSpin from './ButtonSpin.vue';
 
 export default {
   name: 'Login',
+  props: {
+    onLogin: {
+      type: Function,
+      required: true,
+    },
+  },
+  components: {
+    ButtonSpin,
+  },
   data() {
     return {
       username: "",
       password: "",
+      error: null,
     };
   },
   methods: {
-    doLogin() {
+    login(done) {
+      api.user.login({
+        user: this.username,
+        password: this.password,
+      })
+        .then(this.onLogin())
+        .then(done);
+    },
+
+    register(done) {
+      api.user.register({
+        user: this.username,
+        password: this.password,
+      })
+        // .then(this.onLogin())
+        .catch((err) => {
+          console.log(err);
+          this.error = err.reason;
+        })
+        .then(done);
     },
   },
 };
@@ -108,11 +141,14 @@ input {
   background-color: var(--front-color);
 }
 
-.danger-btn {
+.danger-field {
   border-color: var(--danger-color);
+  background-color: var(--danger-color);
+  padding: 10px;
 }
 
-.danger-btn:hover {
+.danger-field:hover {
+  border-color: var(--danger-color);
   background-color: var(--danger-color);
 }
 </style>
