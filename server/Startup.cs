@@ -9,8 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-using plantio.Domain;
 using plantio.Model;
+using plantio.Tokenizer;
 using plantio.Services;
 using System;
 
@@ -51,7 +51,6 @@ namespace plantio {
 
         private void ConfigureUserServices(IServiceCollection services) {
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
-            services.AddTransient<UserRepository, EFUserRepository>();
             services.AddTransient<UserService>();
         }
 

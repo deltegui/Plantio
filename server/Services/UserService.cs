@@ -1,13 +1,11 @@
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using plantio.Domain;
+using plantio.Model;
+using plantio.Tokenizer;
 
 namespace plantio.Services{
     public struct ChangeUserRequest {
-        ChangeUserRequest(string name, string password) {
-            Name = name;
-            Password = password;
-        }
         public string Name { get; set; }
         public string Password { get; set; }
     }
@@ -23,32 +21,35 @@ namespace plantio.Services{
     }
 
     public class UserService {
-        private readonly UserRepository userRepository;
+        private readonly PlantioContext ctx;
         private readonly IPasswordHasher<User> passwordHasher;
         private readonly UserTokenizer tokenizer;
 
-        public UserService(UserRepository userRepository, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
-            this.userRepository = userRepository;
+        public UserService(PlantioContext ctx, IPasswordHasher<User> passwordHasher, UserTokenizer tokenizer) {
+            this.ctx = ctx;
             this.passwordHasher = passwordHasher;
             this.tokenizer = tokenizer;
         }
 
-        public async Task<LoginResponse> Register(ChangeUserRequest request) {
-            if (await this.userRepository.ExistsWithName(request.Name)) {
+        public LoginResponse Register(ChangeUserRequest request) {
+            IEnumerable<User> userList = this.ctx.Users.Where(user => user.Name == request.Name);
+            if (userList.Any()) {
                 throw DomainException.FromError(UserErrors.AlreadyExist);
             }
             var user = User.FirstTime(request.Name, request.Password);
             user.Password = this.passwordHasher.HashPassword(user, request.Password);
-            this.userRepository.Save(user);
+            this.ctx.Users.Add(user);
+            this.ctx.SaveChanges();
             var token = this.tokenizer.Tokenize(user);
             return new LoginResponse(user.Name, token);
         }
 
-        public async Task<LoginResponse> Login(ChangeUserRequest request) {
-            User? user = await this.userRepository.GetByName(request.Name);
-            if (user == null) {
+        public LoginResponse Login(ChangeUserRequest request) {
+            IEnumerable<User> userList = this.ctx.Users.Where(user => user.Name == request.Name);
+            if (! userList.Any()) {
                 throw DomainException.FromError(UserErrors.NotFound);
             }
+            var user = userList.First();
             if (IsPasswordIncorrect(user, request.Password)) {
                 throw DomainException.FromError(UserErrors.InvalidCredentials);
             }

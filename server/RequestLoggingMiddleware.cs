@@ -19,7 +19,7 @@ namespace plantio {
 
         public async Task Invoke(HttpContext ctx) {
             var req = ctx.Request;
-            this.logger.LogInformation($"[{req.Method}] {req.Path}");
+            this.logger.LogInformation($"{req.Protocol} [{req.Method}] {req.Path}");
             await this.next(ctx);
         }
     }

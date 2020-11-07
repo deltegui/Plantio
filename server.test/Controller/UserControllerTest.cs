@@ -6,7 +6,6 @@ using Xunit;
 using plantio.Tests.Utils;
 using plantio.Services;
 using plantio.Controllers;
-using plantio.Domain;
 using plantio.Model;
 
 namespace plantio.Tests.Controller {
@@ -20,9 +19,9 @@ namespace plantio.Tests.Controller {
             Password = "Blabla",
         };
 
-        protected override async void Seed(PlantioContext ctx) {
+        protected override void Seed(PlantioContext ctx) {
             var service = UserServiceBuilder.BuildProduction(ctx);
-            await service.Register(new ChangeUserRequest() { Name = "ExistingUser", Password = "Blabla" });
+            service.Register(new ChangeUserRequest() { Name = "ExistingUser", Password = "Blabla" });
         }
 
         public async Task<UserController> CreateUserController() {
@@ -38,7 +37,7 @@ namespace plantio.Tests.Controller {
                 Name = "ExpectedName",
                 Password = "ExpectedPassword",
             };
-            IActionResult result = await controller.CreateUser(req);
+            IActionResult result = controller.CreateUser(req);
             ObjectResult? okResult = result as ObjectResult;
             Assert.NotNull(okResult);
             if (okResult == null) return; // Shutout linter
@@ -51,7 +50,7 @@ namespace plantio.Tests.Controller {
             var controller = await CreateUserController();
             var req = this.existingUserRequest;
 
-            IActionResult result = await controller.CreateUser(req);
+            IActionResult result = controller.CreateUser(req);
             ObjectResult? errResult = result as ObjectResult;
 
             Assert.NotNull(errResult);
@@ -67,7 +66,7 @@ namespace plantio.Tests.Controller {
             var controller = await CreateUserController();
             var req = this.existingUserRequest;
 
-            ObjectResult? result = await controller.LoginUser(req) as ObjectResult;
+            ObjectResult? result = controller.LoginUser(req) as ObjectResult;
 
             Assert.NotNull(result);
             if (result == null) return;
@@ -80,7 +79,7 @@ namespace plantio.Tests.Controller {
         public async void WhenLoginWithFailureShouldThrowError(ChangeUserRequest request, int code, DomainError error) {
             var controller = await CreateUserController();
 
-            ObjectResult? result = await controller.LoginUser(request) as ObjectResult;
+            ObjectResult? result = controller.LoginUser(request) as ObjectResult;
 
             Assert.NotNull(result);
             if (result == null) return;

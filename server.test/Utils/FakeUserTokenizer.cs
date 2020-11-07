@@ -1,8 +1,8 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
-using plantio.Services;
-using plantio.Domain;
+using plantio.Model;
+using plantio.Tokenizer;
 
 namespace plantio.Tests.Utils {
     public class FakeUserTokenizer: UserTokenizer {

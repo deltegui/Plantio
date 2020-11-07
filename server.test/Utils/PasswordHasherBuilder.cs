@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Moq;
-using plantio.Domain;
+using plantio.Model;
 
 namespace plantio.Tests.Utils {
     public class PasswordHasherBuilder {

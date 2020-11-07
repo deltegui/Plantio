@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Xunit;
 using plantio.Tests.Utils;
 using plantio.Services;
-using plantio.Domain;
+using plantio.Model;
 
 namespace plantio.Tests.Services {
     public class UserServiceTest {
@@ -12,16 +12,12 @@ namespace plantio.Tests.Services {
         public async void RegisterShouldSaveAUser() {
             var request = UserServiceBuilder.DefaultChangeUserRequest;
             User createdUser = new User();
-            UserService userService = new UserServiceBuilder()
-                .WithUserRepository()
-                    .WhenExistsWithNameReturn(false)
-                    .WhenSaveDo(user => createdUser = user)
-                    .And()
+            UserService userService = await new UserServiceBuilder()
                 .WithPasswordHasher()
                     .WhenHashReturn(Hash(request.Password))
                     .And()
                 .Build();
-            await userService.Register(request);
+            userService.Register(request);
             Assert.Equal(createdUser.Name, request.Name);
             Assert.Equal(createdUser.Password, Hash(request.Password));
         }
@@ -30,13 +26,8 @@ namespace plantio.Tests.Services {
 
         [Fact]
         public async void RegisterShouldThrowIfUserAlreadyExists() {
-            var userService = new UserServiceBuilder()
-                .WithUserRepository()
-                    .WhenExistsWithNameReturn(true)
-                    .And()
-                .Build();
-            var exception = await Assert.ThrowsAsync<DomainException>(async () =>
-                await userService.Register(new ChangeUserRequest()));
+            var userService = await new UserServiceBuilder().Build();
+            var exception = Assert.Throws<DomainException>(() => userService.Register(new ChangeUserRequest()));
             Assert.Equal(exception.Error, UserErrors.AlreadyExist);
         }
 
@@ -44,33 +35,25 @@ namespace plantio.Tests.Services {
         public async void LoginShouldReturnATokenForValidUser() {
             string expectedToken = "JC9RVxfQjUbgHmLDseTpaw==";
             var request = UserServiceBuilder.DefaultChangeUserRequest;
-            UserService userService = GetUserServiceForLoginOk(request).Build();
-            var response = await userService.Login(request);
+            UserService userService = await GetUserServiceForLoginOk(request).Build();
+            var response = userService.Login(request);
             Assert.Equal(expectedToken, response.Token);
         }
 
         [Theory]
         [MemberData(nameof(LoginShouldThrowIfUserCredentialsAreInvalidData))]
-        public async void LoginShouldThrowIfUserCredentialsAreInvalid(ChangeUserRequest request, User? returnedUser, DomainError expectedError) {
-            var userService = new UserServiceBuilder()
-                .WithUserRepository()
-                    .WhenGetByNameReturn(returnedUser)
-                    .And()
-                .Build();
-            var exception = await Assert.ThrowsAsync<DomainException>(async () =>
-                await userService.Login(request));
+        public async void LoginShouldThrowIfUserCredentialsAreInvalid(ChangeUserRequest request, DomainError expectedError) {
+            var userService = await new UserServiceBuilder().Build();
+            var exception = Assert.Throws<DomainException>(() => userService.Login(request));
             Assert.Equal(exception.Error, expectedError);
         }
 
         public static IEnumerable<object?[]> LoginShouldThrowIfUserCredentialsAreInvalidData => new List<object?[]> {
-            new object?[] { new ChangeUserRequest() { Name = "Manolo", Password = "1234" }, null, UserErrors.NotFound },
-            new object?[] { new ChangeUserRequest() { Name = "Javier", Password = "invalid" }, User.FirstTime("Javier", "escuela"), UserErrors.InvalidCredentials },
+            new object?[] { new ChangeUserRequest() { Name = "Manolo", Password = "1234" }, UserErrors.NotFound },
+            new object?[] { new ChangeUserRequest() { Name = "Javier", Password = "invalid" }, UserErrors.InvalidCredentials },
         };
 
         private UserServiceBuilder GetUserServiceForLoginOk(ChangeUserRequest request) => new UserServiceBuilder()
-            .WithUserRepository()
-                .WhenGetByNameReturn(User.FirstTime(request.Name, request.Password))
-                .And()
             .WithPasswordHasher()
                 .WhenVerifyReturnResult(PasswordVerificationResult.Success)
                 .And();

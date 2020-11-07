@@ -1,4 +1,4 @@
-const url = 'localhost:8080';
+const url = 'http://localhost:5000';
 
 const isResponseError = (res) => res.Code && res.Reason && res.Fix;
 
@@ -27,7 +27,7 @@ function makeRequest({
   if (body) {
     config.body = JSON.stringify(body);
   }
-  return fetch(`http://${url}${endpoint}`, config)
+  return fetch(`${url}${endpoint}`, config)
     .then(handleResponse)
     .catch((err) => {
       console.error(err);

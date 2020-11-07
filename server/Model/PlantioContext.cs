@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using plantio.Domain;
 
 namespace plantio.Model {
     public class PlantioContext: DbContext {

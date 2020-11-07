@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 using plantio.Model;
-using plantio.Domain;
+using plantio.Tokenizer;
 
 namespace plantio.Tests.Model {
     public class JwtUserTokenizerTest {

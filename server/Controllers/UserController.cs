@@ -13,13 +13,13 @@ namespace plantio.Controllers {
             this.userService = userService;
         }
 
-        [HttpPost("create")]
-        public Task<IActionResult> CreateUser(ChangeUserRequest registerUser) =>
-            this.SafeDomainCall(async () => Ok(await this.userService.Register(registerUser)));
+        [HttpPost("register")]
+        public IActionResult CreateUser(ChangeUserRequest registerUser) =>
+            this.SafeDomainCall(() => Ok(this.userService.Register(registerUser)));
 
         [HttpPost("login")]
-        public Task<IActionResult> LoginUser(ChangeUserRequest request) =>
-            this.SafeDomainCall(async () => Ok(await this.userService.Login(request)));
+        public IActionResult LoginUser(ChangeUserRequest request) =>
+            this.SafeDomainCall(() => Ok(this.userService.Login(request)));
 
         [Authorize]
         [HttpGet("hello")]

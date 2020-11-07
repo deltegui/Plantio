@@ -1,13 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using plantio.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace plantio.Controllers {
     public static class ControllerBaseErrorMapperExtension {
-        public static async Task<IActionResult> SafeDomainCall (this ControllerBase controllerBase, Func<Task<IActionResult>> callback) {
+        public static IActionResult SafeDomainCall (this ControllerBase controllerBase, Func<IActionResult> callback) {
             try {
-                return await callback.Invoke();
+                return callback.Invoke();
             } catch (DomainException domainException) {
                 return controllerBase.MapErrorToStatusCode(domainException.Error);
             }
