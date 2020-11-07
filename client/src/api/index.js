@@ -1,9 +1,25 @@
-const url = 'http://localhost:5000';
+const url = 'localhost:8080';
 
-const isResponseError = (res) => res.Code && res.Reason && res.Fix;
+function timeout(promise, limit) {
+  return new Promise((resolve, reject) => {
+    const error = { Reason: 'Server does not respond' };
+    const interval = setInterval(() => reject(error), limit);
+    promise
+      .then((res) => {
+        clearInterval(interval);
+        resolve(res);
+      })
+      .catch((res) => {
+        clearInterval(interval);
+        reject(res);
+      });
+  });
+}
 
-function handleResponse(raw) {
-  const res = raw.json();
+const isResponseError = (res) => !!res.Reason;
+
+async function handleResponse(raw) {
+  const res = await raw.json();
   if (isResponseError(res)) {
     throw res;
   }
@@ -27,11 +43,8 @@ function makeRequest({
   if (body) {
     config.body = JSON.stringify(body);
   }
-  return fetch(`${url}${endpoint}`, config)
-    .then(handleResponse)
-    .catch((err) => {
-      console.error(err);
-    });
+  return timeout(fetch(`http://${url}${endpoint}`, config), 1000)
+    .then(handleResponse);
 }
 
 export default {

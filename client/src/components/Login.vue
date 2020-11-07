@@ -35,26 +35,26 @@ export default {
     };
   },
   methods: {
-    login(done) {
-      api.user.login({
-        user: this.username,
-        password: this.password,
-      })
-        .then(this.onLogin())
+    handleResopnse(res, done) {
+      res.then(this.onLogin)
+        .catch((err) => {
+          this.error = err.Reason;
+        })
         .then(done);
     },
 
-    register(done) {
-      api.user.register({
+    login(done) {
+      this.handleResopnse(api.user.login({
         user: this.username,
         password: this.password,
-      })
-        // .then(this.onLogin())
-        .catch((err) => {
-          console.log(err);
-          this.error = err.reason;
-        })
-        .then(done);
+      }), done);
+    },
+
+    register(done) {
+      this.handleResopnse(api.user.register({
+        user: this.username,
+        password: this.password,
+      }), done);
     },
   },
 };
