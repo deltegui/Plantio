@@ -1,8 +1,8 @@
-const url = 'localhost:8080';
+const url = 'localhost:5000';
 
 function timeout(promise, limit) {
   return new Promise((resolve, reject) => {
-    const error = { Reason: 'Server does not respond' };
+    const error = { message: 'Server does not respond' };
     const interval = setInterval(() => reject(error), limit);
     promise
       .then((res) => {
@@ -16,7 +16,7 @@ function timeout(promise, limit) {
   });
 }
 
-const isResponseError = (res) => !!res.Reason;
+const isResponseError = (res) => !!res.message;
 
 async function handleResponse(raw) {
   const res = await raw.json();
@@ -52,7 +52,7 @@ export default {
     login({ user, password }) {
       return makeRequest({
         method: 'POST',
-        endpoint: '/user/login',
+        endpoint: '/users/login',
         body: {
           Name: user,
           Password: password,
@@ -63,7 +63,7 @@ export default {
     register({ user, password }) {
       return makeRequest({
         method: 'POST',
-        endpoint: '/user/register',
+        endpoint: '/users/register',
         body: {
           Name: user,
           Password: password,

@@ -38,7 +38,7 @@ export default {
     handleResopnse(res, done) {
       res.then(this.onLogin)
         .catch((err) => {
-          this.error = err.Reason;
+          this.error = err.message;
         })
         .then(done);
     },

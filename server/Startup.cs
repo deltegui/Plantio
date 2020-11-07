@@ -23,6 +23,15 @@ namespace plantio {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
+            services.AddCors(ops => {
+                ops.AddDefaultPolicy(builder => {
+                    builder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                        .Build();
+                });
+            });
             services.AddMvc();
             services.AddDbContext<PlantioContext>(opt => opt.UseMySQL(Configuration["db:connection"]), ServiceLifetime.Scoped);
             services.AddControllers();
@@ -62,6 +71,7 @@ namespace plantio {
                 app.UseHttpsRedirection();
             }
             app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseRequestLogging();
