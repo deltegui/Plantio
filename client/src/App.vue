@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import './store';
 import Game from './components/Game.vue';
 import LeftPanel from './components/LeftPanel.vue';
 import DayNightCycle from './components/DayNightCycle.vue';

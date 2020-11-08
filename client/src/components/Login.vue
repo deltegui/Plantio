@@ -6,7 +6,7 @@
     <input v-model="password" id="password" class="field" type="password"/>
     <button-spin @click="login" text="Login"/>
     <button-spin @click="register" text="Register"/>
-    <div class="field danger-field" v-if="error">
+    <div class="field danger-field" v-for="(error, index) in errors" v-bind:key="index">
       {{error}}
     </div>
   </div>
@@ -18,12 +18,6 @@ import ButtonSpin from './ButtonSpin.vue';
 
 export default {
   name: 'Login',
-  props: {
-    onLogin: {
-      type: Function,
-      required: true,
-    },
-  },
   components: {
     ButtonSpin,
   },
@@ -31,14 +25,19 @@ export default {
     return {
       username: "",
       password: "",
-      error: null,
+      errors: [],
     };
   },
   methods: {
     handleResopnse(res, done) {
-      res.then(this.onLogin)
+      res
+        .then((user) => this.$emit('login', user))
         .catch((err) => {
-          this.error = err.message;
+          if (err.errors) {
+            this.errors = err.errors;
+          } else {
+            this.errors = [err.title];
+          }
         })
         .then(done);
     },
@@ -92,6 +91,7 @@ input {
 
 .field {
   width: 100%;
+  min-height: 40px;
   height: 40px;
   margin-bottom: 10px;
   overflow: hidden;
@@ -142,9 +142,10 @@ input {
 }
 
 .danger-field {
+  padding: 10px;
+  height: 100%;
   border-color: var(--danger-color);
   background-color: var(--danger-color);
-  padding: 10px;
 }
 
 .danger-field:hover {

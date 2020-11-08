@@ -6,33 +6,51 @@
 <script>
 import io from '../console';
 
-function showimg(args) {
-  if (args.length <= 0) {
-    io.writeColor('falta ', 'red');
-    io.writeColor('la ', 'yellow');
-    io.writeColor('url!!', 'green');
-    io.writeln();
-    return;
-  }
-  io.writeln(`<img src="${args[0]}"/>`);
-}
-
-function showWelcome() {
-  io.write('Hello! You can use ');
-  io.writeColor('showimg ', 'orange');
-  io.write('and ');
-  io.writeColor('clear ', 'red');
-  io.writeln('commands!');
-}
+const showimg = {
+  help: `shows a img using it's URL. <br/>
+Usage: showimg url. <br/>
+Example: showimg http://localhost:8080/Mazeta.png`,
+  handle(args) {
+    if (args.length <= 0) {
+      io.writeColor('falta ', 'red');
+      io.writeColor('la ', 'yellow');
+      io.writeColor('url!!', 'green');
+      io.writeln();
+      return;
+    }
+    io.writeln(`<img src="${args[0]}"/>`);
+  },
+};
 
 export default {
   name: 'Console',
   mounted() {
     io.mount();
-    showWelcome();
+    this.showWelcome();
     io.startHandlingKeyEvents();
     io.onCommand('showimg', showimg);
-    io.onCommand('clear', io.clear.bind(io));
+    io.onCommand('store', {
+      help: 'Shows custom data store',
+      handle: this.showStore.bind(this),
+    });
+    io.onCommand('logout', {
+      help: 'Log user out',
+      handle: () => this.$actions.logout(),
+    });
+  },
+  beforeDestroy() {
+    io.stopHandlingKeyEvents();
+  },
+  methods: {
+    showStore() {
+      io.writeln(JSON.stringify(this.$store));
+    },
+
+    showWelcome() {
+      io.write(`Hello ${this.$store.user.name}! You can use `);
+      io.writeColor('help ', 'orange');
+      io.writeln('to show all available commands!');
+    },
   },
 };
 </script>

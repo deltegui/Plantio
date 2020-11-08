@@ -20,6 +20,10 @@ export default class ConsoleIO {
     this.commandReader.startHandlingKeyEvents();
   }
 
+  stopHandlingKeyEvents() {
+    this.commandReader.stopHandlingKeyEvents();
+  }
+
   onCommand(commandName, handler) {
     this.commandHandlers[commandName] = handler;
   }
@@ -30,7 +34,7 @@ export default class ConsoleIO {
       this.writeln("Command not found!");
       return;
     }
-    handler(args);
+    handler.handle(args);
   }
 
   writeln(str = '') {

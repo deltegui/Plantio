@@ -1,47 +1,66 @@
 /* eslint-disable no-param-reassign */
-
-const ignore = () => {};
+/* eslint-disable class-methods-use-this */
 
 const keyHandlers = {
-  Shift: ignore,
-  Meta: ignore,
-  Control: ignore,
-  ArrowUp: ignore,
-  ArrowDown: ignore,
-  ArrowLeft: ignore,
-  ArrowRight: ignore,
 };
+
+const ignoreKeys = [
+  'Shift',
+  'Meta',
+  'Control',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Alt',
+  'OS',
+  'F1',
+  'F2',
+  'F3',
+  'F4',
+  'F5',
+  'F6',
+  'F7',
+  'F8',
+  'F9',
+  'F10',
+  'F11',
+  'F12',
+  'Tab',
+  'CapsLock',
+  'AltGraph',
+  'ContextMenu',
+];
 
 export default class CommandReader {
   constructor(commandRootElement) {
     this.consoleIO = commandRootElement;
     this.readedCommand = '';
-    this.handleEnter = () => {};
+    this.enterPressed = () => {};
+    keyHandlers.Backspace = this.handleBackspace.bind(this);
+    keyHandlers.Enter = this.handleEnter.bind(this);
   }
 
   startHandlingKeyEvents() {
     this.consoleIO.innerHTML += '> ';
-    document.onkeydown = (evt) => {
-      evt.preventDefault();
-      if (evt.key === 'Backspace') {
-        this.handleBackspace();
-        return;
-      }
-      if (evt.key === 'Enter') {
-        this.consoleIO.innerHTML += '<br />';
-        this.emitCommand(this.readedCommand);
-        this.consoleIO.innerHTML += '> ';
-        this.consoleIO.scrollTop = this.consoleIO.scrollHeight;
-        this.readedCommand = '';
-        return;
-      }
-      if (keyHandlers[evt.key]) {
-        keyHandlers[evt.key](this.consoleIO);
-        return;
-      }
-      this.readedCommand += evt.key;
-      this.consoleIO.innerHTML += evt.key;
-    };
+    document.onkeydown = this.handleKeyEvent.bind(this);
+  }
+
+  stopHandlingKeyEvents() {
+    document.onkeydown = undefined;
+  }
+
+  handleKeyEvent(evt) {
+    if (ignoreKeys.includes(evt.key)) {
+      return;
+    }
+    evt.preventDefault();
+    if (keyHandlers[evt.key]) {
+      keyHandlers[evt.key](this.consoleIO);
+      return;
+    }
+    this.readedCommand += evt.key;
+    this.consoleIO.innerHTML += evt.key;
   }
 
   handleBackspace() {
@@ -52,13 +71,23 @@ export default class CommandReader {
     this.readedCommand = this.readedCommand.slice(0, -1);
   }
 
+  handleEnter() {
+    this.consoleIO.innerHTML += '<br />';
+    if (this.readedCommand.length !== 0) {
+      this.emitCommand(this.readedCommand);
+    }
+    this.consoleIO.innerHTML += '> ';
+    this.consoleIO.scrollTop = this.consoleIO.scrollHeight;
+    this.readedCommand = '';
+  }
+
   onEnterPressed(callback) {
-    this.handleEnter = callback;
+    this.enterPressed = callback;
   }
 
   emitCommand(command) {
     const args = command.split(' ');
     const name = args.shift();
-    this.handleEnter(name, args);
+    this.enterPressed(name, args);
   }
 }

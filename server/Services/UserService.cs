@@ -3,10 +3,13 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using plantio.Model;
 using plantio.Tokenizer;
+using System.ComponentModel.DataAnnotations;
 
 namespace plantio.Services{
     public struct ChangeUserRequest {
+        [StringLength(255, MinimumLength = 3), Required]
         public string Name { get; set; }
+        [StringLength(255, MinimumLength = 3), Required]
         public string Password { get; set; }
     }
 

@@ -15,11 +15,11 @@ namespace plantio.Controllers {
 
         [HttpPost("register")]
         public IActionResult CreateUser(ChangeUserRequest registerUser) =>
-            this.SafeDomainCall(() => Ok(this.userService.Register(registerUser)));
+            this.SafeDomainCall(() => this.userService.Register(registerUser));
 
         [HttpPost("login")]
         public IActionResult LoginUser(ChangeUserRequest request) =>
-            this.SafeDomainCall(() => Ok(this.userService.Login(request)));
+            this.SafeDomainCall(() => this.userService.Login(request));
 
         [Authorize]
         [HttpGet("hello")]

@@ -1,7 +1,7 @@
 <template>
 <div id="text-console">
-  <Console v-if="logged"/>
-  <Login :onLogin="onLogin.bind(this)" v-else/>
+  <Console v-if="$store.logged"/>
+  <Login @login="onLogin" v-else/>
 </div>
 </template>
 
@@ -12,16 +12,15 @@ import Login from './Login.vue';
 export default {
   name: 'LeftPanel',
   data: () => ({
-    logged: true,
+    logged: false,
   }),
   components: {
     Console,
     Login,
   },
   methods: {
-    onLogin() {
-      console.log("loging");
-      this.logged = true;
+    onLogin(user) {
+      this.$actions.login(user);
     },
   },
 };

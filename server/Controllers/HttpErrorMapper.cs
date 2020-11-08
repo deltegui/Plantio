@@ -3,21 +3,33 @@ using plantio.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace plantio.Controllers {
+
     public static class ControllerBaseErrorMapperExtension {
-        public static IActionResult SafeDomainCall (this ControllerBase controllerBase, Func<IActionResult> callback) {
+        public static IActionResult SafeDomainCall (this ControllerBase controller, Func<object> callback) {
+            if (! controller.ModelState.IsValid) {
+                return controller.BadRequest();
+            }
             try {
-                return callback.Invoke();
+                return controller.Ok(callback.Invoke());
             } catch (DomainException domainException) {
-                return controllerBase.MapErrorToStatusCode(domainException.Error);
+                return ProblemFromDomainError(controller, domainException.Error);
             }
         }
 
-        public static ObjectResult MapErrorToStatusCode(this ControllerBase controller, DomainError error) =>
-            error.Code switch {
-                ErrorCode.UserInvalidCredentials => controller.StatusCode(401, error),
-                ErrorCode.UserNotFound => controller.StatusCode(404, error),
-                ErrorCode.UserAlreadyExist => controller.StatusCode(409, error),
-                _ => controller.StatusCode(400, error),
+        private static int MapErrorToStatusCode(DomainError error) =>
+            error.Code switch
+            {
+                ErrorCode.UserInvalidCredentials => 401,
+                ErrorCode.UserNotFound => 404,
+                ErrorCode.UserAlreadyExist => 409,
+                _ => 400,
             };
+
+        private static ObjectResult ProblemFromDomainError(ControllerBase controller, DomainError error) =>
+            controller.Problem(
+                detail: error.Fix,
+                instance: error.Code.ToString(),
+                title: error.Message,
+                statusCode: MapErrorToStatusCode(error));
     }
 }

@@ -2,7 +2,10 @@ const url = 'localhost:5000';
 
 function timeout(promise, limit) {
   return new Promise((resolve, reject) => {
-    const error = { message: 'Server does not respond' };
+    const error = {
+      title: 'Server does not respond',
+      status: 500,
+    };
     const interval = setInterval(() => reject(error), limit);
     promise
       .then((res) => {
@@ -16,11 +19,14 @@ function timeout(promise, limit) {
   });
 }
 
-const isResponseError = (res) => !!res.message;
+const isResponseError = (res) => !!res.status && !!res.title;
 
 async function handleResponse(raw) {
   const res = await raw.json();
   if (isResponseError(res)) {
+    if (res.errors) {
+      res.errors = Object.values(res.errors).flat();
+    }
     throw res;
   }
   return res;

@@ -44,5 +44,5 @@ export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
       transparent: true,
     },
   };
-  // return new Phaser.Game(config);
+  return new Phaser.Game(config);
 };
