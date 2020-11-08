@@ -12,7 +12,7 @@ import Login from './Login.vue';
 export default {
   name: 'LeftPanel',
   data: () => ({
-    logged: false,
+    logged: true,
   }),
   components: {
     Console,

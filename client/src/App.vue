@@ -32,6 +32,11 @@ export default {
   src: url(/console.ttf);
 }
 
+@font-face {
+  font-family: cascadia;
+  src: url(/CascadiaMono.ttf);
+}
+
 body {
   font-family: consoles;
 }
