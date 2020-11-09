@@ -1,6 +1,6 @@
 using System;
-using plantio.Services;
 using Microsoft.AspNetCore.Mvc;
+using plantio.Domain.Generic;
 
 namespace plantio.Controllers {
 
@@ -17,8 +17,7 @@ namespace plantio.Controllers {
         }
 
         private static int MapErrorToStatusCode(DomainError error) =>
-            error.Code switch
-            {
+            error.Code switch {
                 ErrorCode.UserInvalidCredentials => 401,
                 ErrorCode.UserNotFound => 404,
                 ErrorCode.UserAlreadyExist => 409,

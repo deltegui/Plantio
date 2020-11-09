@@ -3,10 +3,10 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using plantio.Model;
+using plantio.Domain.Users;
 
 namespace plantio.Tokenizer {
-    public class JwtUserTokenizer: UserTokenizer {
+    public class JwtUserTokenizer: ITokenizer {
         private readonly string secret;
 
         public JwtUserTokenizer(string key) {

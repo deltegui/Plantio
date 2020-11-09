@@ -1,24 +1,23 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using plantio.Services;
+using plantio.Domain.Users;
 
 namespace plantio.Controllers {
     [ApiController]
     [Route("users")]
     public class UserController: ControllerBase {
-        private readonly UserService userService;
+        private readonly SessionService userService;
 
-        public UserController(UserService userService) {
+        public UserController(SessionService userService) {
             this.userService = userService;
         }
 
         [HttpPost("register")]
-        public IActionResult CreateUser(ChangeUserRequest registerUser) =>
+        public IActionResult CreateUser(SessionRequest registerUser) =>
             this.SafeDomainCall(() => this.userService.Register(registerUser));
 
         [HttpPost("login")]
-        public IActionResult LoginUser(ChangeUserRequest request) =>
+        public IActionResult LoginUser(SessionRequest request) =>
             this.SafeDomainCall(() => this.userService.Login(request));
 
         [Authorize]

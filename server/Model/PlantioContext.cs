@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using plantio.Domain.Users;
 
 namespace plantio.Model {
     public class PlantioContext: DbContext {

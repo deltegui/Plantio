@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -7,12 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 using plantio.Model;
 using plantio.Tokenizer;
-using plantio.Services;
-using System;
+using plantio.Domain.Users;
+using plantio.Implementations;
 
 namespace plantio {
     public class Startup {
@@ -55,12 +55,13 @@ namespace plantio {
                     ClockSkew = TimeSpan.Zero,
                 };
             });
-            services.AddSingleton<UserTokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));
+            services.AddSingleton<ITokenizer>(services => new JwtUserTokenizer(Configuration["jwt_secret"]));
         }
 
         private void ConfigureUserServices(IServiceCollection services) {
-            services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
-            services.AddTransient<UserService>();
+            services.AddTransient<IUserRepository, EFUserRepository>();
+            services.AddTransient<IPasswordHasher, AspPasswordHasher>();
+            services.AddTransient<SessionService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

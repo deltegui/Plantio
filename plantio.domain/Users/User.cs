@@ -1,6 +1,6 @@
 using System;
 
-namespace plantio.Model {
+namespace plantio.Domain.Users {
     public class User {
         public string Name { get; } = "";
         public string Password { get; set; } = "";
