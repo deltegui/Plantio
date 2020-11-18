@@ -16,6 +16,15 @@
 import api from '../api';
 import ButtonSpin from './ButtonSpin.vue';
 
+function formatErrors(errorObj) {
+  const equivalence = {
+    password: 'Password',
+    name: 'Usuario',
+  };
+  return Object.keys(errorObj)
+    .map((key) => `${equivalence[key]}: ${errorObj[key]}`);
+}
+
 export default {
   name: 'Login',
   components: {
@@ -34,9 +43,9 @@ export default {
         .then((user) => this.$emit('login', user))
         .catch((err) => {
           if (err.errors) {
-            this.errors = err.errors;
+            this.errors = formatErrors(err.errors);
           } else {
-            this.errors = [err.title];
+            this.errors = [err.message];
           }
         })
         .then(done);

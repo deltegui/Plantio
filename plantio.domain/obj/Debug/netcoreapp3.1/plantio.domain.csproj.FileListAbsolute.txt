@@ -1,9 +1,0 @@
-D:\code\plantio\plantio.domain\bin\Debug\netcoreapp3.1\plantio.domain.deps.json
-D:\code\plantio\plantio.domain\bin\Debug\netcoreapp3.1\plantio.domain.dll
-D:\code\plantio\plantio.domain\bin\Debug\netcoreapp3.1\plantio.domain.pdb
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.csprojAssemblyReference.cache
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.AssemblyInfoInputs.cache
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.AssemblyInfo.cs
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.csproj.CoreCompileInputs.cache
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.dll
-D:\code\plantio\plantio.domain\obj\Debug\netcoreapp3.1\plantio.domain.pdb

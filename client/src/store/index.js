@@ -8,11 +8,11 @@ const store = Vue.observable({
   },
 });
 
-function login({ user, token }) {
+function login({ name, token }) {
   store.logged = true;
   store.user = {
-    name: user,
-    token,
+    name,
+    token: token.value,
   };
 }
 

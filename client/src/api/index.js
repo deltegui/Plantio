@@ -1,4 +1,4 @@
-const url = 'localhost:5000';
+const url = 'localhost:3000';
 
 function timeout(promise, limit) {
   return new Promise((resolve, reject) => {
@@ -19,14 +19,11 @@ function timeout(promise, limit) {
   });
 }
 
-const isResponseError = (res) => !!res.status && !!res.title;
+const isResponseError = (res) => !!res.message && !!res.code;
 
 async function handleResponse(raw) {
   const res = await raw.json();
   if (isResponseError(res)) {
-    if (res.errors) {
-      res.errors = Object.values(res.errors).flat();
-    }
     throw res;
   }
   return res;
@@ -58,10 +55,10 @@ export default {
     login({ user, password }) {
       return makeRequest({
         method: 'POST',
-        endpoint: '/users/login',
+        endpoint: '/user/login',
         body: {
-          Name: user,
-          Password: password,
+          name: user,
+          password,
         },
       });
     },
@@ -69,10 +66,10 @@ export default {
     register({ user, password }) {
       return makeRequest({
         method: 'POST',
-        endpoint: '/users/register',
+        endpoint: '/user/register',
         body: {
-          Name: user,
-          Password: password,
+          name: user,
+          password,
         },
       });
     },
