@@ -1,11 +1,9 @@
 package com.deltegui.plantio.weather.implementation;
 
 import com.deltegui.plantio.weather.application.ReadReportCase;
+import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.WeatherReport;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -18,8 +16,11 @@ public class WeatherController {
         this.readReportCase = readReportCase;
     }
 
-    @GetMapping("/read/{location}")
-    public WeatherReport readReport(@NotNull @PathVariable String location) {
-        return readReportCase.handle(location);
+    @GetMapping("/read")
+    public WeatherReport readReport(
+            @NotNull @RequestParam double latitude,
+            @NotNull @RequestParam double longitude
+    ) {
+        return readReportCase.handle(new Coordinate(latitude, longitude));
     }
 }

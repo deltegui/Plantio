@@ -8,6 +8,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -26,7 +27,10 @@ public class MvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtAuthorizationFilter(createTokenProvider()), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                     .antMatchers("/user/**").permitAll()
-                    .anyRequest().authenticated();
+                    .anyRequest().authenticated()
+                    .and()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean

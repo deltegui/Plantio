@@ -1,6 +1,7 @@
 package com.deltegui.plantio.weather.implementation;
 
 import com.deltegui.plantio.weather.application.WeatherProvider;
+import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 
 import java.io.IOException;
@@ -20,23 +21,27 @@ public class OpenWeatherMapProvider implements WeatherProvider {
     }
 
     @Override
-    public Optional<WeatherReport> read(String location) {
+    public Optional<WeatherReport> read(Coordinate coordiante) {
         try {
-            return Optional.of(makeRequest(location));
+            return Optional.of(makeRequest(coordiante));
         } catch (IOException | InterruptedException exception) {
             return Optional.empty();
         }
     }
 
-    private WeatherReport makeRequest(String location) throws IOException, InterruptedException {
-        var request = HttpRequest.newBuilder(createUrl(location)).build();
+    private WeatherReport makeRequest(Coordinate coordinate) throws IOException, InterruptedException {
+        var request = HttpRequest.newBuilder(createUrl(coordinate)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         var data = OpenWeatherResponse.fromHttpResponse(response);
-        return new WeatherReport(location, data.readWeatherState(), data.readTemperature());
+        return new WeatherReport(coordinate, data.readLocation(), data.readWeatherState(), data.readTemperature());
     }
 
-    private URI createUrl(String location) {
-        var url = String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", location, weatherKey);
+    private URI createUrl(Coordinate coord) {
+        var url = String.format(
+                "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s",
+                coord.getLatitude(),
+                coord.getLongitude(),
+                weatherKey);
         return URI.create(url);
     }
 }

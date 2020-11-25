@@ -2,11 +2,12 @@ package com.deltegui.plantio.weather.application;
 
 import com.deltegui.plantio.common.DomainException;
 import com.deltegui.plantio.common.UseCase;
+import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReadReportCase implements UseCase<String, WeatherReport> {
+public class ReadReportCase implements UseCase<Coordinate, WeatherReport> {
     private final WeatherProvider weatherProvider;
     private final WeatherReportRepository reportRepository;
 
@@ -16,8 +17,8 @@ public class ReadReportCase implements UseCase<String, WeatherReport> {
     }
 
     @Override
-    public WeatherReport handle(String location) throws DomainException {
-        var optionalReport = this.reportRepository.findForLocation(location);
+    public WeatherReport handle(Coordinate location) throws DomainException {
+        var optionalReport = this.reportRepository.find(location);
         if (optionalReport.isEmpty()) {
             return readAndSaveFromProvider(location);
         }
@@ -28,7 +29,7 @@ public class ReadReportCase implements UseCase<String, WeatherReport> {
         return report;
     }
 
-    private WeatherReport readAndSaveFromProvider(String location) {
+    private WeatherReport readAndSaveFromProvider(Coordinate location) {
         WeatherReport report = this.weatherProvider.read(location)
                 .orElseThrow(() -> DomainException.fromError(WeatherErrors.Read));
         this.reportRepository.saveOrReplace(report);

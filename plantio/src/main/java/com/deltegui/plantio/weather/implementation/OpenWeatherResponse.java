@@ -60,4 +60,9 @@ public class OpenWeatherResponse {
             return new HashMap<>();
         }
     }
+
+    public String readLocation() {
+        String location = (String)root.get("name");
+        return location == null ? "" : location;
+    }
 }

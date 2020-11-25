@@ -1,29 +1,32 @@
 package com.deltegui.plantio.weather.implementation;
 
 import com.deltegui.plantio.weather.application.WeatherReportRepository;
+import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class MemoryWeatherReportRepository implements WeatherReportRepository {
-    private final Map<String, WeatherReport> data;
+    private final Set<WeatherReport> data;
 
     public MemoryWeatherReportRepository() {
-        this.data = new HashMap<>();
+        this.data = new HashSet<>();
     }
 
     @Override
     public void saveOrReplace(WeatherReport report) {
-        this.data.put(report.getLocation(), report);
+        find(report.getCoordinate()).ifPresent(data::remove);
+        data.add(report);
     }
 
     @Override
-    public Optional<WeatherReport> findForLocation(String location) {
-        var report = this.data.get(location);
-        return report == null ? Optional.empty() : Optional.of(report);
+    public Optional<WeatherReport> find(Coordinate location) {
+        return data.stream()
+                .filter(report -> report.isNearTo(location))
+                .findFirst();
     }
 }

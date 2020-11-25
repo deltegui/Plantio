@@ -1,10 +1,9 @@
 <template>
-<div class="info-panel">
-  <div class="info-line title">{{ poblation }}</div>
-  <div class="info-line">{{ season }}</div>
+<div class="info-panel" v-if="$store.logged">
+  <div class="info-line title">{{ $store.weather.poblation }}</div>
   <div class="info-line">
     <img class="weather" :src="weatherImage"/>
-    <div class="temperature">{{ temperature }}ºC</div>
+    <div class="temperature">{{ $store.weather.temperature }}ºC</div>
   </div>
 </div>
 </template>
@@ -12,15 +11,9 @@
 <script>
 export default {
   name: 'InfoPanel',
-  data: () => ({
-    poblation: 'Algete',
-    temperature: 22,
-    weather: 'rainy',
-    season: 'Verano',
-  }),
   computed: {
     weatherImage() {
-      return `/${this.weather}.png`;
+      return `/${this.$store.weather.state}.png`;
     },
   },
 };
