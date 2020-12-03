@@ -21,9 +21,9 @@ public class OpenWeatherMapProvider implements WeatherProvider {
     }
 
     @Override
-    public Optional<WeatherReport> read(Coordinate coordiante) {
+    public Optional<WeatherReport> read(Coordinate coordinate) {
         try {
-            return Optional.of(makeRequest(coordiante));
+            return Optional.of(makeRequest(coordinate));
         } catch (IOException | InterruptedException exception) {
             return Optional.empty();
         }
