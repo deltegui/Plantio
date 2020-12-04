@@ -45,12 +45,22 @@ function getWeatherInformation(token) {
     .catch(console.error);
 }
 
+function toWeatherImage(weatherState) {
+  const images = {
+    Rain: 'rainy',
+    Clear: 'sunny',
+    Clouds: 'cloudy',
+    Snow: 'rainy',
+  };
+  return images[weatherState];
+}
+
 function refreshWeather() {
   return getWeatherInformation(store.user.token)
     .then((weather) => {
       if (!weather) return;
       store.weather.poblation = weather.location;
-      store.weather.state = weather.state.toLowerCase();
+      store.weather.state = toWeatherImage(weather.state);
       store.weather.temperature = weather.temperature;
     });
 }

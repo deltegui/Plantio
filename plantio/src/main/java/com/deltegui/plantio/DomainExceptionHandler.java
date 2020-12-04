@@ -18,7 +18,7 @@ import java.util.Map;
 @ControllerAdvice
 public class DomainExceptionHandler {
     public static class SerializableDomainError implements DomainError {
-        private DomainError innerError;
+        private final DomainError innerError;
 
         public SerializableDomainError(DomainError innerError) {
             this.innerError = innerError;
