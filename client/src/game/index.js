@@ -2,12 +2,14 @@
 
 import Phaser from 'phaser';
 import Crop from './crop';
+import PlantLoader from './plant_loader';
 import MatrixIndex from './matrix_index';
 import movable from './movable';
 
 const entities = [
   Crop,
   MatrixIndex,
+  PlantLoader,
 ];
 
 const loadedEntities = [];
