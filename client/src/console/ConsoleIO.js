@@ -31,7 +31,8 @@ export default class ConsoleIO {
   dispatch(command, args) {
     const handler = this.commandHandlers[command];
     if (!handler) {
-      this.writeln("Command not found!");
+      this.writeColor('Command not found!', 'red');
+      this.writeln();
       return;
     }
     handler.handle(args);
