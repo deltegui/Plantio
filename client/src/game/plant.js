@@ -11,6 +11,8 @@ function calculatePlantPosition(x, y) {
 }
 
 export default class Plant extends Entity {
+  static phaseLimit = 5;
+
   constructor(game, {
     plant,
     position,
@@ -33,6 +35,12 @@ export default class Plant extends Entity {
 
   move(movement) {
     this.sprite.y += movement;
+  }
+
+  water() {
+    if (this.phase < Plant.phaseLimit) {
+      this.sprite.setFrame(++this.phase);
+    }
   }
 
   emphasis() {

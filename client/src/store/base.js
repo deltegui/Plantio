@@ -6,26 +6,6 @@ const save = [
     plant: 'wheat',
     phase: 3,
   },
-  {
-    position: { x: 3, y: 3 },
-    plant: 'wheat',
-    phase: 2,
-  },
-  {
-    position: { x: 2, y: 3 },
-    plant: 'wheat',
-    phase: 5,
-  },
-  {
-    position: { x: 2, y: 2 },
-    plant: 'wheat',
-    phase: 4,
-  },
-  {
-    position: { x: 0, y: 3 },
-    plant: 'wheat',
-    phase: 1,
-  },
 ];
 
 export default Vue.observable({

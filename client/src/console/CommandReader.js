@@ -30,6 +30,15 @@ const ignoreKeys = [
   'CapsLock',
   'AltGraph',
   'ContextMenu',
+  'Insert',
+  'PageDown',
+  'Delete',
+  'Home',
+  'End',
+  'PageUp',
+  'Pause',
+  'ScrollLock',
+  'Dead',
 ];
 
 export default class CommandReader {

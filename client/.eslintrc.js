@@ -16,6 +16,7 @@ module.exports = {
     'no-plusplus': 0,
     'max-len': 0,
     'quotes': 0,
+    'no-restricted-globals': 0,
   },
   overrides: [
     {
