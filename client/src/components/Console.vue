@@ -47,7 +47,9 @@ export default {
     },
 
     showWelcome() {
-      io.write(`Hello ${this.$store.user.name}! You can use `);
+      io.write('Hello ');
+      io.writeColor(`<b><i>${this.$store.user.name}</i></b>`, 'pink');
+      io.write('! You can use ');
       io.writeColor('help ', 'orange');
       io.writeln('to show all available commands!');
     },

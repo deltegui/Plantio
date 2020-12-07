@@ -21,16 +21,29 @@ export default class Plant extends Entity {
     this.plantID = plant;
     this.sprite = null;
     this.phase = phase;
-    this.position = calculatePlantPosition(position.x, position.y);
+    this.position = position;
+    this.coordinate = calculatePlantPosition(position.x, position.y);
   }
 
   create() {
-    const { x, y } = this.position;
+    const { x, y } = this.coordinate;
     this.sprite = this.game.add.sprite(x, y, this.plantID, this.phase).setOrigin(0, 0);
     movable.add(this.move.bind(this));
   }
 
   move(movement) {
     this.sprite.y += movement;
+  }
+
+  emphasis() {
+    const transormations = [5, 5, 5, 5, -5, -5, -5, -5, -5, -5, -5, -5, 5, 5, 5, 5];
+    let current = 0;
+    const interval = setInterval(() => {
+      this.sprite.x += transormations[current];
+      current++;
+      if (current >= transormations.length) {
+        clearInterval(interval);
+      }
+    }, 50);
   }
 }

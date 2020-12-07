@@ -9,3 +9,5 @@ Vue.prototype.$actions = {
   logout,
   refreshWeather,
 };
+
+export default store;
