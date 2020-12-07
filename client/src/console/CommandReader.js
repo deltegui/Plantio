@@ -95,7 +95,8 @@ export default class CommandReader {
   }
 
   emitCommand(command) {
-    const args = command.split(' ');
+    const args = command.split(' ').filter((str) => str.length !== 0);
+    console.log(args);
     const name = args.shift();
     this.enterPressed(name, args);
   }
