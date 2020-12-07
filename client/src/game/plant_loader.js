@@ -2,6 +2,7 @@ import Entity from './entity';
 import Plant from './plant';
 import store from '../store';
 import io from '../console';
+import CropCoordinate from './coordinate';
 
 const plantTypes = [
   {
@@ -66,9 +67,14 @@ export default class PlantLoader extends Entity {
       return;
     }
     const [x, y] = args;
+    if (y > CropCoordinate.MaxSize.y) {
+      io.writeColor(`Invalid position for y: "${y}". Must be 0, 1, 2 or 3`, 'red');
+      io.writeln();
+      return;
+    }
     const numericPos = letterPositionToCoordinate({ x, y });
     if (!numericPos) {
-      io.writeColor(`Invalid position ${x} ${y}`, 'red');
+      io.writeColor(`Invalid position for x: "${x}". Must be A, B, C or D`, 'red');
       io.writeln();
       return;
     }
