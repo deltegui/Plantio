@@ -21,18 +21,19 @@ export default {
 <style scoped>
 #gameCanvas {
   min-width: 450px;
-  max-height: 100vh;
+  height: 55%;
+  width: 100vw;
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media only screen and (max-width: 890px) {
   #gameCanvas {
     min-width: 0px;
     max-width: 600px;
-    width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+    height: auto;
     margin-top: 0px;
   }
 }
