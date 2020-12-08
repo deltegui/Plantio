@@ -6,24 +6,24 @@ import PlantLoader from './plant_loader';
 import MatrixIndex from './matrix_index';
 import movable from './movable';
 
-const entities = [
+const entities = {
   Crop,
   MatrixIndex,
   PlantLoader,
-];
+};
 
-const loadedEntities = [];
+const loadedEntities = {};
 
 function preload() {
-  entities.forEach((Entity) => {
-    const e = new Entity(this);
-    loadedEntities.push(e);
+  Object.keys(entities).forEach((name) => {
+    const e = new entities[name](this);
+    loadedEntities[name] = e;
     e.load();
   });
 }
 
 function create() {
-  loadedEntities.forEach((entity) => entity.create());
+  Object.values(loadedEntities).forEach((entity) => entity.create());
   movable.startMoving();
 }
 
@@ -48,3 +48,15 @@ export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
   };
   return new Phaser.Game(config);
 };
+
+export function getPlantForPosition(position) {
+  return loadedEntities.PlantLoader.getPlantForPosition(position);
+}
+
+export function addPlant(plantInfo) {
+  return loadedEntities.PlantLoader.addPlant(plantInfo);
+}
+
+export function getAllPlants() {
+  return loadedEntities.PlantLoader.plants;
+}
