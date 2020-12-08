@@ -12,9 +12,6 @@ import makeRequest from '../api/make_request';
 
 export default {
   name: 'LeftPanel',
-  data: () => ({
-    logged: false,
-  }),
   components: {
     Console,
     Login,

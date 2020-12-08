@@ -40,14 +40,14 @@ function plantNameExists(name) {
   return names.length > 0;
 }
 
-io.onCommand('dsc', {
-  help: `Describes a plant. You must pass two parameters:
-  a letter and a number indicating plant coordinates. For example:
-    "dsc A 1" or "dsc c 0"`,
+io.onCommand('show', {
+  help: `Show planted plant. You must pass two parameters:
+  a letter and a number indicating plant coordinates.<br>
+  Usage: show [x] [y]<br>
+  Example: show c 0`,
   handle(args) {
     if (args.length < 2) {
-      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"');
-      io.writeln();
+      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
       return;
     }
     const [x, y] = args;
@@ -69,11 +69,12 @@ io.onCommand('dsc', {
 
 io.onCommand('plant', {
   help: `Plants a new plant. You need to pass the plant name and the coordinate where
-  the plant will live. For example: plant wheat d 3`,
+  the plant will live.<br>
+  Usage: plant [name] [x] [y]<br>
+  Example: plant wheat d 3`,
   handle(args) {
     if (args.length < 3) {
-      io.writeColor('Usage: plant [name] [x coordinate] [y coordinate]. Example: plant wheat d 2');
-      io.writeln();
+      io.writeColor('Usage: plant [name] [x coordinate] [y coordinate]. Example: plant wheat d 2<br>', 'red');
       return;
     }
     const [name, x, y] = args;
@@ -82,13 +83,11 @@ io.onCommand('plant', {
       return;
     }
     if (!plantNameExists(name)) {
-      io.writeColor(`Plant name "${name}" does not exist`, 'red');
-      io.writeln();
+      io.writeColor(`Plant name "${name}" does not exist<br>`, 'red');
       return;
     }
     if (getPlantForPosition(numericPos)) {
-      io.writeColor(`Plant already planted! (${x} ${y})`, 'orange');
-      io.writeln();
+      io.writeColor(`Plant already planted! (${x} ${y})<br>`, 'orange');
       return;
     }
     addPlant({
@@ -101,11 +100,12 @@ io.onCommand('plant', {
 
 io.onCommand('water', {
   help: `Waters plant. You need to pass the coordinate where
-  the plant lives. For example: water d 3`,
+  the plant lives.<br>
+  Usage: water [x] [y]<br>
+  Example: water d 3`,
   handle(args) {
-    if (args.lengt < 2) {
-      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"');
-      io.writeln();
+    if (args.length < 2) {
+      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
       return;
     }
     const [x, y] = args;
@@ -115,8 +115,7 @@ io.onCommand('water', {
     }
     const plantToWater = getPlantForPosition(numericPos);
     if (!plantToWater) {
-      io.writeColor(`Empty! (${x} ${y}) `, 'orange');
-      io.writeln();
+      io.writeColor(`Empty! (${x} ${y})<br>`, 'orange');
       return;
     }
     plantToWater.water();
@@ -124,11 +123,41 @@ io.onCommand('water', {
 });
 
 io.onCommand('ls', {
-  help: `List all plants`,
+  help: `List all planted plants`,
   handle() {
     getAllPlants().forEach((p) => {
       io.writeColor(`(${passNumberToLetter(p.position.x)}, ${p.position.y}) `, 'orange');
       io.writeln(p.plantID);
     });
+  },
+});
+
+io.onCommand('avl', {
+  help: `List all available plants names`,
+  handle() {
+    plantTypes.forEach(({ key }) => io.writeColor(`${key}<br>`, 'green'));
+  },
+});
+
+io.onCommand('dsc', {
+  help: `Describes a plant. You must pass a available plant name. Use avl
+  command to show available plants.<br>
+  Usage: dsc [name]<br>
+  Example: dsc wheat`,
+  handle(args) {
+    if (args.length < 1) {
+      io.writeColor('You must pass a plant name<br>', 'red');
+      return;
+    }
+    const [name] = args;
+    const matchPlants = plantTypes.filter(({ key }) => key === name);
+    if (matchPlants.length <= 0) {
+      io.writeColor(`Unknown plant name "${name}"<br>`, 'red');
+      return;
+    }
+    const { key, image, description } = matchPlants[0];
+    io.writeColor(`<h3>${key}</h3><br>`, 'green');
+    io.writeln(description);
+    io.writeln(`<img src="/${image}" style="width: 100%">`);
   },
 });

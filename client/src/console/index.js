@@ -13,6 +13,7 @@ io.onCommand('help', {
     Object.keys(io.commandHandlers).forEach((command) => {
       io.writeColor(`${command}: `, 'orange');
       io.writeln(io.commandHandlers[command].help);
+      io.writeln();
     });
   },
 });

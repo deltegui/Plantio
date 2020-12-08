@@ -35,7 +35,9 @@ export default {
       io.writeColor(`<b><i>${this.$store.user.name}</i></b>`, 'pink');
       io.write('! You can use ');
       io.writeColor('help ', 'orange');
-      io.writeln('to show all available commands!');
+      io.write('to show all available commands! Type ');
+      io.writeColor('logout ', 'green');
+      io.writeln('to exit.');
     },
   },
 };
