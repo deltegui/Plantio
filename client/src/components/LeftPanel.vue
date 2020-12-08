@@ -8,7 +8,6 @@
 <script>
 import Console from './Console.vue';
 import Login from './Login.vue';
-import makeRequest from '../api/make_request';
 
 export default {
   name: 'LeftPanel',
@@ -20,11 +19,6 @@ export default {
     onLogin(user) {
       this.$actions.login(user);
       this.$actions.refreshWeather();
-      makeRequest({
-        method: 'GET',
-        endpoint: '/hello',
-        token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJuYW1lIjoiamF2aWVyIiwiZXhwaXJhdGlvbiI6IjIwMjAtMTEtMjFUMDI6MTg6MzkuNzcwMjc5NiIsImV4cCI6MTYwNTkxMzIwMH0.E3P_BS__1lQZOZywhSjpbkeJ54iD6UqNAAuPOsy6gH36DOVUlJEBkhHOp5UDPyBopjfmIeq3ojPaKUJb9fEWwA',
-      }).then(console.log);
     },
   },
 };
