@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,12 +50,23 @@ public class DomainExceptionHandler {
             this.errors = errors;
         }
 
-        public static ValidationError fromException(MethodArgumentNotValidException exception) {
+        public static ValidationError fromNotValidException(MethodArgumentNotValidException exception) {
             var errors = new HashMap<String, String>();
             for (var error : exception.getBindingResult().getAllErrors()) {
                 String fieldName = ((FieldError) error).getField();
                 String errorMessage = error.getDefaultMessage();
                 errors.put(fieldName, errorMessage);
+            }
+            return new ValidationError(errors);
+        }
+
+        public static ValidationError fromViolationException(ConstraintViolationException exception) {
+            var errors = new HashMap<String, String>();
+            for (var e : exception.getConstraintViolations()) {
+                var propertyPath = e.getPropertyPath().toString();
+                String fieldName = propertyPath.substring(propertyPath.lastIndexOf(".") + 1);
+                String errMessage = e.getMessage();
+                errors.put(fieldName, errMessage);
             }
             return new ValidationError(errors);
         }
@@ -78,6 +90,13 @@ public class DomainExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ValidationError handleValidationException(MethodArgumentNotValidException exception, HttpServletRequest request) {
-        return ValidationError.fromException(exception);
+        return ValidationError.fromNotValidException(exception);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ValidationError handleComposedValidationException(ConstraintViolationException exception, HttpServletRequest request) {
+        return ValidationError.fromViolationException(exception);
     }
 }
