@@ -22,7 +22,7 @@ public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
         Set<Plant> crop = request.getPlants();
         return this.gameRepository.load(user)
                 .map(game -> this.updateGame(game, crop))
-                .orElse(this.createGame(user, crop));
+                .orElseGet(() -> this.createGame(user, crop));
     }
 
     private SaveResponse createGame(String user, Set<Plant> crop) {
@@ -33,7 +33,7 @@ public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
 
     private SaveResponse updateGame(Game game, Set<Plant> crop) {
         game.replaceCrop(crop);
-        this.gameRepository.save(game);
+        this.gameRepository.update(game);
         return SaveResponse.fromGame(game);
     }
 }

@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface GameRepository {
     void save(Game game);
     Optional<Game> load(String userName);
+    void update(Game game);
 }

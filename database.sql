@@ -10,20 +10,19 @@ create table users(
 );
 
 create table saves(
-    id integer primary key auto_increment,
-    user varchar(255) not null,
+    save_user varchar(255) primary key,
     last_update timestamp not null,
     
-    foreign key (user) references users(name) on delete cascade
+    foreign key (save_user) references users(name) on delete cascade
 );
 
 create table saved_plants(
-    save_id integer not null,
+    save_user varchar(255) not null,
     pos_x integer unsigned not null check(pos_x <= 3),
     pos_y integer unsigned not null check(pos_y <= 3),
     plant_name varchar(255) not null,
     phase integer unsigned check(phase <= 6),
     
-    primary key (save_id, pos_x, pos_y),
-    foreign key (save_id) references saves(id) on delete cascade
+    primary key (save_user, pos_x, pos_y),
+    foreign key (save_user) references saves(save_user) on delete cascade
 );
