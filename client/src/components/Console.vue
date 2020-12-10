@@ -38,6 +38,7 @@ export default {
       io.write('to show all available commands! Type ');
       io.writeColor('logout ', 'green');
       io.writeln('to exit.');
+      io.writeColor('Dont forget to save your game!!!<br>', 'DarkCyan');
     },
   },
 };

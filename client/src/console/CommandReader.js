@@ -80,10 +80,10 @@ export default class CommandReader {
     this.readedCommand = this.readedCommand.slice(0, -1);
   }
 
-  handleEnter() {
+  async handleEnter() {
     this.consoleIO.innerHTML += '<br />';
     if (this.readedCommand.length !== 0) {
-      this.emitCommand(this.readedCommand);
+      await this.emitCommand(this.readedCommand);
     }
     this.consoleIO.innerHTML += '> ';
     this.consoleIO.scrollTop = this.consoleIO.scrollHeight;
@@ -94,9 +94,9 @@ export default class CommandReader {
     this.enterPressed = callback;
   }
 
-  emitCommand(command) {
+  async emitCommand(command) {
     const args = command.split(' ').filter((str) => str.length !== 0);
     const name = args.shift();
-    this.enterPressed(name, args);
+    await this.enterPressed(name, args);
   }
 }

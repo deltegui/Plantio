@@ -9,6 +9,7 @@ import {
 import {
   addPlantSave,
   updatePlantSave,
+  deletePlantSave,
 } from '../store/save';
 
 function parseInputCoordinate({ x, y }) {
@@ -44,27 +45,33 @@ function plantNameExists(name) {
   return names.length > 0;
 }
 
+function getPlantFromArgsPosition(args) {
+  if (args.length < 2) {
+    io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
+    return false;
+  }
+  const [x, y] = args;
+  const numericPos = parseInputCoordinate({ x, y });
+  if (!numericPos) {
+    return false;
+  }
+  const description = getPlantForPosition(numericPos);
+  if (!description) {
+    io.writeColor(`Empty! (${x} ${y})`, 'orange');
+    io.writeln();
+    return false;
+  }
+  return description;
+}
+
 io.onCommand('show', {
   help: `Show planted plant. You must pass two parameters:
   a letter and a number indicating plant coordinates.<br>
   Usage: show [x] [y]<br>
   Example: show c 0`,
   handle(args) {
-    if (args.length < 2) {
-      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
-      return;
-    }
-    const [x, y] = args;
-    const numericPos = parseInputCoordinate({ x, y });
-    if (!numericPos) {
-      return;
-    }
-    const description = getPlantForPosition(numericPos);
-    if (!description) {
-      io.writeColor(`Empty! (${x} ${y})`, 'orange');
-      io.writeln();
-      return;
-    }
+    const description = getPlantFromArgsPosition(args);
+    if (!description) return;
     description.emphasis();
     io.writeln(`Plant ${description.plantID}`);
     io.writeln(`Phase: ${description.phase}`);
@@ -110,20 +117,8 @@ io.onCommand('water', {
   Usage: water [x] [y]<br>
   Example: water d 3`,
   handle(args) {
-    if (args.length < 2) {
-      io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
-      return;
-    }
-    const [x, y] = args;
-    const numericPos = parseInputCoordinate({ x, y });
-    if (!numericPos) {
-      return;
-    }
-    const plantToWater = getPlantForPosition(numericPos);
-    if (!plantToWater) {
-      io.writeColor(`Empty! (${x} ${y})<br>`, 'orange');
-      return;
-    }
+    const plantToWater = getPlantFromArgsPosition(args);
+    if (!plantToWater) return;
     plantToWater.water();
     updatePlantSave({
       phase: plantToWater.phase,
@@ -173,5 +168,17 @@ io.onCommand('dsc', {
     io.writeColor(`<h3>${key}</h3><br>`, 'green');
     io.writeln(description);
     io.writeln(`<img src="/${image}" style="width: 100%">`);
+  },
+});
+
+io.onCommand('kill', {
+  help: `Kills a plant. You need to pass the coordinate where
+  the plant lives.<br>
+  Usage: kill [x] [y]<br>
+  Example: kill d 3`,
+  handle(args) {
+    const plantToKill = getPlantFromArgsPosition(args);
+    if (!plantToKill) return;
+    deletePlantSave(plantToKill.position);
   },
 });

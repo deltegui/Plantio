@@ -4,7 +4,6 @@ import { reload } from '../game';
 
 export function addPlantSave(plant) {
   store.save.push(plant);
-  api.game.save(store.user.token, store.save);
 }
 
 export function updatePlantSave({ position, plant, phase }) {
@@ -18,7 +17,11 @@ export function updatePlantSave({ position, plant, phase }) {
     }
     return p;
   });
-  api.game.save(store.user.token, store.save);
+}
+
+export function deletePlantSave({ x, y }) {
+  store.save = store.save.filter((plant) => plant.position.x !== x && plant.position.y !== y);
+  reload(store.save);
 }
 
 export async function loadGame() {

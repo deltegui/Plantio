@@ -28,14 +28,14 @@ export default class ConsoleIO {
     this.commandHandlers[commandName] = handler;
   }
 
-  dispatch(command, args) {
+  async dispatch(command, args) {
     const handler = this.commandHandlers[command];
     if (!handler) {
       this.writeColor('Command not found!', 'red');
       this.writeln();
       return;
     }
-    handler.handle(args);
+    await handler.handle(args);
   }
 
   writeln(str = '') {
