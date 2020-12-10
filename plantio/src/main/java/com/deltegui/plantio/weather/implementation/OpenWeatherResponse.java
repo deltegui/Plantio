@@ -43,12 +43,12 @@ public class OpenWeatherResponse {
     public WeatherState readWeatherState() {
         var weatherList = (List<Object>)root.get("weather");
         if (weatherList == null) {
-            return WeatherState.Clear;
+            return WeatherState.CLEAR;
         }
         var weatherData = readFirstElementOrDefault(weatherList);
         String value = (String)weatherData.get("main");
         if (value == null) {
-            return WeatherState.Clear;
+            return WeatherState.CLEAR;
         }
         return WeatherState.fromString(value);
     }

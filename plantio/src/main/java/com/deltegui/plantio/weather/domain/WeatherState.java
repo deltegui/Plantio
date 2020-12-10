@@ -1,17 +1,17 @@
 package com.deltegui.plantio.weather.domain;
 
 public enum WeatherState {
-    Clear,
-    Rain,
-    Clouds,
-    Snow;
+    CLEAR,
+    RAIN,
+    CLOUDS,
+    SNOW;
 
     public static WeatherState fromString(String state) {
         switch (state) {
-            case "Rain": return WeatherState.Rain;
-            case "Snow": return WeatherState.Snow;
-            case "Clouds": return WeatherState.Clouds;
-            default: return WeatherState.Clear;
+            case "RAIN": return WeatherState.RAIN;
+            case "SNOW": return WeatherState.SNOW;
+            case "CLOUDS": return WeatherState.CLOUDS;
+            default: return WeatherState.CLEAR;
         }
     }
 }

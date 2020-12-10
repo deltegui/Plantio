@@ -13,18 +13,16 @@ function getLocation() {
 
 function getWeatherInformation(token) {
   return getLocation()
-    /* eslint-disable no-alert */
-    .catch(() => alert('No puedes jugar si no tienes la localizacion activada'))
     .then((position) => api.weather.read(token, position.coords))
     .catch(console.error);
 }
 
 function toWeatherImage(weatherState) {
   const images = {
-    Rain: 'rainy',
-    Clear: 'sunny',
-    Clouds: 'cloudy',
-    Snow: 'rainy',
+    RAIN: 'rainy',
+    CLEAR: 'sunny',
+    CLOUDS: 'cloudy',
+    SNOW: 'rainy',
   };
   return images[weatherState];
 }

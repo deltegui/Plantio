@@ -18,15 +18,9 @@ public class ReadReportCase implements UseCase<Coordinate, WeatherReport> {
 
     @Override
     public WeatherReport handle(Coordinate location) throws DomainException {
-        var optionalReport = this.reportRepository.find(location);
-        if (optionalReport.isEmpty()) {
-            return readAndSaveFromProvider(location);
-        }
-        var report = optionalReport.get();
-        if (report.isOld()) {
-            return readAndSaveFromProvider(location);
-        }
-        return report;
+        return this.reportRepository.find(location)
+                .filter(report -> !report.isOld())
+                .orElseGet(() -> readAndSaveFromProvider(location));
     }
 
     private WeatherReport readAndSaveFromProvider(Coordinate location) {
