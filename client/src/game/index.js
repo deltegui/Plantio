@@ -60,3 +60,7 @@ export function addPlant(plantInfo) {
 export function getAllPlants() {
   return loadedEntities.PlantLoader.plants;
 }
+
+export function reload(plants) {
+  loadedEntities.PlantLoader.reloadPlants(plants);
+}

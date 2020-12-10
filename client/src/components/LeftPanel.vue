@@ -19,6 +19,7 @@ export default {
     onLogin(user) {
       this.$actions.login(user);
       this.$actions.refreshWeather();
+      this.$actions.loadGame();
     },
   },
 };

@@ -6,6 +6,10 @@ import {
   getAllPlants,
   addPlant,
 } from '../game';
+import {
+  addPlantSave,
+  updatePlantSave,
+} from '../store/save';
 
 function parseInputCoordinate({ x, y }) {
   const numy = parseInt(y, 10);
@@ -90,11 +94,13 @@ io.onCommand('plant', {
       io.writeColor(`Plant already planted! (${x} ${y})<br>`, 'orange');
       return;
     }
-    addPlant({
+    const plant = {
       plant: name,
       position: numericPos,
       phase: 0,
-    });
+    };
+    addPlant(plant);
+    addPlantSave(plant);
   },
 });
 
@@ -119,6 +125,14 @@ io.onCommand('water', {
       return;
     }
     plantToWater.water();
+    updatePlantSave({
+      phase: plantToWater.phase,
+      plant: plantToWater.plantID,
+      position: {
+        x: plantToWater.position.x,
+        y: plantToWater.position.y,
+      },
+    });
   },
 });
 

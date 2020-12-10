@@ -54,4 +54,8 @@ export default class Plant extends Entity {
       }
     }, 50);
   }
+
+  destroy() {
+    this.sprite.destroy();
+  }
 }

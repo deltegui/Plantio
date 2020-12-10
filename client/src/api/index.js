@@ -1,8 +1,24 @@
 import makeRequest from './make_request';
 
+function gameToServer(plants) {
+  return plants.map(({ plant, phase, position }) => ({
+    type: plant.toUpperCase(),
+    phase,
+    position,
+  }));
+}
+
+function gameToSystem({ crop }) {
+  return crop.map(({ type, phase, position }) => ({
+    plant: type.toLowerCase(),
+    phase,
+    position,
+  }));
+}
+
 export default {
   user: {
-    login({ user, password }) {
+    async login({ user, password }) {
       return makeRequest({
         method: 'POST',
         endpoint: '/user/login',
@@ -13,7 +29,7 @@ export default {
       });
     },
 
-    register({ user, password }) {
+    async register({ user, password }) {
       return makeRequest({
         method: 'POST',
         endpoint: '/user/register',
@@ -26,13 +42,31 @@ export default {
   },
 
   weather: {
-    read(token, { latitude, longitude }) {
-      console.log(`{${latitude}, ${longitude}}`);
+    async read(token, { latitude, longitude }) {
       return makeRequest({
         method: 'GET',
         endpoint: `/weather/read?latitude=${latitude}&longitude=${longitude}`,
         token,
       });
+    },
+  },
+
+  game: {
+    async save(token, game) {
+      return makeRequest({
+        method: 'POST',
+        endpoint: '/game',
+        token,
+        body: gameToServer(game),
+      });
+    },
+
+    async load(token) {
+      return makeRequest({
+        method: 'GET',
+        endpoint: '/game',
+        token,
+      }).then(gameToSystem);
     },
   },
 };

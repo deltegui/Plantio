@@ -1,13 +1,5 @@
 import Vue from 'vue';
 
-const save = [
-  {
-    position: { x: 0, y: 0 },
-    plant: 'wheat',
-    phase: 3,
-  },
-];
-
 export default Vue.observable({
   logged: false,
   user: {
@@ -20,5 +12,5 @@ export default Vue.observable({
     state: 'rainy',
     season: 'Unknown',
   },
-  save,
+  save: [],
 });

@@ -1,6 +1,5 @@
 import Entity from './entity';
 import Plant from './plant';
-import store from '../store';
 import plantTypes from './plant_types';
 
 const plantConfig = {
@@ -24,13 +23,15 @@ export default class PlantLoader extends Entity {
     plantTypes.forEach(({ key, image }) => this.game.load.spritesheet(key, image, plantConfig));
   }
 
-  create() {
-    store.save.forEach(this.addPlant.bind(this));
-  }
-
   addPlant(plantInfo) {
     const pl = new Plant(this.game, plantInfo);
     pl.create();
     this.plants.push(pl);
+  }
+
+  reloadPlants(next) {
+    this.plants.forEach((p) => p.destroy());
+    this.plants = [];
+    next.forEach(this.addPlant.bind(this));
   }
 }
