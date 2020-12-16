@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 export default Vue.observable({
-  logged: false,
+  logged: true,
   user: {
     name: '',
     token: '',

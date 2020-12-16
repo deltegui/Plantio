@@ -1,75 +1,58 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 
-const keyHandlers = {
-};
+function createTyper() {
+  const typer = document.createElement('textarea');
+  typer.autocomplete = 'off';
+  typer.spellcheck = false;
+  typer.autofocus = true;
+  typer.autocorrect = 'off';
+  typer.style = 'position: absolute; top: 0px; left: -9999px';
+  return typer;
+}
 
-const ignoreKeys = [
-  'Shift',
-  'Meta',
-  'Control',
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Alt',
-  'OS',
-  'F1',
-  'F2',
-  'F3',
-  'F4',
-  'F5',
-  'F6',
-  'F7',
-  'F8',
-  'F9',
-  'F10',
-  'F11',
-  'F12',
-  'Tab',
-  'CapsLock',
-  'AltGraph',
-  'ContextMenu',
-  'Insert',
-  'PageDown',
-  'Delete',
-  'Home',
-  'End',
-  'PageUp',
-  'Pause',
-  'ScrollLock',
-  'Dead',
-];
+const body = document.getElementsByTagName('body')[0];
 
 export default class CommandReader {
   constructor(commandRootElement) {
     this.consoleIO = commandRootElement;
+    this.typer = createTyper();
     this.readedCommand = '';
     this.enterPressed = () => {};
-    keyHandlers.Backspace = this.handleBackspace.bind(this);
-    keyHandlers.Enter = this.handleEnter.bind(this);
   }
 
   startHandlingKeyEvents() {
+    this.focusConsole();
     this.consoleIO.innerHTML += '> ';
-    document.onkeydown = this.handleKeyEvent.bind(this);
+    body.appendChild(this.typer);
+    this.consoleIO.addEventListener('click', this.focusConsole.bind(this));
+    this.typer.addEventListener('input', this.handleKeyEvent.bind(this));
   }
 
-  stopHandlingKeyEvents() {
-    document.onkeydown = undefined;
+  focusConsole() {
+    this.typer.focus();
   }
 
   handleKeyEvent(evt) {
-    if (ignoreKeys.includes(evt.key)) {
-      return;
-    }
     evt.preventDefault();
-    if (keyHandlers[evt.key]) {
-      keyHandlers[evt.key](this.consoleIO);
+    if (!this.typer.value) {
+      if (this.readedCommand.length > 0) {
+        this.handleBackspace();
+      }
       return;
     }
-    this.readedCommand += evt.key;
-    this.consoleIO.innerHTML += evt.key;
+    const key = this.typer.value.charAt(this.typer.value.length - 1);
+    console.log(key);
+    if (key === '\n' || key === '\r\n') {
+      this.handleEnter();
+      return;
+    }
+    if (this.typer.value.length < this.readedCommand.length) {
+      this.handleBackspace();
+      return;
+    }
+    this.readedCommand += key;
+    this.consoleIO.innerHTML += key;
   }
 
   handleBackspace() {
@@ -88,6 +71,7 @@ export default class CommandReader {
     this.consoleIO.innerHTML += '> ';
     this.consoleIO.scrollTop = this.consoleIO.scrollHeight;
     this.readedCommand = '';
+    this.typer.value = '';
   }
 
   onEnterPressed(callback) {

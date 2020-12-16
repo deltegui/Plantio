@@ -53,6 +53,8 @@ export default {
     height: 360px;
     position: absolute;
     bottom: 0px;
+    overflow: auto;
+    padding-bottom: 40px;
   }
 }
 </style>

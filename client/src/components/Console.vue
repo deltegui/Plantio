@@ -10,22 +10,23 @@ import '../commands';
 export default {
   name: 'Console',
   mounted() {
-    io.mount();
-    this.showWelcome();
-    io.startHandlingKeyEvents();
-    io.onCommand('store', {
-      help: 'Shows custom data store',
-      handle: this.showStore.bind(this),
-    });
-    io.onCommand('logout', {
-      help: 'Log user out',
-      handle: () => this.$actions.logout(),
-    });
-  },
-  beforeDestroy() {
-    io.stopHandlingKeyEvents();
+    this.bootstrap();
   },
   methods: {
+    bootstrap() {
+      io.mount();
+      this.showWelcome();
+      io.startHandlingKeyEvents();
+      io.onCommand('store', {
+        help: 'Shows custom data store',
+        handle: this.showStore.bind(this),
+      });
+      io.onCommand('logout', {
+        help: 'Log user out',
+        handle: () => this.$actions.logout(),
+      });
+    },
+
     showStore() {
       io.writeln(JSON.stringify(this.$store));
     },
