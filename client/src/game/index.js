@@ -62,5 +62,14 @@ export function getAllPlants() {
 }
 
 export function reload(plants) {
-  loadedEntities.PlantLoader.reloadPlants(plants);
+  const sortedPlants = plants.sort((first, second) => {
+    if (first.position.y <= second.position.y) {
+      return -1;
+    }
+    if (first.position.x <= second.position.x) {
+      return -1;
+    }
+    return 1;
+  });
+  loadedEntities.PlantLoader.reloadPlants(sortedPlants);
 }
