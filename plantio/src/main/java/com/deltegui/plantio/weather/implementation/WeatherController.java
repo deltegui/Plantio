@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 
 @RestController
-@RequestMapping("/weather")
+@RequestMapping("/api/weather")
 public class WeatherController {
     private final ReadReportCase readReportCase;
 

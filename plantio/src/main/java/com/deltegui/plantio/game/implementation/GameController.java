@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 @Validated
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/api/game")
 public class GameController {
     private final LoadCase loadCase;
     private final SaveCase saveCase;

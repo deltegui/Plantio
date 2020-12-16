@@ -1,4 +1,4 @@
-const url = 'localhost:3000';
+const url = process.env.VUE_APP_API_URL || 'localhost:3000/api';
 
 function timeout(promise, limit) {
   return new Promise((resolve, reject) => {

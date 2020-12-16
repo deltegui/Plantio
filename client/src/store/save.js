@@ -20,7 +20,7 @@ export function updatePlantSave({ position, plant, phase }) {
 }
 
 export function deletePlantSave({ x, y }) {
-  store.save = store.save.filter((plant) => plant.position.x !== x && plant.position.y !== y);
+  store.save = store.save.filter((plant) => plant.position.x !== x || plant.position.y !== y);
   reload(store.save);
 }
 

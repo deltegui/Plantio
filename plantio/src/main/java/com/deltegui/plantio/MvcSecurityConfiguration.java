@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,11 +28,16 @@ public class MvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .addFilterAfter(new JwtAuthorizationFilter(createTokenProvider()), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                    .antMatchers("/user/**").permitAll()
+                    .antMatchers("/api/user/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/", "/*.html", "/css/**", "/js/**", "/*.png", "/*.ttf");
     }
 
     @Bean
