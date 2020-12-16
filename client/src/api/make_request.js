@@ -1,4 +1,4 @@
-const url = process.env.VUE_APP_API_URL || 'localhost:3000/api';
+const url = process.env.VUE_APP_API_URL || 'http://localhost:3000/api';
 
 function timeout(promise, limit) {
   return new Promise((resolve, reject) => {
@@ -52,6 +52,6 @@ export default function makeRequest({
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  return timeout(fetch(`http://${url}${endpoint}`, config), 1000)
+  return timeout(fetch(`${url}${endpoint}`, config), 1000)
     .then(handleResponse);
 }

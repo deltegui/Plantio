@@ -40,6 +40,10 @@ export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
       create,
       update,
     },
+    fps: {
+      forceSetTimeOut: true,
+      target: 7,
+    },
     canvas,
     context: canvas.getContext('2d'),
     render: {
