@@ -33,7 +33,13 @@ public class OpenWeatherMapProvider implements WeatherProvider {
         var request = HttpRequest.newBuilder(createUrl(coordinate)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         var data = OpenWeatherResponse.fromHttpResponse(response);
-        return new WeatherReport(coordinate, data.readLocation(), data.readWeatherState(), data.readTemperature());
+        return new WeatherReport(
+                coordinate,
+                data.readLocation(),
+                data.readWeatherState(),
+                data.readTemperature(),
+                data.readSunrise(),
+                data.readSunset());
     }
 
     private URI createUrl(Coordinate coord) {

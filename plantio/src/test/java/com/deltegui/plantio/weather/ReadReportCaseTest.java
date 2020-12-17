@@ -26,14 +26,18 @@ public class ReadReportCaseTest {
             new Coordinate(40.4168, -3.7038),
             "Madrid",
             WeatherState.CLEAR,
-            20
+            20,
+            1608190330,
+            1608223708
     );
 
     private final WeatherReport algete = new WeatherReport(
             new Coordinate(40.5965, -3.5016),
             "Madrid",
             WeatherState.CLEAR,
-            20
+            20,
+            1608190330,
+            1608223708
     );
 
     @BeforeEach

@@ -34,5 +34,7 @@ export default async function refreshWeather() {
       store.weather.poblation = weather.location;
       store.weather.state = toWeatherImage(weather.state);
       store.weather.temperature = weather.temperature;
+      store.weather.sunrise = weather.sunrise;
+      store.weather.sunset = weather.sunset;
     });
 }

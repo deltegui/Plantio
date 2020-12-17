@@ -9,13 +9,17 @@ public class WeatherReport {
     private final WeatherState state;
     private final double temperature;
     private final LocalDateTime creation;
+    private final int sunrise;
+    private final int sunset;
 
-    public WeatherReport(Coordinate coordinate, String location, WeatherState state, double temperature) {
+    public WeatherReport(Coordinate coordinate, String location, WeatherState state, double temperature, int sunrise, int sunset) {
         this.coordinate = coordinate;
         this.location = location;
         this.state = state;
         this.temperature = temperature;
         this.creation = LocalDateTime.now();
+        this.sunrise = sunrise;
+        this.sunset = sunset;
     }
 
     public boolean isOld() {
@@ -45,5 +49,13 @@ public class WeatherReport {
 
     public double getTemperature() {
         return temperature;
+    }
+
+    public int getSunrise() {
+        return sunrise;
+    }
+
+    public int getSunset() {
+        return sunset;
     }
 }

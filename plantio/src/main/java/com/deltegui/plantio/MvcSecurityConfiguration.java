@@ -37,7 +37,7 @@ public class MvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/", "/*.html", "/css/**", "/js/**", "/*.png", "/*.ttf");
+        web.ignoring().antMatchers("/", "/*.html", "/css/**", "/js/**", "/*.png", "/*.ttf", "/*.jpg");
     }
 
     @Bean

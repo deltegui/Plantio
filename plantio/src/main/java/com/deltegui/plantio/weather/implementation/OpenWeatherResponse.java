@@ -65,4 +65,21 @@ public class OpenWeatherResponse {
         String location = (String)root.get("name");
         return location == null ? "" : location;
     }
+
+    public int readSunrise() {
+        return this.readSysUnixTimestampFor("sunrise");
+    }
+
+    public int readSunset() {
+        return this.readSysUnixTimestampFor("sunset");
+    }
+
+    private int readSysUnixTimestampFor(String key) {
+        var sys = (Map<String, Object>)root.get("sys");
+        if (sys == null) {
+            return 0;
+        }
+        Integer unixTimestamp = (Integer)sys.get(key);
+        return unixTimestamp == null ? 0 : unixTimestamp;
+    }
 }

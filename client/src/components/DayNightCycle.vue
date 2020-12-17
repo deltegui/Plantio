@@ -8,7 +8,7 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-image: url(/stars.jpg);
+  background-image: url('/stars.jpg');
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -57,16 +57,54 @@ const colours = [
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(21,8,0,0)' },
 ];
 
-function randomGradient() {
-  const number = Math.floor(Math.random() * colours.length) - 1;
-  return colours[number];
+function nowInUnix() {
+  const now = new Date();
+  return now.getTime() / 1000;
+}
+
+function quarterHoursPassedFrom(now, moment) {
+  const quarterHoursFromSeconds = 900;
+  const timePassed = now - moment;
+  return Math.round(timePassed / quarterHoursFromSeconds);
+}
+
+function gradientForSunrise(now, sunrise) {
+  const quarterHourPassed = quarterHoursPassedFrom(now, sunrise);
+  return quarterHourPassed >= 12 ? colours[12] : colours[quarterHourPassed];
+}
+
+function gradientForSunset(now, sunset) {
+  const startSunset = 12;
+  const quarterHourPassed = startSunset + quarterHoursPassedFrom(now, sunset);
+  return quarterHourPassed >= 24 ? colours[24] : colours[quarterHourPassed];
+}
+
+function getGradient({ sunrise, sunset }) {
+  const nowTimestamp = nowInUnix();
+  if (nowTimestamp < sunrise) {
+    return colours[0];
+  }
+  if (nowTimestamp > sunset) {
+    return gradientForSunset(nowTimestamp, sunset);
+  }
+  return gradientForSunrise(nowTimestamp, sunrise);
 }
 
 export default {
-  mounted: () => {
-    const filter = document.getElementById('bg-filter');
-    const gradient = randomGradient();
-    filter.style.backgroundImage = `linear-gradient(${gradient.upper}, ${gradient.bottom})`;
+  data() {
+    return {
+      weather: this.$store.weather,
+    };
+  },
+  watch: {
+    weather: {
+      handler(newWeather) {
+        const filter = document.getElementById('bg-filter');
+        const gradient = getGradient(newWeather);
+        filter.style.backgroundImage = `linear-gradient(${gradient.upper}, ${gradient.bottom})`;
+      },
+      deep: true,
+    },
   },
 };
 </script>
