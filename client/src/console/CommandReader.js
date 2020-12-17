@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable class-methods-use-this */
-
 function createTyper() {
   const typer = document.createElement('textarea');
   typer.autocomplete = 'off';
@@ -36,13 +33,10 @@ export default class CommandReader {
   handleKeyEvent(evt) {
     evt.preventDefault();
     if (!this.typer.value) {
-      if (this.readedCommand.length > 0) {
-        this.handleBackspace();
-      }
+      this.handleBackspace();
       return;
     }
     const key = this.typer.value.charAt(this.typer.value.length - 1);
-    console.log(key);
     if (key === '\n' || key === '\r\n') {
       this.handleEnter();
       return;
