@@ -14,11 +14,6 @@ export default class PlantLoader extends Entity {
     this.plants = [];
   }
 
-  getPlantForPosition({ x, y }) {
-    const matched = this.plants.filter(({ position }) => position.x === x && position.y === y);
-    return matched.length === 0 ? false : matched[0];
-  }
-
   load() {
     plantTypes.forEach(({ key, image }) => this.game.load.spritesheet(key, image, plantConfig));
   }

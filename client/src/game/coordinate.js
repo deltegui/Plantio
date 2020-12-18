@@ -21,6 +21,10 @@ export default class CropCoordinate {
     this.y = y;
   }
 
+  isPosition({ x, y }) {
+    return this.x === x && this.y === y;
+  }
+
   toRealPosition() {
     const yMargin = 140;
     const linePos = this.calculateLinePosition();

@@ -24,7 +24,7 @@ function preload() {
 
 function create() {
   Object.values(loadedEntities).forEach((entity) => entity.create());
-  movable.startMoving();
+  // movable.startMoving(); // Ahora que cada cambio hace un full reload de todo, es mejor que se quede todo quieto.
 }
 
 function update() {
@@ -53,16 +53,14 @@ export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
   return new Phaser.Game(config);
 };
 
-export function getPlantForPosition(position) {
+function getPlantForPosition(position) {
   return loadedEntities.PlantLoader.getPlantForPosition(position);
 }
 
-export function addPlant(plantInfo) {
-  return loadedEntities.PlantLoader.addPlant(plantInfo);
-}
-
-export function getAllPlants() {
-  return loadedEntities.PlantLoader.plants;
+export function emphasisPlant(position) {
+  const plant = getPlantForPosition(position);
+  if (!plant) return;
+  plant.emphasis();
 }
 
 export function reload(plants) {
@@ -75,5 +73,6 @@ export function reload(plants) {
     }
     return 1;
   });
+  loadedEntities.Crop.reload(plants);
   loadedEntities.PlantLoader.reloadPlants(sortedPlants);
 }

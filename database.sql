@@ -21,7 +21,8 @@ create table saved_plants(
     pos_x integer unsigned not null check(pos_x <= 3),
     pos_y integer unsigned not null check(pos_y <= 3),
     plant_name varchar(255) not null,
-    phase integer unsigned check(phase <= 6),
+    watered varchar(255) not null,
+    phase integer unsigned not null check(phase <= 6),
     
     primary key (save_user, pos_x, pos_y),
     foreign key (save_user) references saves(save_user) on delete cascade

@@ -4,6 +4,7 @@ import com.deltegui.plantio.game.application.GameRepository;
 import com.deltegui.plantio.game.domain.Game;
 import com.deltegui.plantio.game.domain.Plant;
 import com.deltegui.plantio.game.domain.PlantType;
+import com.deltegui.plantio.game.domain.WateredState;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -43,12 +44,13 @@ public class MysqlGameRepository implements GameRepository {
         game.getCrop()
                 .parallelStream()
                 .forEach(plant -> this.jdbcTemplate.update(
-                        "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase) values(?, ?, ?, ?, ?)",
+                        "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase, watered) values(?, ?, ?, ?, ?, ?)",
                         game.getOwner(),
                         plant.getPosition().getX(),
                         plant.getPosition().getY(),
                         plant.getType().name(),
-                        plant.getPhase()
+                        plant.getPhase(),
+                        plant.getWatered().name()
                 ));
     }
 
@@ -66,9 +68,10 @@ public class MysqlGameRepository implements GameRepository {
             return Optional.empty();
         }
         var plants = this.jdbcTemplate.query(
-                "select pos_x, pos_y, plant_name, phase from saved_plants where save_user = ?",
+                "select pos_x, pos_y, plant_name, phase, watered from saved_plants where save_user = ?",
                 (resultSet, number) -> new Plant(
                         PlantType.fromString(resultSet.getNString("plant_name")),
+                        WateredState.fromString(resultSet.getNString("watered")),
                         resultSet.getInt("phase"),
                         new Plant.Position(resultSet.getInt("pos_x"), resultSet.getInt("pos_y"))
                 ),

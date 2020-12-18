@@ -28,11 +28,14 @@ public class Plant {
     private final int phase;
     @NotNull
     private final Position position;
+    @NotNull
+    private final WateredState watered;
 
-    public Plant(PlantType type, int phase, Plant.Position position) {
+    public Plant(PlantType type, WateredState watered, int phase, Plant.Position position) {
         this.type = type;
         this.phase = phase;
         this.position = position;
+        this.watered = watered;
     }
 
     public PlantType getType() {
@@ -45,5 +48,9 @@ public class Plant {
 
     public Position getPosition() {
         return position;
+    }
+
+    public WateredState getWatered() {
+        return watered;
     }
 }

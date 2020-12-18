@@ -16,24 +16,28 @@ export default class Crop extends Entity {
 
   load() {
     this.game.load.image('mazeta', 'mazeta.png');
-    this.game.load.image('mazetaSeca', 'mazeta_seca.png');
+    this.game.load.image('mazeta_seca', 'mazeta_seca.png');
   }
 
   create() {
-    this.createMatrix();
+    this.createMatrix(this.defaultFlowerpotProvider.bind(this));
     movable.add(this.move.bind(this));
   }
 
-  createMatrix() {
+  defaultFlowerpotProvider(coordinate) {
+    return new Flowerpot(this.game, coordinate);
+  }
+
+  createMatrix(flowerpotProvider) {
     for (let i = 0; i < Crop.size.x; i++) {
-      this.createLine(i);
+      this.createLine(i, flowerpotProvider);
     }
   }
 
-  createLine(lineNumber) {
+  createLine(lineNumber, flowerpotProvider) {
     for (let i = 0; i < Crop.size.y; i++) {
       const coordinate = new CropCoordinate(lineNumber, i);
-      const mazeta = new Flowerpot(this.game, coordinate);
+      const mazeta = flowerpotProvider(coordinate);
       mazeta.create();
       this.mazetas.push(mazeta);
     }
@@ -44,5 +48,18 @@ export default class Crop extends Entity {
       const current = this.mazetas[i];
       current.move(movement);
     }
+  }
+
+  reload(plants) {
+    const wetPlants = plants.filter((p) => p.watered === 'wet');
+    this.mazetas.forEach((m) => m.destroy());
+    this.createMatrix((coord) => {
+      for (let i = 0; i < wetPlants.length; i++) {
+        if (coord.isPosition(wetPlants[i].position)) {
+          return new Flowerpot(this.game, coord, { watered: true });
+        }
+      }
+      return new Flowerpot(this.game, coord);
+    });
   }
 }

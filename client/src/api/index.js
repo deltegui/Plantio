@@ -1,18 +1,24 @@
 import makeRequest from './make_request';
 
 function gameToServer(plants) {
-  return plants.map(({ plant, phase, position }) => ({
+  return plants.map(({
+    plant, phase, position, watered,
+  }) => ({
     type: plant.toUpperCase(),
     phase,
     position,
+    watered: watered.toUpperCase(),
   }));
 }
 
 function gameToSystem({ crop }) {
-  return crop.map(({ type, phase, position }) => ({
+  return crop.map(({
+    type, phase, position, watered,
+  }) => ({
     plant: type.toLowerCase(),
     phase,
     position,
+    watered: watered.toLowerCase(),
   }));
 }
 

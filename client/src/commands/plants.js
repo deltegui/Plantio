@@ -1,16 +1,7 @@
 import io from '../console';
 import CropCoordinate from '../game/coordinate';
+import plantService from '../logic/plant.service';
 import plantTypes from '../game/plant_types';
-import {
-  getPlantForPosition,
-  getAllPlants,
-  addPlant,
-} from '../game';
-import {
-  addPlantSave,
-  updatePlantSave,
-  deletePlantSave,
-} from '../store/save';
 
 function parseInputCoordinate({ x, y }) {
   const numy = parseInt(y, 10);
@@ -40,12 +31,7 @@ function passNumberToLetter(number) {
   return letters[number];
 }
 
-function plantNameExists(name) {
-  const names = plantTypes.map(({ key }) => key).filter((key) => key === name);
-  return names.length > 0;
-}
-
-function getPlantFromArgsPosition(args) {
+function parsePositionFromArgs(args) {
   if (args.length < 2) {
     io.writeColor('You must pass plant coordinates. For example: "dsc A 1" or "dsc b 3"<br>', 'red');
     return false;
@@ -55,13 +41,22 @@ function getPlantFromArgsPosition(args) {
   if (!numericPos) {
     return false;
   }
-  const description = getPlantForPosition(numericPos);
-  if (!description) {
-    io.writeColor(`Empty! (${x} ${y})`, 'orange');
-    io.writeln();
-    return false;
+  return numericPos;
+}
+
+function showEmptyPosition({ x, y }) {
+  io.writeColor(`Empty! (${x} ${y})`, 'orange');
+  io.writeln();
+}
+
+function callExtractingPosFromArgs(args, fn) {
+  const pos = parsePositionFromArgs(args);
+  if (!pos) return;
+  try {
+    fn(pos);
+  } catch (err) {
+    io.writeColor(`${err.msg}<br>`, 'orange');
   }
-  return description;
 }
 
 io.onCommand('show', {
@@ -70,11 +65,15 @@ io.onCommand('show', {
   Usage: show [x] [y]<br>
   Example: show c 0`,
   handle(args) {
-    const description = getPlantFromArgsPosition(args);
-    if (!description) return;
-    description.emphasis();
-    io.writeln(`Plant ${description.plantID}`);
-    io.writeln(`Phase: ${description.phase}`);
+    const pos = parsePositionFromArgs(args);
+    const plant = plantService.getForPosition(pos);
+    if (!plant) {
+      showEmptyPosition(pos);
+      return;
+    }
+    plantService.emphasisForPosition(pos);
+    io.writeln(`Plant ${plant.plant}`);
+    io.writeln(`Phase: ${plant.phase}`);
   },
 });
 
@@ -93,21 +92,12 @@ io.onCommand('plant', {
     if (!numericPos) {
       return;
     }
-    if (!plantNameExists(name)) {
-      io.writeColor(`Plant name "${name}" does not exist<br>`, 'red');
-      return;
+    try {
+      plantService.add(name, numericPos);
+    } catch (err) {
+      console.log(err);
+      io.writeColor(`${err.msg}<br>`, 'red');
     }
-    if (getPlantForPosition(numericPos)) {
-      io.writeColor(`Plant already planted! (${x} ${y})<br>`, 'orange');
-      return;
-    }
-    const plant = {
-      plant: name,
-      position: numericPos,
-      phase: 0,
-    };
-    addPlant(plant);
-    addPlantSave(plant);
   },
 });
 
@@ -117,26 +107,16 @@ io.onCommand('water', {
   Usage: water [x] [y]<br>
   Example: water d 3`,
   handle(args) {
-    const plantToWater = getPlantFromArgsPosition(args);
-    if (!plantToWater) return;
-    plantToWater.water();
-    updatePlantSave({
-      phase: plantToWater.phase,
-      plant: plantToWater.plantID,
-      position: {
-        x: plantToWater.position.x,
-        y: plantToWater.position.y,
-      },
-    });
+    callExtractingPosFromArgs(args, plantService.waterForPosition.bind(plantService));
   },
 });
 
 io.onCommand('ls', {
   help: `List all planted plants`,
   handle() {
-    getAllPlants().forEach((p) => {
+    plantService.getAll().forEach((p) => {
       io.writeColor(`(${passNumberToLetter(p.position.x)}, ${p.position.y}) `, 'orange');
-      io.writeln(p.plantID);
+      io.writeln(p.plant);
     });
   },
 });
@@ -159,15 +139,14 @@ io.onCommand('dsc', {
       return;
     }
     const [name] = args;
-    const matchPlants = plantTypes.filter(({ key }) => key === name);
-    if (matchPlants.length <= 0) {
-      io.writeColor(`Unknown plant name "${name}"<br>`, 'red');
-      return;
+    try {
+      const { key, image, description } = plantService.getPlantTypeForName(name);
+      io.writeColor(`<h3>${key}</h3><br>`, 'green');
+      io.writeln(description);
+      io.writeln(`<img src="/${image}" style="width: 100%">`);
+    } catch (err) {
+      io.writeColor(`${err.msg}<br>`, 'red');
     }
-    const { key, image, description } = matchPlants[0];
-    io.writeColor(`<h3>${key}</h3><br>`, 'green');
-    io.writeln(description);
-    io.writeln(`<img src="/${image}" style="width: 100%">`);
   },
 });
 
@@ -177,9 +156,7 @@ io.onCommand('rm', {
   Usage: rm [x] [y]<br>
   Example: rm d 3`,
   handle(args) {
-    const plantToKill = getPlantFromArgsPosition(args);
-    if (!plantToKill) return;
-    deletePlantSave(plantToKill.position);
+    callExtractingPosFromArgs(args, plantService.deleteForPosition.bind(plantService));
   },
 });
 
@@ -189,16 +166,6 @@ io.onCommand('dry', {
   Usage: dry [x] [y]<br>
   Example: dry d 3`,
   handle(args) {
-    const plantToDry = getPlantFromArgsPosition(args);
-    if (!plantToDry) return;
-    plantToDry.dry();
-    updatePlantSave({
-      phase: plantToDry.phase,
-      plant: plantToDry.plantID,
-      position: {
-        x: plantToDry.position.x,
-        y: plantToDry.position.y,
-      },
-    });
+    callExtractingPosFromArgs(args, plantService.dryForPosition.bind(plantService));
   },
 });
