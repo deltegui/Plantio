@@ -171,14 +171,34 @@ io.onCommand('dsc', {
   },
 });
 
-io.onCommand('kill', {
-  help: `Kills a plant. You need to pass the coordinate where
+io.onCommand('rm', {
+  help: `Removes a plant. You need to pass the coordinate where
   the plant lives.<br>
-  Usage: kill [x] [y]<br>
-  Example: kill d 3`,
+  Usage: rm [x] [y]<br>
+  Example: rm d 3`,
   handle(args) {
     const plantToKill = getPlantFromArgsPosition(args);
     if (!plantToKill) return;
     deletePlantSave(plantToKill.position);
+  },
+});
+
+io.onCommand('dry', {
+  help: `Dry a plant. You need to pass the coordinate where
+  the plant lives.<br>
+  Usage: dry [x] [y]<br>
+  Example: dry d 3`,
+  handle(args) {
+    const plantToDry = getPlantFromArgsPosition(args);
+    if (!plantToDry) return;
+    plantToDry.dry();
+    updatePlantSave({
+      phase: plantToDry.phase,
+      plant: plantToDry.plantID,
+      position: {
+        x: plantToDry.position.x,
+        y: plantToDry.position.y,
+      },
+    });
   },
 });

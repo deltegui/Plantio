@@ -1,9 +1,12 @@
 package com.deltegui.plantio.game.domain;
 
 public enum PlantType {
-    WHEAT;
+    WHEAT, CACTUS;
 
     public static PlantType fromString(String type) {
-        return PlantType.WHEAT;
+        switch (type) {
+            case "CACTUS": return PlantType.CACTUS;
+            default: return PlantType.WHEAT;
+        }
     }
 }

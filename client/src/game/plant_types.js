@@ -5,4 +5,9 @@ export default [
     any environment.`,
     image: 'wheat.png',
   },
+  {
+    key: 'cactus',
+    description: `The best plant for dry environments!!`,
+    image: 'cactus.png',
+  },
 ];
