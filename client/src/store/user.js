@@ -1,4 +1,5 @@
 import store from './base';
+import { startMoving } from '../game';
 
 export function login({ name, token }) {
   store.logged = true;
@@ -10,4 +11,5 @@ export function login({ name, token }) {
 
 export function logout() {
   store.logged = false;
+  startMoving();
 }

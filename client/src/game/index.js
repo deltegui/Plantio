@@ -67,6 +67,10 @@ export function stopMoving() {
   movable.stopMoving();
 }
 
+export function startMoving() {
+  movable.startMoving();
+}
+
 export function reload(plants) {
   const sortedPlants = plants.sort((first, second) => {
     if (first.position.y <= second.position.y) {

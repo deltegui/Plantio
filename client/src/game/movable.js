@@ -17,6 +17,7 @@ class Movable {
   }
 
   stopMoving() {
+    if (!this.interval) return;
     clearInterval(this.interval);
   }
 }
