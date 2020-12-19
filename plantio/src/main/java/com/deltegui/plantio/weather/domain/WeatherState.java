@@ -8,9 +8,9 @@ public enum WeatherState {
 
     public static WeatherState fromString(String state) {
         switch (state) {
-            case "RAIN": return WeatherState.RAIN;
-            case "SNOW": return WeatherState.SNOW;
-            case "CLOUDS": return WeatherState.CLOUDS;
+            case "Rain": return WeatherState.RAIN;
+            case "Snow": return WeatherState.SNOW;
+            case "Clouds": return WeatherState.CLOUDS;
             default: return WeatherState.CLEAR;
         }
     }
