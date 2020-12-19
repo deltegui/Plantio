@@ -57,15 +57,7 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.water();
-    updatePlantSave({
-      phase: plant.phase,
-      plant: plant.plantID,
-      position: {
-        x: plant.position.x,
-        y: plant.position.y,
-      },
-      watered: plant.watered,
-    });
+    updatePlantSave(plant);
   },
 
   dryForPosition(position) {
@@ -75,15 +67,7 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.dry();
-    updatePlantSave({
-      phase: plant.phase,
-      plant: plant.plantID,
-      position: {
-        x: plant.position.x,
-        y: plant.position.y,
-      },
-      watered: plant.watered,
-    });
+    updatePlantSave(plant);
   },
 
   deleteForPosition(position) {

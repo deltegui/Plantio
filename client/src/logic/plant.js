@@ -9,7 +9,7 @@ export default class Plant {
     phase,
     watered,
   }) {
-    this.plantID = plant;
+    this.plant = plant;
     this.sprite = null;
     this.phase = phase;
     this.position = position;
