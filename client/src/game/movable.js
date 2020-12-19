@@ -2,6 +2,7 @@ class Movable {
   constructor() {
     this.movement = 10;
     this.callbacks = [];
+    this.interval = null;
   }
 
   add(callback) {
@@ -9,10 +10,14 @@ class Movable {
   }
 
   startMoving() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.callbacks.forEach((fn) => fn(this.movement));
       this.movement *= -1;
     }, 1000);
+  }
+
+  stopMoving() {
+    clearInterval(this.interval);
   }
 }
 

@@ -1,6 +1,6 @@
 import store from './base';
 import api from '../api';
-import { reload } from '../game';
+import { reload, stopMoving } from '../game';
 
 export function addPlantSave(plant) {
   store.save.push(plant);
@@ -34,5 +34,6 @@ export function deletePlantSave({ x, y }) {
 
 export async function loadGame() {
   store.save = await api.game.load(store.user.token);
+  stopMoving();
   reload(store.save);
 }

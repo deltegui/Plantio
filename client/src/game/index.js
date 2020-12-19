@@ -24,7 +24,7 @@ function preload() {
 
 function create() {
   Object.values(loadedEntities).forEach((entity) => entity.create());
-  // movable.startMoving(); // Ahora que cada cambio hace un full reload de todo, es mejor que se quede todo quieto.
+  movable.startMoving();
 }
 
 function update() {
@@ -61,6 +61,10 @@ export function emphasisPlant(position) {
   const plant = getPlantForPosition(position);
   if (!plant) return;
   plant.emphasis();
+}
+
+export function stopMoving() {
+  movable.stopMoving();
 }
 
 export function reload(plants) {
