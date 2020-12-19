@@ -36,7 +36,7 @@ export default class Plant extends Entity {
   }
 
   emphasis() {
-    const transormations = [5, 5, 5, 5, -5, -5, -5, -5, -5, -5, -5, -5, 5, 5, 5, 5];
+    const transormations = [20, 20, -20, -20, -20, -20, 20, 20];
     let current = 0;
     const interval = setInterval(() => {
       this.sprite.x += transormations[current];
@@ -44,7 +44,7 @@ export default class Plant extends Entity {
       if (current >= transormations.length) {
         clearInterval(interval);
       }
-    }, 50);
+    }, 300);
   }
 
   destroy() {
