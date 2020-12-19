@@ -66,6 +66,7 @@ io.onCommand('show', {
   Example: show c 0`,
   handle(args) {
     const pos = parsePositionFromArgs(args);
+    if (!pos) return;
     const plant = plantService.getForPosition(pos);
     if (!plant) {
       showEmptyPosition(pos);

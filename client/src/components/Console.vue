@@ -17,10 +17,12 @@ export default {
       io.mount();
       this.showWelcome();
       io.startHandlingKeyEvents();
-      io.onCommand('store', {
-        help: 'Shows custom data store',
-        handle: this.showStore.bind(this),
-      });
+      if (process.env.NODE_ENV !== 'production') {
+        io.onCommand('store', {
+          help: 'Shows custom data store',
+          handle: this.showStore.bind(this),
+        });
+      }
       io.onCommand('logout', {
         help: 'Log user out',
         handle: () => this.$actions.logout(),
