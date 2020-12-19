@@ -28,7 +28,7 @@ export default {
   },
 
   emphasisForPosition(position) {
-    if (this.getForPosition(position)) {
+    if (!this.getForPosition(position)) {
       throw new NotFound(position);
     }
     emphasisPlant(position);

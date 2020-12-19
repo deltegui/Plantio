@@ -71,9 +71,13 @@ io.onCommand('show', {
       showEmptyPosition(pos);
       return;
     }
-    plantService.emphasisForPosition(pos);
     io.writeln(`Plant ${plant.plant}`);
     io.writeln(`Phase: ${plant.phase}`);
+    try {
+      plantService.emphasisForPosition(pos);
+    } catch (err) {
+      io.writeColor(`${err.msg}<br>`, 'orange');
+    }
   },
 });
 
@@ -95,7 +99,6 @@ io.onCommand('plant', {
     try {
       plantService.add(name, numericPos);
     } catch (err) {
-      console.log(err);
       io.writeColor(`${err.msg}<br>`, 'red');
     }
   },

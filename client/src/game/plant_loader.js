@@ -18,6 +18,11 @@ export default class PlantLoader extends Entity {
     plantTypes.forEach(({ key, image }) => this.game.load.spritesheet(key, image, plantConfig));
   }
 
+  getPlantForPosition({ x, y }) {
+    const matched = this.plants.filter(({ position }) => position.x === x && position.y === y);
+    return matched.length === 0 ? false : matched[0];
+  }
+
   addPlant(plantInfo) {
     const pl = new Plant(this.game, plantInfo);
     pl.create();
