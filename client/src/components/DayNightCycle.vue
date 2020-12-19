@@ -29,6 +29,8 @@ body {
 </style>
 
 <script>
+import timeService from '../logic/time.service';
+
 const colours = [
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(0,0,12,0)' },
   { upper: 'rgba(2,1,17,0)', bottom: 'rgba(25,22,33,.3)' },
@@ -57,11 +59,6 @@ const colours = [
   { upper: 'rgba(0,0,12,0)', bottom: 'rgba(21,8,0,0)' },
 ];
 
-function nowInUnix() {
-  const now = new Date();
-  return now.getTime() / 1000;
-}
-
 function quarterHoursPassedFrom(now, moment) {
   const quarterHoursFromSeconds = 900;
   const timePassed = now - moment;
@@ -80,7 +77,7 @@ function gradientForSunset(now, sunset) {
 }
 
 function getGradient({ sunrise, sunset }) {
-  const nowTimestamp = nowInUnix();
+  const nowTimestamp = timeService.nowInUnix();
   if (nowTimestamp < sunrise) {
     return colours[0];
   }

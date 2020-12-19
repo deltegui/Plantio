@@ -9,10 +9,18 @@
 </template>
 
 <script>
+import timeService from '../logic/time.service';
+
+function isNightAndClear(weather) {
+  const now = timeService.nowInUnix();
+  return (now < weather.sunrise || now > weather.sunset) && weather.state === 'CLEAR';
+}
+
 export default {
   name: 'InfoPanel',
   computed: {
     weatherImage() {
+      if (isNightAndClear(this.$store.weather)) return `/night.png`;
       return `/${this.$store.weather.state}.png`;
     },
   },
