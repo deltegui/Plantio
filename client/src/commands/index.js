@@ -1,2 +1,2 @@
-import './examples';
+import './game';
 import './plants';
