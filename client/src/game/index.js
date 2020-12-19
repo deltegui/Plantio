@@ -73,13 +73,19 @@ export function startMoving() {
 
 export function reload(plants) {
   const sortedPlants = plants.sort((first, second) => {
-    if (first.position.y <= second.position.y) {
+    if (first.position.x < second.position.x) {
       return -1;
     }
-    if (first.position.x <= second.position.x) {
+    if (first.position.x > second.position.x) {
+      return 1;
+    }
+    if (first.position.y < second.position.y) {
       return -1;
     }
-    return 1;
+    if (first.position.y > second.position.y) {
+      return 1;
+    }
+    return 0;
   });
   loadedEntities.Crop.reload(plants);
   loadedEntities.PlantLoader.reloadPlants(sortedPlants);
