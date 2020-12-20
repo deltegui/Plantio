@@ -13,7 +13,7 @@ import timeService from '../logic/time.service';
 
 function isNightAndClear(weather) {
   const now = timeService.nowInUnix();
-  return (now < weather.sunrise || now > weather.sunset) && weather.state === 'CLEAR';
+  return (now < weather.sunrise || now > weather.sunset) && weather.state === 'sunny';
 }
 
 export default {
