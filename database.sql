@@ -34,10 +34,13 @@ create table saved_plants(
 create table weather_snapshots(
 	user varchar(255),
     creation timestamp,
+    location varchar(255) not null,
     latitude float not null,
     longitude float not null,
     weather_state varchar(255) not null,
     temperature float not null,
+    sunrise integer unsigned not null,
+    sunset integer unsigned not null,
     
     primary key (user, creation),
     foreign key (user) references saves(save_user) on delete cascade

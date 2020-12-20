@@ -58,4 +58,8 @@ public class WeatherReport {
     public int getSunset() {
         return sunset;
     }
+
+    public LocalDateTime getCreation() {
+        return creation;
+    }
 }

@@ -9,6 +9,8 @@ import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -77,31 +79,21 @@ public class MysqlGameRepository implements GameRepository {
     @Override
     public Optional<Game> load(String userName) {
         List<Game> games = this.jdbcTemplate.query(
-                "select last_update, latitude, longitude from saves where save_user = ?",
-                (resultSet, number) -> {
-                    final var latitude = resultSet.getObject("latitude");
-                    final var longitude = resultSet.getObject("longitude");
-                    final var lastUpdate =resultSet.getTimestamp("last_update").toLocalDateTime();
-                    if (latitude != null && longitude != null) {
-                        return new Game(
-                                userName,
-                                lastUpdate,
-                                new Coordinate((Float)latitude, (Float)longitude),
-                                null);
-                    }
-                    return new Game(
-                            userName,
-                            lastUpdate,
-                            null,
-                            null
-                    );
-                },
+                "select save_user, last_update, latitude, longitude from saves where save_user = ?",
+                this::parseGameFromQueryResult,
                 userName
         );
         if (games.size() <= 0) {
             return Optional.empty();
         }
-        var plants = this.jdbcTemplate.query(
+        var plants = this.selectPlantsForUser(userName);
+        Game game = games.get(0);
+        game.setCrop(new HashSet<>(plants));
+        return Optional.of(game);
+    }
+
+    private List<Plant> selectPlantsForUser(String userName) {
+        return this.jdbcTemplate.query(
                 "select pos_x, pos_y, plant_name, phase, watered from saved_plants where save_user = ?",
                 (resultSet, number) -> new Plant(
                         PlantType.fromString(resultSet.getNString("plant_name")),
@@ -111,8 +103,33 @@ public class MysqlGameRepository implements GameRepository {
                 ),
                 userName
         );
-        Game game = games.get(0);
-        game.setCrop(new HashSet<>(plants));
-        return Optional.of(game);
+    }
+
+    @Override
+    public List<Game> getAllWithoutPlants() {
+        return this.jdbcTemplate.query(
+                "select save_user, last_update, latitude, longitude from saves",
+                this::parseGameFromQueryResult
+        );
+    }
+
+    private Game parseGameFromQueryResult(ResultSet resultSet, int number) throws SQLException {
+        final var latitude = resultSet.getObject("latitude");
+        final var longitude = resultSet.getObject("longitude");
+        final var saveUser = resultSet.getString("save_user");
+        final var lastUpdate =resultSet.getTimestamp("last_update").toLocalDateTime();
+        if (latitude != null && longitude != null) {
+            return new Game(
+                    saveUser,
+                    lastUpdate,
+                    new Coordinate((Float)latitude, (Float)longitude),
+                    null);
+        }
+        return new Game(
+                saveUser,
+                lastUpdate,
+                null,
+                null
+        );
     }
 }
