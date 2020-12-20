@@ -52,6 +52,6 @@ export default function makeRequest({
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  return timeout(fetch(`${url}${endpoint}`, config), 1000)
+  return timeout(fetch(`${url}${endpoint}`, config), 10000)
     .then(handleResponse);
 }

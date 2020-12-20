@@ -1,5 +1,6 @@
 create database if not exists plantio;
 use plantio;
+drop table if exists weather_snapshots;
 drop table if exists saved_plants;
 drop table if exists saves;
 drop table if exists users;
@@ -12,6 +13,8 @@ create table users(
 create table saves(
     save_user varchar(255) primary key,
     last_update timestamp not null,
+    latitude float,
+    longitude float,
     
     foreign key (save_user) references users(name) on delete cascade
 );
@@ -26,4 +29,16 @@ create table saved_plants(
     
     primary key (save_user, pos_x, pos_y),
     foreign key (save_user) references saves(save_user) on delete cascade
+);
+
+create table weather_snapshots(
+	user varchar(255),
+    creation timestamp,
+    latitude float not null,
+    longitude float not null,
+    weather_state varchar(255) not null,
+    temperature float not null,
+    
+    primary key (user, creation),
+    foreign key (user) references saves(save_user) on delete cascade
 );

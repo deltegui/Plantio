@@ -5,6 +5,7 @@ import com.deltegui.plantio.game.domain.Game;
 import com.deltegui.plantio.game.domain.Plant;
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.game.domain.WateredState;
+import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,19 +23,38 @@ public class MysqlGameRepository implements GameRepository {
 
     @Override
     public void save(Game game) {
-        this.jdbcTemplate.update(
-                "insert into saves (save_user, last_update) values(?, ?)",
-                game.getOwner(),
-                game.getLastUpdate()
+        game.getLastPosition().ifPresentOrElse(
+                (Coordinate lastPosition) -> this.jdbcTemplate.update(
+                        "insert into saves (save_user, last_update, latitude, longitude) values(?, ?, ?, ?)",
+                        game.getOwner(),
+                        game.getLastUpdate(),
+                        lastPosition.getLatitude(),
+                        lastPosition.getLongitude()
+                ),
+                () -> this.jdbcTemplate.update(
+                        "insert into saves (save_user, last_update) values(?, ?)",
+                        game.getOwner(),
+                        game.getLastUpdate()
+                )
         );
         this.savePlants(game);
     }
 
     @Override
     public void update(Game game) {
-        this.jdbcTemplate.update(
-                "update saves set last_update = ?",
-                game.getLastUpdate()
+        game.getLastPosition().ifPresentOrElse(
+                (lastPos) -> this.jdbcTemplate.update(
+                        "update saves set last_update = ?, latitude = ?, longitude = ? where save_user = ?",
+                        game.getLastUpdate(),
+                        lastPos.getLatitude(),
+                        lastPos.getLongitude(),
+                        game.getOwner()
+                ),
+                () -> this.jdbcTemplate.update(
+                        "update saves set last_update = ? where save_user = ?",
+                        game.getLastUpdate(),
+                        game.getOwner()
+                )
         );
         this.jdbcTemplate.update("delete from saved_plants where save_user = ?", game.getOwner());
         this.savePlants(game);
@@ -57,11 +77,25 @@ public class MysqlGameRepository implements GameRepository {
     @Override
     public Optional<Game> load(String userName) {
         List<Game> games = this.jdbcTemplate.query(
-                "select last_update from saves where save_user = ?",
-                (resultSet, number) -> new Game(
-                        userName,
-                        resultSet.getTimestamp("last_update").toLocalDateTime(),
-                        new HashSet<>()),
+                "select last_update, latitude, longitude from saves where save_user = ?",
+                (resultSet, number) -> {
+                    final var latitude = resultSet.getObject("latitude");
+                    final var longitude = resultSet.getObject("longitude");
+                    final var lastUpdate =resultSet.getTimestamp("last_update").toLocalDateTime();
+                    if (latitude != null && longitude != null) {
+                        return new Game(
+                                userName,
+                                lastUpdate,
+                                new Coordinate((Float)latitude, (Float)longitude),
+                                null);
+                    }
+                    return new Game(
+                            userName,
+                            lastUpdate,
+                            null,
+                            null
+                    );
+                },
                 userName
         );
         if (games.size() <= 0) {
@@ -78,7 +112,7 @@ public class MysqlGameRepository implements GameRepository {
                 userName
         );
         Game game = games.get(0);
-        game.replaceCrop(new HashSet<>(plants));
+        game.setCrop(new HashSet<>(plants));
         return Optional.of(game);
     }
 }
