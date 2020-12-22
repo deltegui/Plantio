@@ -26,6 +26,9 @@ create table saved_plants(
     plant_name varchar(255) not null,
     watered varchar(255) not null,
     phase integer unsigned not null check(phase <= 6),
+    humidity double not null default 0,
+    hours_wet int unsigned not null,
+    last_applied_report_date timestamp not null,
     
     primary key (save_user, pos_x, pos_y),
     foreign key (save_user) references saves(save_user) on delete cascade

@@ -64,13 +64,16 @@ public class MysqlGameRepository implements GameRepository {
         game.getCrop()
                 .parallelStream()
                 .forEach(plant -> this.jdbcTemplate.update(
-                        "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase, watered) values(?, ?, ?, ?, ?, ?)",
+                        "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase, watered, humidity, hours_wet, last_applied_report_date) values(?, ?, ?, ?, ?, ?, ?, ? ,?)",
                         game.getOwner(),
                         plant.getPosition().getX(),
                         plant.getPosition().getY(),
                         plant.getType().name(),
                         plant.getPhase(),
-                        plant.getWatered().name()
+                        plant.getWatered().name(),
+                        plant.getHumidity(),
+                        plant.getHoursWet(),
+                        plant.getLastAppliedReportDate()
                 ));
     }
 

@@ -4,6 +4,7 @@ import com.deltegui.plantio.common.DomainException;
 import com.deltegui.plantio.common.UseCase;
 import com.deltegui.plantio.game.domain.Game;
 import com.deltegui.plantio.weather.application.WeatherSnapshotRepository;
+import com.deltegui.plantio.weather.domain.UserWeatherSnapshot;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,11 +20,24 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
     @Override
     public Game handle(LoadRequest request) throws DomainException {
         var user = request.getUser();
+        var game = this.gameRepository.load(user)
+                .map(this::applyWeatherSnapshots)
+                .orElseGet(() -> this.createAndSaveNewGame(user));
         this.snapshotRepository.removeForUser(user);
-        return this.gameRepository.load(user).orElseGet(() -> {
-            Game game = Game.createEmpty(user);
-            this.gameRepository.save(game);
-            return game;
-        });
+        return game;
+    }
+
+    private Game createAndSaveNewGame(String user) {
+        Game game = Game.createEmpty(user);
+        this.gameRepository.save(game);
+        return game;
+    }
+
+    private Game applyWeatherSnapshots(Game game) {
+        this.snapshotRepository.getForUser(game.getOwner())
+                .stream()
+                .map(UserWeatherSnapshot::getReport)
+                .forEach(game::applyWeather);
+        return game;
     }
 }

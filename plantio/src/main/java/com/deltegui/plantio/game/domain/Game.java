@@ -1,6 +1,7 @@
 package com.deltegui.plantio.game.domain;
 
 import com.deltegui.plantio.weather.domain.Coordinate;
+import com.deltegui.plantio.weather.domain.WeatherReport;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -31,6 +32,12 @@ public class Game {
     public void replaceCrop(Set<Plant> crop) {
         this.crop = crop;
         this.lastUpdate = LocalDateTime.now();
+    }
+
+    public void applyWeather(WeatherReport report) {
+        for (Plant plant : this.crop) {
+            plant.applyWeather(report);
+        }
     }
 
     public String getOwner() {
