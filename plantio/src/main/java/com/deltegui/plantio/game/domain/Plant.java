@@ -6,6 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Plant {
     public static final int DEATH_PHASE = 6;
@@ -112,5 +113,35 @@ public class Plant {
 
     public LocalDateTime getLastAppliedReportDate() {
         return lastAppliedReportDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "type=" + type +
+                ", phase=" + phase +
+                ", position=" + position +
+                ", watered=" + watered +
+                ", humidity=" + humidity +
+                ", hoursWet=" + hoursWet +
+                ", lastAppliedReportDate=" + lastAppliedReportDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plant plant = (Plant) o;
+        return phase == plant.phase &&
+                Double.compare(plant.humidity, humidity) == 0 &&
+                type == plant.type &&
+                Objects.equals(position, plant.position) &&
+                watered == plant.watered;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, phase, position, watered);
     }
 }

@@ -1,4 +1,4 @@
-package com.deltegui.plantio.game;
+package com.deltegui.plantio.game.domain;
 
 import com.deltegui.plantio.game.domain.Plant;
 import com.deltegui.plantio.game.domain.PlantType;

@@ -38,7 +38,7 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
                 .stream()
                 .map(UserWeatherSnapshot::getReport)
                 .forEach(game::applyWeather);
-        this.gameRepository.save(game);
+        this.gameRepository.update(game);
         return game;
     }
 }

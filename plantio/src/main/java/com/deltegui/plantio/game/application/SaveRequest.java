@@ -2,7 +2,7 @@ package com.deltegui.plantio.game.application;
 
 import com.deltegui.plantio.game.domain.Plant;
 
-import java.util.Optional;
+import java.util.HashSet;
 import java.util.Set;
 
 public final class SaveRequest {
@@ -14,13 +14,21 @@ public final class SaveRequest {
         this.plants = plants;
     }
 
-    public Optional<Plant> createPlantIfExists(Plant plant) {
+    public Set<Plant> merge(Set<Plant> plants) {
+        Set<Plant> result = new HashSet<>();
         for (PlantRequest plantRequest : this.plants) {
+            result.add(createPlant(plants, plantRequest));
+        }
+        return result;
+    }
+
+    private Plant createPlant(Set<Plant> plants, PlantRequest plantRequest) {
+        for (Plant plant : plants) {
             if (plantRequest.comesFromPlant(plant)) {
-                return Optional.of(plantRequest.merge(plant));
+                return plantRequest.merge(plant);
             }
         }
-        return Optional.empty();
+        return plantRequest.createNewPlant();
     }
 
     public String getUser() {

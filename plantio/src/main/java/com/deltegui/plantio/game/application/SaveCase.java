@@ -37,18 +37,9 @@ public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
     }
 
     private SaveResponse updateGame(Game game, SaveRequest req) {
-        var crop = refreshPlants(game, req);
+        var crop = req.merge(game.getCrop());
         game.replaceCrop(crop);
         this.gameRepository.update(game);
         return SaveResponse.fromGame(game);
-    }
-
-    private Set<Plant> refreshPlants(Game game, SaveRequest req) {
-        var oldPlants = game.getCrop();
-        Set<Plant> out = new HashSet<>();
-        for (Plant plant : oldPlants) {
-            req.createPlantIfExists(plant).ifPresent(out::add);
-        }
-        return out;
     }
 }

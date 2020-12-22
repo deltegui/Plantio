@@ -5,6 +5,7 @@ import com.deltegui.plantio.weather.domain.WeatherReport;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 

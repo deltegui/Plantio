@@ -146,10 +146,24 @@ io.onCommand('dsc', {
     }
     const [name] = args;
     try {
-      const { key, image, description } = plantService.getPlantTypeForName(name);
+      const {
+        key,
+        image,
+        description,
+        temperature,
+        humidityDeath,
+        humidityGrowth,
+      } = plantService.getPlantTypeForName(name);
       io.writeColor(`<h3>${key}</h3><br>`, 'green');
       io.writeln(description);
       io.writeln(`<img src="/${image}" style="width: 100%">`);
+      io.writeColor(`The minimal temperature to live is ${temperature.min}ºC<br>`, 'darkcyan');
+      io.writeln();
+      io.writeColor(`The maximum temperature to live is ${temperature.max}ºC<br>`, 'orange');
+      io.writeln();
+      io.writeln(`If this plant reaches a humidity lower or equal to ${humidityDeath}% dies!`);
+      io.writeln();
+      io.writeln(`This plant grows if reaches a humidity greater or equal to ${humidityGrowth}%`);
     } catch (err) {
       io.writeColor(`${err.msg}<br>`, 'red');
     }
