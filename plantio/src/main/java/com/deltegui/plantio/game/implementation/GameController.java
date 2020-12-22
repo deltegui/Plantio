@@ -28,7 +28,7 @@ public class GameController {
     }
 
     @PostMapping
-    public SaveResponse saveGame(Principal user, @Valid @RequestBody HashSet<Plant> plants) {
+    public SaveResponse saveGame(Principal user, @Valid @RequestBody HashSet<PlantRequest> plants) {
         return this.saveCase.handle(new SaveRequest(user.getName(), plants));
     }
 }

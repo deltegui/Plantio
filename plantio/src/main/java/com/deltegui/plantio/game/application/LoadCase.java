@@ -21,7 +21,7 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
     public Game handle(LoadRequest request) throws DomainException {
         var user = request.getUser();
         var game = this.gameRepository.load(user)
-                .map(this::applyWeatherSnapshots)
+                .map(this::applyWeatherSnapshotsAndSave)
                 .orElseGet(() -> this.createAndSaveNewGame(user));
         this.snapshotRepository.removeForUser(user);
         return game;
@@ -33,11 +33,12 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
         return game;
     }
 
-    private Game applyWeatherSnapshots(Game game) {
+    private Game applyWeatherSnapshotsAndSave(Game game) {
         this.snapshotRepository.getForUser(game.getOwner())
                 .stream()
                 .map(UserWeatherSnapshot::getReport)
                 .forEach(game::applyWeather);
+        this.gameRepository.save(game);
         return game;
     }
 }

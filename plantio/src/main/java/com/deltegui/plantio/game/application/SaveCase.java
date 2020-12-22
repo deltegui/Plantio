@@ -6,7 +6,9 @@ import com.deltegui.plantio.game.domain.Game;
 import com.deltegui.plantio.game.domain.Plant;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
@@ -19,21 +21,34 @@ public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
     @Override
     public SaveResponse handle(SaveRequest request) throws DomainException {
         String user = request.getUser();
-        Set<Plant> crop = request.getPlants();
         return this.gameRepository.load(user)
-                .map(game -> this.updateGame(game, crop))
-                .orElseGet(() -> this.createGame(user, crop));
+                .map(game -> this.updateGame(game, request))
+                .orElseGet(() -> this.createGame(user, request));
     }
 
-    private SaveResponse createGame(String user, Set<Plant> crop) {
+    private SaveResponse createGame(String user, SaveRequest req) {
+        Set<Plant> crop = req.getPlants()
+                .stream()
+                .map(PlantRequest::createNewPlant)
+                .collect(Collectors.toSet());
         Game game = Game.createWithCrop(user, crop);
         this.gameRepository.save(game);
         return SaveResponse.fromGame(game);
     }
 
-    private SaveResponse updateGame(Game game, Set<Plant> crop) {
+    private SaveResponse updateGame(Game game, SaveRequest req) {
+        var crop = refreshPlants(game, req);
         game.replaceCrop(crop);
         this.gameRepository.update(game);
         return SaveResponse.fromGame(game);
+    }
+
+    private Set<Plant> refreshPlants(Game game, SaveRequest req) {
+        var oldPlants = game.getCrop();
+        Set<Plant> out = new HashSet<>();
+        for (Plant plant : oldPlants) {
+            req.createPlantIfExists(plant).ifPresent(out::add);
+        }
+        return out;
     }
 }
