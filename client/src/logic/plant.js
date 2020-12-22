@@ -8,18 +8,24 @@ export default class Plant {
     position,
     phase,
     watered,
+    humidity,
   }) {
     this.plant = plant;
     this.sprite = null;
     this.phase = phase;
     this.position = position;
     this.watered = watered;
+    this.humidity = humidity;
   }
 
   water() {
+    this.humidity = 100;
+    this.watered = 'wet';
+  }
+
+  nextPhase() {
     if (this.phase < Plant.phaseLimit) {
       this.phase++;
-      this.watered = 'wet';
     }
   }
 

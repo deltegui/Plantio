@@ -46,6 +46,7 @@ export default {
       position,
       phase: 0,
       watered: 'dry',
+      humidity: 50,
     };
     addPlantSave(plant);
   },
@@ -67,6 +68,16 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.dry();
+    updatePlantSave(plant);
+  },
+
+  nextPhaseForPosition(position) {
+    const plantData = this.getForPosition(position);
+    if (!plantData) {
+      throw new NotFound(position);
+    }
+    const plant = new Plant(plantData);
+    plant.nextPhase();
     updatePlantSave(plant);
   },
 

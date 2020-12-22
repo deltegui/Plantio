@@ -12,6 +12,7 @@ export function updatePlantSave({
   plant,
   phase,
   watered,
+  humidity,
 }) {
   store.save = store.save.map((p) => {
     if (p.position.x === position.x && p.position.y === position.y) {
@@ -20,6 +21,7 @@ export function updatePlantSave({
         plant,
         phase,
         watered,
+        humidity,
       };
     }
     return p;

@@ -74,6 +74,8 @@ io.onCommand('show', {
     }
     io.writeln(`Plant ${plant.plant}`);
     io.writeln(`Phase: ${plant.phase}`);
+    io.writeln(`Humidity: ${plant.humidity}%`);
+    io.writeln(`Wet?: ${plant.watered === 'wet' ? 'Yes' : 'No'}`);
     try {
       plantService.emphasisForPosition(pos);
     } catch (err) {
@@ -164,12 +166,24 @@ io.onCommand('rm', {
   },
 });
 
-io.onCommand('dry', {
-  help: `Dry a plant. You need to pass the coordinate where
-  the plant lives.<br>
-  Usage: dry [x] [y]<br>
-  Example: dry d 3`,
-  handle(args) {
-    callExtractingPosFromArgs(args, plantService.dryForPosition.bind(plantService));
-  },
-});
+if (process.env.NODE_ENV !== 'production') {
+  io.onCommand('grow', {
+    help: `Grows a plant. You need to pass the coordinate where
+    the plant lives.<br>
+    Usage: grow [x] [y]<br>
+    Example: grow d 3`,
+    handle(args) {
+      callExtractingPosFromArgs(args, plantService.nextPhaseForPosition.bind(plantService));
+    },
+  });
+
+  io.onCommand('dry', {
+    help: `Dry a plant. You need to pass the coordinate where
+    the plant lives.<br>
+    Usage: dry [x] [y]<br>
+    Example: dry d 3`,
+    handle(args) {
+      callExtractingPosFromArgs(args, plantService.dryForPosition.bind(plantService));
+    },
+  });
+}

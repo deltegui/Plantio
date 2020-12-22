@@ -2,23 +2,33 @@ import makeRequest from './make_request';
 
 function gameToServer(plants) {
   return plants.map(({
-    plant, phase, position, watered,
+    plant,
+    phase,
+    position,
+    watered,
+    humidity,
   }) => ({
     type: plant.toUpperCase(),
     phase,
     position,
     watered: watered.toUpperCase(),
+    humidity,
   }));
 }
 
 function gameToSystem({ crop }) {
   return crop.map(({
-    type, phase, position, watered,
+    type,
+    phase,
+    position,
+    watered,
+    humidity,
   }) => ({
     plant: type.toLowerCase(),
     phase,
     position,
     watered: watered.toLowerCase(),
+    humidity,
   }));
 }
 
