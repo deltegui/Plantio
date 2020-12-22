@@ -1,16 +1,14 @@
 package com.deltegui.plantio.game.implementation;
 
 import com.deltegui.plantio.game.application.GameRepository;
-import com.deltegui.plantio.game.domain.Game;
-import com.deltegui.plantio.game.domain.Plant;
-import com.deltegui.plantio.game.domain.PlantType;
-import com.deltegui.plantio.game.domain.WateredState;
+import com.deltegui.plantio.game.domain.*;
 import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -94,12 +92,15 @@ public class MysqlGameRepository implements GameRepository {
 
     private List<Plant> selectPlantsForUser(String userName) {
         return this.jdbcTemplate.query(
-                "select pos_x, pos_y, plant_name, phase, watered from saved_plants where save_user = ?",
+                "select pos_x, pos_y, plant_name, phase, watered, humidity, hours_wet, last_applied_report_date from saved_plants where save_user = ?",
                 (resultSet, number) -> new Plant(
                         PlantType.fromString(resultSet.getNString("plant_name")),
                         WateredState.fromString(resultSet.getNString("watered")),
                         resultSet.getInt("phase"),
-                        new Plant.Position(resultSet.getInt("pos_x"), resultSet.getInt("pos_y"))
+                        new Position(resultSet.getInt("pos_x"), resultSet.getInt("pos_y")),
+                        resultSet.getDouble("humidity"),
+                        resultSet.getInt("hours_wet"),
+                        resultSet.getTimestamp("last_applied_report_date").toLocalDateTime()
                 ),
                 userName
         );

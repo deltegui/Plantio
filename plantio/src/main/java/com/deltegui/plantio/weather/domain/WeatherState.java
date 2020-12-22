@@ -1,10 +1,19 @@
 package com.deltegui.plantio.weather.domain;
 
 public enum WeatherState {
-    CLEAR,
-    RAIN,
-    CLOUDS,
-    SNOW;
+    CLEAR(1),
+    RAIN(-10),
+    CLOUDS(0.6f),
+    SNOW(-5);
+    private final float multiplier;
+
+    WeatherState(float multiplier) {
+        this.multiplier = multiplier;
+    }
+
+    public float getMultiplier() {
+        return multiplier;
+    }
 
     public static WeatherState fromString(String state) {
         switch (state) {
