@@ -1,5 +1,6 @@
 package com.deltegui.plantio.game;
 
+import com.deltegui.plantio.MemoryGameRepository;
 import com.deltegui.plantio.game.application.GameRepository;
 import com.deltegui.plantio.game.application.LoadCase;
 import com.deltegui.plantio.game.application.LoadRequest;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class LoadCaseTest {
-    private LoadRequest request = new LoadRequest("manolo");
+    private final LoadRequest request = new LoadRequest("manolo");
 
     @Test
     public void loadShouldLoadGame() {
@@ -97,6 +98,26 @@ public class LoadCaseTest {
                         }
                 )
         );
+    }
+
+    @Test
+    public void shouldNotDeleteAfterManyLoads() {
+        var expectedGame = createGame(
+                createPlant(100, PlantType.CACTUS, 6, WateredState.WET, 1),
+                createPlant(98.32, PlantType.WHEAT, 4, WateredState.WET, 1),
+                createPlant(98.32, PlantType.WHEAT, 4, WateredState.WET, 1),
+                createPlant(91.32, PlantType.WHEAT, 4, WateredState.WET, 1)
+        );
+
+        var gameRepo = MemoryGameRepository.withGames(expectedGame);
+        var snapshotRepo = mock(WeatherSnapshotRepository.class);
+
+        var loadCase = new LoadCase(gameRepo, snapshotRepo);
+        for (int i = 0; i < 200; i++) {
+            loadCase.handle(request);
+        }
+
+        assertEquals(4, gameRepo.getElement(0).getCrop().size());
     }
 
     public static Game createGame(Plant... plants) {

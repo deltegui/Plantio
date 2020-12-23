@@ -7,6 +7,7 @@ import com.deltegui.plantio.weather.domain.WeatherReport;
 import com.deltegui.plantio.weather.domain.WeatherState;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class MysqlWeatherSnapshotRepository implements WeatherSnapshotRepository
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Transactional
     @Override
     public void save(UserWeatherSnapshot snapshot) {
         final var report = snapshot.getReport();
@@ -54,6 +56,7 @@ public class MysqlWeatherSnapshotRepository implements WeatherSnapshotRepository
         );
     }
 
+    @Transactional
     @Override
     public void removeForUser(String user) {
         this.jdbcTemplate.update("delete from weather_snapshots where user = ?", user);

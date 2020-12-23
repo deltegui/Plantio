@@ -5,10 +5,10 @@ import com.deltegui.plantio.game.domain.*;
 import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +21,7 @@ public class MysqlGameRepository implements GameRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Transactional
     @Override
     public void save(Game game) {
         game.getLastPosition().ifPresentOrElse(
@@ -40,6 +41,7 @@ public class MysqlGameRepository implements GameRepository {
         this.savePlants(game);
     }
 
+    @Transactional
     @Override
     public void update(Game game) {
         game.getLastPosition().ifPresentOrElse(
@@ -61,20 +63,18 @@ public class MysqlGameRepository implements GameRepository {
     }
 
     private void savePlants(Game game) {
-        game.getCrop()
-                .parallelStream()
-                .forEach(plant -> this.jdbcTemplate.update(
-                        "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase, watered, humidity, hours_wet, last_applied_report_date) values(?, ?, ?, ?, ?, ?, ?, ? ,?)",
-                        game.getOwner(),
-                        plant.getPosition().getX(),
-                        plant.getPosition().getY(),
-                        plant.getType().name(),
-                        plant.getPhase(),
-                        plant.getWatered().name(),
-                        plant.getHumidity(),
-                        plant.getHoursWet(),
-                        plant.getLastAppliedReportDate()
-                ));
+        game.getCrop().forEach(plant -> this.jdbcTemplate.update(
+                "insert into saved_plants (save_user, pos_x, pos_y, plant_name, phase, watered, humidity, hours_wet, last_applied_report_date) values(?, ?, ?, ?, ?, ?, ?, ? ,?)",
+                game.getOwner(),
+                plant.getPosition().getX(),
+                plant.getPosition().getY(),
+                plant.getType().name(),
+                plant.getPhase(),
+                plant.getWatered().name(),
+                plant.getHumidity(),
+                plant.getHoursWet(),
+                plant.getLastAppliedReportDate()
+        ));
     }
 
     @Override

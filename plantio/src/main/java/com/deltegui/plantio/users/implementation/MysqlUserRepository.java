@@ -4,6 +4,7 @@ import com.deltegui.plantio.users.application.UserRepository;
 import com.deltegui.plantio.users.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class MysqlUserRepository implements UserRepository {
         return userList.isEmpty() ? Optional.empty() : Optional.of(userList.get(0));
     }
 
+    @Transactional
     @Override
     public void delete(User user) {
         this.jdbcTemplate.update(
@@ -32,6 +34,7 @@ public class MysqlUserRepository implements UserRepository {
                 user.getName());
     }
 
+    @Transactional
     @Override
     public void save(User user) {
         this.jdbcTemplate.update(
