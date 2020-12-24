@@ -5,6 +5,8 @@ import Crop from './crop';
 import PlantLoader from './plant_loader';
 import MatrixIndex from './matrix_index';
 import movable from './movable';
+import CropCoordinate from './coordinate';
+import types from './plant_types';
 
 const entities = {
   Crop,
@@ -30,7 +32,7 @@ function create() {
 function update() {
 }
 
-export default (canvas, { height, width } = { height: 680, width: 1000 }) => {
+export const createGame = (canvas, { height, width } = { height: 680, width: 1000 }) => {
   const config = {
     type: Phaser.CANVAS,
     width,
@@ -90,3 +92,10 @@ export function reload(plants) {
   loadedEntities.Crop.reload(plants);
   loadedEntities.PlantLoader.reloadPlants(sortedPlants);
 }
+
+export const CropSize = {
+  x: CropCoordinate.MaxSize.x,
+  y: CropCoordinate.MaxSize.x,
+};
+
+export const plantTypes = types;

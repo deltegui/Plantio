@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import createGame from '../game';
+import gameService from '../logic/game.service';
 
 export default {
   name: 'Game',
@@ -13,7 +13,7 @@ export default {
       height: 826,
       width: 1000,
     };
-    createGame(canvas, size);
+    gameService.createGame(canvas, size);
   },
 };
 </script>

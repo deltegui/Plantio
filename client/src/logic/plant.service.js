@@ -1,13 +1,8 @@
-import plantTypes from '../game/plant_types';
 import {
   emphasisPlant,
+  plantTypes,
 } from '../game';
 import store from '../store';
-import {
-  addPlantSave,
-  updatePlantSave,
-  deletePlantSave,
-} from '../store/save';
 import Plant from './plant';
 import {
   InvalidPlantName,
@@ -15,6 +10,7 @@ import {
   NotFound,
   UnknownPlantType,
 } from './plant.errors';
+import gameService from './game.service';
 
 export default {
   getForPosition({ x, y }) {
@@ -48,7 +44,7 @@ export default {
       watered: 'dry',
       humidity: 50,
     };
-    addPlantSave(plant);
+    gameService.addPlant(plant);
   },
 
   waterForPosition(position) {
@@ -58,7 +54,7 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.water();
-    updatePlantSave(plant);
+    gameService.updatePlant(plant);
   },
 
   dryForPosition(position) {
@@ -68,7 +64,7 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.dry();
-    updatePlantSave(plant);
+    gameService.updatePlant(plant);
   },
 
   nextPhaseForPosition(position) {
@@ -78,11 +74,11 @@ export default {
     }
     const plant = new Plant(plantData);
     plant.nextPhase();
-    updatePlantSave(plant);
+    gameService.updatePlant(plant);
   },
 
   deleteForPosition(position) {
-    deletePlantSave(position);
+    gameService.deletePlant(position);
   },
 
   getAll() {

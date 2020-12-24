@@ -1,11 +1,10 @@
 import io from '../console';
-import CropCoordinate from '../game/coordinate';
 import plantService from '../logic/plant.service';
-import plantTypes from '../game/plant_types';
+import gameService from '../logic/game.service';
 
 function parseInputCoordinate({ x, y }) {
   const numy = parseInt(y, 10);
-  if (isNaN(numy) || numy >= CropCoordinate.MaxSize.y) {
+  if (isNaN(numy) || numy >= gameService.CropSize.y) {
     io.writeColor(`Invalid position for y: "${y}". Must be 0, 1, 2 or 3`, 'red');
     io.writeln();
     return false;
@@ -130,7 +129,7 @@ io.onCommand('ls', {
 io.onCommand('avl', {
   help: `List all available plants names`,
   handle() {
-    plantTypes.forEach(({ key }) => io.writeColor(`${key}<br>`, 'green'));
+    gameService.plantTypes.forEach(({ key }) => io.writeColor(`${key}<br>`, 'green'));
   },
 });
 

@@ -32,6 +32,16 @@ function gameToSystem({ crop }) {
   }));
 }
 
+function toWeatherImage(weatherState) {
+  const images = {
+    RAIN: 'rainy',
+    CLEAR: 'sunny',
+    CLOUDS: 'cloudy',
+    SNOW: 'rainy',
+  };
+  return images[weatherState];
+}
+
 export default {
   user: {
     async login({ user, password }) {
@@ -63,7 +73,19 @@ export default {
         method: 'GET',
         endpoint: `/weather/read?latitude=${latitude}&longitude=${longitude}`,
         token,
-      });
+      }).then(({
+        location,
+        state,
+        temperature,
+        sunrise,
+        sunset,
+      }) => ({
+        poblation: location,
+        state: toWeatherImage(state),
+        temperature,
+        sunrise,
+        sunset,
+      }));
     },
   },
 

@@ -1,10 +1,7 @@
 import store from './base';
-import api from '../api';
-import { reload, stopMoving } from '../game';
 
 export function addPlantSave(plant) {
   store.save.push(plant);
-  reload(store.save);
 }
 
 export function updatePlantSave({
@@ -26,16 +23,12 @@ export function updatePlantSave({
     }
     return p;
   });
-  reload(store.save);
 }
 
 export function deletePlantSave({ x, y }) {
   store.save = store.save.filter((plant) => plant.position.x !== x || plant.position.y !== y);
-  reload(store.save);
 }
 
-export async function loadGame() {
-  store.save = await api.game.load(store.user.token);
-  stopMoving();
-  reload(store.save);
+export async function loadGame(game) {
+  store.save = game;
 }

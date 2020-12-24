@@ -9,6 +9,7 @@ import {
   addPlantSave,
   updatePlantSave,
   loadGame,
+  deletePlantSave,
 } from './save';
 
 Vue.prototype.$store = store;
@@ -22,3 +23,13 @@ Vue.prototype.$actions = {
 };
 
 export default store;
+
+export const actions = {
+  addPlantSave,
+  updatePlantSave,
+  deletePlantSave,
+  loadGame,
+  login,
+  logout,
+  refreshWeather,
+};

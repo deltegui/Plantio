@@ -10,7 +10,6 @@ export default Vue.observable({
     poblation: 'Unkown',
     temperature: 0,
     state: 'rainy',
-    season: 'Unknown',
     sunset: 0,
     sunrise: 0,
   },

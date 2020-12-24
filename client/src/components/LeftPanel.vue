@@ -1,7 +1,7 @@
 <template>
 <div id="text-console">
   <Console v-if="$store.logged"/>
-  <Login @login="onLogin" v-else/>
+  <Login v-else/>
 </div>
 </template>
 
@@ -14,13 +14,6 @@ export default {
   components: {
     Console,
     Login,
-  },
-  methods: {
-    onLogin(user) {
-      this.$actions.login(user);
-      this.$actions.refreshWeather();
-      this.$actions.loadGame();
-    },
   },
 };
 </script>

@@ -1,11 +1,10 @@
 import io from '../console';
-import api from '../api';
-import store from '../store';
+import gameService from '../logic/game.service';
 
 io.onCommand('save', {
   help: 'Saves your game',
   async handle() {
-    return api.game.save(store.user.token, store.save)
+    return gameService.saveGame()
       .then(() => io.writeln('Game saved!'))
       .catch(() => io.writeColor('Failed!<br>', 'red'));
   },

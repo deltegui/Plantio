@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import api from '../api';
 import ButtonSpin from './ButtonSpin.vue';
+import userService from '../logic/user.service';
 
 function formatErrors(errorObj) {
   const equivalence = {
@@ -40,7 +40,6 @@ export default {
   methods: {
     handleResopnse(res, done) {
       res
-        .then((user) => this.$emit('login', user))
         .catch((err) => {
           if (err.errors) {
             this.errors = formatErrors(err.errors);
@@ -52,14 +51,14 @@ export default {
     },
 
     login(done) {
-      this.handleResopnse(api.user.login({
+      this.handleResopnse(userService.login({
         user: this.username,
         password: this.password,
       }), done);
     },
 
     register(done) {
-      this.handleResopnse(api.user.register({
+      this.handleResopnse(userService.register({
         user: this.username,
         password: this.password,
       }), done);
