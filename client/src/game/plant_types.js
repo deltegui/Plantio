@@ -5,7 +5,7 @@ export default [
     any environment.`,
     image: 'wheat.png',
     temperature: {
-      min: 1,
+      min: -10,
       max: 28,
     },
     humidityDeath: 20,

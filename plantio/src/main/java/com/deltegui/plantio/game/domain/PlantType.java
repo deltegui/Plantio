@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.time.Duration;
 
 public enum PlantType {
-    WHEAT(TemperatureInterval.withMinMax(1, 28), 20, 30, Duration.ofDays(2), 0.05),
+    WHEAT(TemperatureInterval.withMinMax(-10, 28), 20, 30, Duration.ofDays(2), 0.05),
     CACTUS(TemperatureInterval.withMinMax(25, 50), 10, 23, Duration.ofDays(3), 0.01);
     private @NotNull final TemperatureInterval temperatureInterval;
     private @NotNull @Min(0) @Max(100) final int humidityDeath;
