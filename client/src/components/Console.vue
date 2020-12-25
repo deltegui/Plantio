@@ -6,6 +6,7 @@
 <script>
 import io from '../console';
 import '../commands';
+import userService from '../logic/user.service';
 
 export default {
   name: 'Console',
@@ -25,7 +26,7 @@ export default {
       }
       io.onCommand('logout', {
         help: 'Log user out',
-        handle: () => this.$actions.logout(),
+        handle: () => userService.logout(),
       });
     },
 

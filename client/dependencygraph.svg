@@ -21,13 +21,13 @@
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_src/commands</title>
-<path fill="#ffffff" stroke="black" stroke-width="2" d="M358.5,-196C358.5,-196 490,-196 490,-196 496,-196 502,-202 502,-208 502,-208 502,-266 502,-266 502,-272 496,-278 490,-278 490,-278 358.5,-278 358.5,-278 352.5,-278 346.5,-272 346.5,-266 346.5,-266 346.5,-208 346.5,-208 346.5,-202 352.5,-196 358.5,-196"/>
-<text text-anchor="middle" x="424.25" y="-266.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">commands</text>
+<path fill="#ffffff" stroke="black" stroke-width="2" d="M358.5,-166C358.5,-166 490,-166 490,-166 496,-166 502,-172 502,-178 502,-178 502,-236 502,-236 502,-242 496,-248 490,-248 490,-248 358.5,-248 358.5,-248 352.5,-248 346.5,-242 346.5,-236 346.5,-236 346.5,-178 346.5,-178 346.5,-172 352.5,-166 358.5,-166"/>
+<text text-anchor="middle" x="424.25" y="-236.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">commands</text>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_src/components</title>
-<path fill="#ffffff" stroke="black" stroke-width="2" d="M157,-16C157,-16 496,-16 496,-16 502,-16 508,-22 508,-28 508,-28 508,-176 508,-176 508,-182 502,-188 496,-188 496,-188 157,-188 157,-188 151,-188 145,-182 145,-176 145,-176 145,-28 145,-28 145,-22 151,-16 157,-16"/>
-<text text-anchor="middle" x="326.5" y="-176.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">components</text>
+<path fill="#ffffff" stroke="black" stroke-width="2" d="M157,-16C157,-16 496,-16 496,-16 502,-16 508,-22 508,-28 508,-28 508,-146 508,-146 508,-152 502,-158 496,-158 496,-158 157,-158 157,-158 151,-158 145,-152 145,-146 145,-146 145,-28 145,-28 145,-22 151,-16 157,-16"/>
+<text text-anchor="middle" x="326.5" y="-146.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">components</text>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_src/console</title>
@@ -41,8 +41,8 @@
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_src/logic</title>
-<path fill="#ffffff" stroke="black" stroke-width="2" d="M528,-216C528,-216 700,-216 700,-216 706,-216 712,-222 712,-228 712,-228 712,-346 712,-346 712,-352 706,-358 700,-358 700,-358 528,-358 528,-358 522,-358 516,-352 516,-346 516,-346 516,-228 516,-228 516,-222 522,-216 528,-216"/>
-<text text-anchor="middle" x="614" y="-346.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">logic</text>
+<path fill="#ffffff" stroke="black" stroke-width="2" d="M528,-190C528,-190 700,-190 700,-190 706,-190 712,-196 712,-202 712,-202 712,-320 712,-320 712,-326 706,-332 700,-332 700,-332 528,-332 528,-332 522,-332 516,-326 516,-320 516,-320 516,-202 516,-202 516,-196 522,-190 528,-190"/>
+<text text-anchor="middle" x="614" y="-320.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="9.00">logic</text>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_src/store</title>
@@ -53,8 +53,8 @@
 <g id="node1" class="node">
 <title>src/App.vue</title>
 <g id="a_node1"><a xlink:href="src/App.vue" xlink:title="App.vue">
-<path fill="#41f083" stroke="black" d="M131,-117C131,-117 89,-117 89,-117 86,-117 83,-114 83,-111 83,-111 83,-105 83,-105 83,-102 86,-99 89,-99 89,-99 131,-99 131,-99 134,-99 137,-102 137,-105 137,-105 137,-111 137,-111 137,-114 134,-117 131,-117"/>
-<text text-anchor="middle" x="110" y="-105.8" font-family="Helvetica,sans-Serif" font-size="9.00">App.vue</text>
+<path fill="#41f083" stroke="black" d="M131,-87C131,-87 89,-87 89,-87 86,-87 83,-84 83,-81 83,-81 83,-75 83,-75 83,-72 86,-69 89,-69 89,-69 131,-69 131,-69 134,-69 137,-72 137,-75 137,-75 137,-81 137,-81 137,-84 134,-87 131,-87"/>
+<text text-anchor="middle" x="110" y="-75.8" font-family="Helvetica,sans-Serif" font-size="9.00">App.vue</text>
 </a>
 </g>
 </g>
@@ -62,127 +62,127 @@
 <g id="node2" class="node">
 <title>src/components/DayNightCycle.vue</title>
 <g id="a_node2"><a xlink:href="src/components/DayNightCycle.vue" xlink:title="DayNightCycle.vue">
-<path fill="#41f083" stroke="black" d="M242,-162C242,-162 159,-162 159,-162 156,-162 153,-159 153,-156 153,-156 153,-150 153,-150 153,-147 156,-144 159,-144 159,-144 242,-144 242,-144 245,-144 248,-147 248,-150 248,-150 248,-156 248,-156 248,-159 245,-162 242,-162"/>
-<text text-anchor="middle" x="200.5" y="-150.8" font-family="Helvetica,sans-Serif" font-size="9.00">DayNightCycle.vue</text>
+<path fill="#41f083" stroke="black" d="M242,-132C242,-132 159,-132 159,-132 156,-132 153,-129 153,-126 153,-126 153,-120 153,-120 153,-117 156,-114 159,-114 159,-114 242,-114 242,-114 245,-114 248,-117 248,-120 248,-120 248,-126 248,-126 248,-129 245,-132 242,-132"/>
+<text text-anchor="middle" x="200.5" y="-120.8" font-family="Helvetica,sans-Serif" font-size="9.00">DayNightCycle.vue</text>
 </a>
 </g>
 </g>
 <!-- src/App.vue&#45;&gt;src/components/DayNightCycle.vue -->
 <g id="edge1" class="edge">
 <title>src/App.vue&#45;&gt;src/components/DayNightCycle.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M119.1,-117.11C125.52,-123.79 135.03,-132.61 145,-138 147.51,-139.36 150.16,-140.6 152.87,-141.74"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="152.17,-143.72 158.52,-143.93 153.68,-139.8 152.17,-143.72"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M119.1,-87.11C125.52,-93.79 135.03,-102.61 145,-108 147.51,-109.36 150.16,-110.6 152.87,-111.74"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="152.17,-113.72 158.52,-113.93 153.68,-109.8 152.17,-113.72"/>
 </g>
 <!-- src/components/Game.vue -->
 <g id="node3" class="node">
 <title>src/components/Game.vue</title>
 <g id="a_node3"><a xlink:href="src/components/Game.vue" xlink:title="Game.vue">
-<path fill="#41f083" stroke="black" d="M224,-102C224,-102 177,-102 177,-102 174,-102 171,-99 171,-96 171,-96 171,-90 171,-90 171,-87 174,-84 177,-84 177,-84 224,-84 224,-84 227,-84 230,-87 230,-90 230,-90 230,-96 230,-96 230,-99 227,-102 224,-102"/>
-<text text-anchor="middle" x="200.5" y="-90.8" font-family="Helvetica,sans-Serif" font-size="9.00">Game.vue</text>
+<path fill="#41f083" stroke="black" d="M224,-72C224,-72 177,-72 177,-72 174,-72 171,-69 171,-66 171,-66 171,-60 171,-60 171,-57 174,-54 177,-54 177,-54 224,-54 224,-54 227,-54 230,-57 230,-60 230,-60 230,-66 230,-66 230,-69 227,-72 224,-72"/>
+<text text-anchor="middle" x="200.5" y="-60.8" font-family="Helvetica,sans-Serif" font-size="9.00">Game.vue</text>
 </a>
 </g>
 </g>
 <!-- src/App.vue&#45;&gt;src/components/Game.vue -->
 <g id="edge2" class="edge">
 <title>src/App.vue&#45;&gt;src/components/Game.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M137.07,-103.58C145.77,-102.11 155.61,-100.44 164.85,-98.87"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="165.26,-100.93 170.83,-97.86 164.56,-96.79 165.26,-100.93"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M137.07,-73.58C145.77,-72.11 155.61,-70.44 164.85,-68.87"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="165.26,-70.93 170.83,-67.86 164.56,-66.79 165.26,-70.93"/>
 </g>
 <!-- src/components/InfoPanel.vue -->
 <g id="node4" class="node">
 <title>src/components/InfoPanel.vue</title>
 <g id="a_node4"><a xlink:href="src/components/InfoPanel.vue" xlink:title="InfoPanel.vue">
-<path fill="#41f083" stroke="black" d="M231,-132C231,-132 170,-132 170,-132 167,-132 164,-129 164,-126 164,-126 164,-120 164,-120 164,-117 167,-114 170,-114 170,-114 231,-114 231,-114 234,-114 237,-117 237,-120 237,-120 237,-126 237,-126 237,-129 234,-132 231,-132"/>
-<text text-anchor="middle" x="200.5" y="-120.8" font-family="Helvetica,sans-Serif" font-size="9.00">InfoPanel.vue</text>
+<path fill="#41f083" stroke="black" d="M231,-102C231,-102 170,-102 170,-102 167,-102 164,-99 164,-96 164,-96 164,-90 164,-90 164,-87 167,-84 170,-84 170,-84 231,-84 231,-84 234,-84 237,-87 237,-90 237,-90 237,-96 237,-96 237,-99 234,-102 231,-102"/>
+<text text-anchor="middle" x="200.5" y="-90.8" font-family="Helvetica,sans-Serif" font-size="9.00">InfoPanel.vue</text>
 </a>
 </g>
 </g>
 <!-- src/App.vue&#45;&gt;src/components/InfoPanel.vue -->
 <g id="edge3" class="edge">
 <title>src/App.vue&#45;&gt;src/components/InfoPanel.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M137.07,-112.42C143.48,-113.5 150.49,-114.69 157.44,-115.87"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="157.51,-118.01 163.77,-116.94 158.21,-113.87 157.51,-118.01"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M137.07,-82.42C143.48,-83.5 150.49,-84.69 157.44,-85.87"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="157.51,-88.01 163.77,-86.94 158.21,-83.87 157.51,-88.01"/>
 </g>
 <!-- src/components/LeftPanel.vue -->
 <g id="node5" class="node">
 <title>src/components/LeftPanel.vue</title>
 <g id="a_node5"><a xlink:href="src/components/LeftPanel.vue" xlink:title="LeftPanel.vue">
-<path fill="#41f083" stroke="black" d="M231,-72C231,-72 170,-72 170,-72 167,-72 164,-69 164,-66 164,-66 164,-60 164,-60 164,-57 167,-54 170,-54 170,-54 231,-54 231,-54 234,-54 237,-57 237,-60 237,-60 237,-66 237,-66 237,-69 234,-72 231,-72"/>
-<text text-anchor="middle" x="200.5" y="-60.8" font-family="Helvetica,sans-Serif" font-size="9.00">LeftPanel.vue</text>
+<path fill="#41f083" stroke="black" d="M231,-42C231,-42 170,-42 170,-42 167,-42 164,-39 164,-36 164,-36 164,-30 164,-30 164,-27 167,-24 170,-24 170,-24 231,-24 231,-24 234,-24 237,-27 237,-30 237,-30 237,-36 237,-36 237,-39 234,-42 231,-42"/>
+<text text-anchor="middle" x="200.5" y="-30.8" font-family="Helvetica,sans-Serif" font-size="9.00">LeftPanel.vue</text>
 </a>
 </g>
 </g>
 <!-- src/App.vue&#45;&gt;src/components/LeftPanel.vue -->
 <g id="edge4" class="edge">
 <title>src/App.vue&#45;&gt;src/components/LeftPanel.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M119.1,-98.89C125.52,-92.21 135.03,-83.39 145,-78 149.13,-75.77 153.61,-73.85 158.18,-72.2"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="158.97,-74.15 163.99,-70.25 157.63,-70.17 158.97,-74.15"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M119.1,-68.89C125.52,-62.21 135.03,-53.39 145,-48 149.13,-45.77 153.61,-43.85 158.18,-42.2"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="158.97,-44.15 163.99,-40.25 157.63,-40.17 158.97,-44.15"/>
 </g>
 <!-- src/logic/time.service.js -->
 <g id="node17" class="node">
 <title>src/logic/time.service.js</title>
 <g id="a_node17"><a xlink:href="src/logic/time.service.js" xlink:title="time.service.js">
-<path fill="#ffffcc" stroke="black" d="M593.5,-332C593.5,-332 531.5,-332 531.5,-332 528.5,-332 525.5,-329 525.5,-326 525.5,-326 525.5,-320 525.5,-320 525.5,-317 528.5,-314 531.5,-314 531.5,-314 593.5,-314 593.5,-314 596.5,-314 599.5,-317 599.5,-320 599.5,-320 599.5,-326 599.5,-326 599.5,-329 596.5,-332 593.5,-332"/>
-<text text-anchor="middle" x="562.5" y="-320.8" font-family="Helvetica,sans-Serif" font-size="9.00">time.service.js</text>
+<path fill="#ffffcc" stroke="black" d="M593.5,-306C593.5,-306 531.5,-306 531.5,-306 528.5,-306 525.5,-303 525.5,-300 525.5,-300 525.5,-294 525.5,-294 525.5,-291 528.5,-288 531.5,-288 531.5,-288 593.5,-288 593.5,-288 596.5,-288 599.5,-291 599.5,-294 599.5,-294 599.5,-300 599.5,-300 599.5,-303 596.5,-306 593.5,-306"/>
+<text text-anchor="middle" x="562.5" y="-294.8" font-family="Helvetica,sans-Serif" font-size="9.00">time.service.js</text>
 </a>
 </g>
 </g>
 <!-- src/components/DayNightCycle.vue&#45;&gt;src/logic/time.service.js -->
 <g id="edge16" class="edge">
 <title>src/components/DayNightCycle.vue&#45;&gt;src/logic/time.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M201.48,-162.27C201.98,-191.35 207.93,-281.11 261,-319 341.67,-376.59 468.1,-350.91 527.94,-333.83"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="528.7,-335.8 533.87,-332.11 527.52,-331.77 528.7,-335.8"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M201.5,-132.24C202.07,-161.24 208.18,-250.76 261,-289 340.7,-346.7 465.98,-323.75 526.49,-307.65"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="527.25,-309.62 532.49,-306.02 526.15,-305.57 527.25,-309.62"/>
 </g>
 <!-- src/logic/game.service.js -->
 <g id="node10" class="node">
 <title>src/logic/game.service.js</title>
 <g id="a_node10"><a xlink:href="src/logic/game.service.js" xlink:title="game.service.js">
-<path fill="#ffffcc" stroke="black" d="M693,-242C693,-242 625,-242 625,-242 622,-242 619,-239 619,-236 619,-236 619,-230 619,-230 619,-227 622,-224 625,-224 625,-224 693,-224 693,-224 696,-224 699,-227 699,-230 699,-230 699,-236 699,-236 699,-239 696,-242 693,-242"/>
-<text text-anchor="middle" x="659" y="-230.8" font-family="Helvetica,sans-Serif" font-size="9.00">game.service.js</text>
+<path fill="#ffffcc" stroke="black" d="M693,-216C693,-216 625,-216 625,-216 622,-216 619,-213 619,-210 619,-210 619,-204 619,-204 619,-201 622,-198 625,-198 625,-198 693,-198 693,-198 696,-198 699,-201 699,-204 699,-204 699,-210 699,-210 699,-213 696,-216 693,-216"/>
+<text text-anchor="middle" x="659" y="-204.8" font-family="Helvetica,sans-Serif" font-size="9.00">game.service.js</text>
 </a>
 </g>
 </g>
 <!-- src/components/Game.vue&#45;&gt;src/logic/game.service.js -->
 <g id="edge17" class="edge">
 <title>src/components/Game.vue&#45;&gt;src/logic/game.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M230.09,-98.05C236.55,-100.26 242.97,-103.44 248,-108 258.76,-117.77 254.52,-124.99 261,-138 293.57,-203.38 278.89,-244.22 342,-281 405.74,-318.15 450.01,-326.61 508,-281 519.86,-271.67 504.65,-257.94 516,-248 519.66,-244.79 572.3,-239.87 612.43,-236.55"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.95,-238.62 618.76,-236.03 612.6,-234.43 612.95,-238.62"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M230.09,-68.05C236.55,-70.26 242.97,-73.44 248,-78 258.76,-87.77 254.52,-94.99 261,-108 293.57,-173.38 278.89,-214.22 342,-251 405.74,-288.15 449.3,-295.7 508,-251 518.64,-242.9 505.8,-230.65 516,-222 519.71,-218.85 572.34,-213.92 612.45,-210.58"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.97,-212.64 618.77,-210.05 612.62,-208.46 612.97,-212.64"/>
 </g>
 <!-- src/components/InfoPanel.vue&#45;&gt;src/logic/time.service.js -->
 <g id="edge18" class="edge">
 <title>src/components/InfoPanel.vue&#45;&gt;src/logic/time.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M237.36,-129.56C241.45,-131.66 245.16,-134.4 248,-138 271.06,-167.22 234.45,-278.92 261,-305 278.97,-322.66 440.36,-323.93 518.92,-323.48"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="519.36,-325.58 525.34,-323.44 519.33,-321.38 519.36,-325.58"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M237.36,-99.56C241.45,-101.66 245.16,-104.4 248,-108 271.06,-137.22 234.62,-248.74 261,-275 278.87,-292.79 440.31,-296.26 518.9,-296.89"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="519.31,-299 525.33,-296.94 519.34,-294.8 519.31,-299"/>
 </g>
 <!-- src/components/Console.vue -->
 <g id="node16" class="node">
 <title>src/components/Console.vue</title>
 <g id="a_node16"><a xlink:href="src/components/Console.vue" xlink:title="Console.vue">
-<path fill="#41f083" stroke="black" d="M323,-72C323,-72 267,-72 267,-72 264,-72 261,-69 261,-66 261,-66 261,-60 261,-60 261,-57 264,-54 267,-54 267,-54 323,-54 323,-54 326,-54 329,-57 329,-60 329,-60 329,-66 329,-66 329,-69 326,-72 323,-72"/>
-<text text-anchor="middle" x="295" y="-60.8" font-family="Helvetica,sans-Serif" font-size="9.00">Console.vue</text>
+<path fill="#41f083" stroke="black" d="M323,-42C323,-42 267,-42 267,-42 264,-42 261,-39 261,-36 261,-36 261,-30 261,-30 261,-27 264,-24 267,-24 267,-24 323,-24 323,-24 326,-24 329,-27 329,-30 329,-30 329,-36 329,-36 329,-39 326,-42 323,-42"/>
+<text text-anchor="middle" x="295" y="-30.8" font-family="Helvetica,sans-Serif" font-size="9.00">Console.vue</text>
 </a>
 </g>
 </g>
 <!-- src/components/LeftPanel.vue&#45;&gt;src/components/Console.vue -->
 <g id="edge19" class="edge">
 <title>src/components/LeftPanel.vue&#45;&gt;src/components/Console.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M237.26,-63C242.94,-63 248.84,-63 254.59,-63"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="254.76,-65.1 260.76,-63 254.76,-60.9 254.76,-65.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M237.26,-33C242.94,-33 248.84,-33 254.59,-33"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="254.76,-35.1 260.76,-33 254.76,-30.9 254.76,-35.1"/>
 </g>
 <!-- src/components/Login.vue -->
 <g id="node18" class="node">
 <title>src/components/Login.vue</title>
 <g id="a_node18"><a xlink:href="src/components/Login.vue" xlink:title="Login.vue">
-<path fill="#41f083" stroke="black" d="M317.5,-132C317.5,-132 272.5,-132 272.5,-132 269.5,-132 266.5,-129 266.5,-126 266.5,-126 266.5,-120 266.5,-120 266.5,-117 269.5,-114 272.5,-114 272.5,-114 317.5,-114 317.5,-114 320.5,-114 323.5,-117 323.5,-120 323.5,-120 323.5,-126 323.5,-126 323.5,-129 320.5,-132 317.5,-132"/>
-<text text-anchor="middle" x="295" y="-120.8" font-family="Helvetica,sans-Serif" font-size="9.00">Login.vue</text>
+<path fill="#41f083" stroke="black" d="M317.5,-102C317.5,-102 272.5,-102 272.5,-102 269.5,-102 266.5,-99 266.5,-96 266.5,-96 266.5,-90 266.5,-90 266.5,-87 269.5,-84 272.5,-84 272.5,-84 317.5,-84 317.5,-84 320.5,-84 323.5,-87 323.5,-90 323.5,-90 323.5,-96 323.5,-96 323.5,-99 320.5,-102 317.5,-102"/>
+<text text-anchor="middle" x="295" y="-90.8" font-family="Helvetica,sans-Serif" font-size="9.00">Login.vue</text>
 </a>
 </g>
 </g>
 <!-- src/components/LeftPanel.vue&#45;&gt;src/components/Login.vue -->
 <g id="edge20" class="edge">
 <title>src/components/LeftPanel.vue&#45;&gt;src/components/Login.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M235.83,-72.05C240.06,-73.75 244.22,-75.72 248,-78 261.64,-86.24 274.37,-99.27 282.96,-109.19"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="281.35,-110.55 286.83,-113.78 284.56,-107.84 281.35,-110.55"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M235.83,-42.05C240.06,-43.75 244.22,-45.72 248,-48 261.64,-56.24 274.37,-69.27 282.96,-79.19"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="281.35,-80.55 286.83,-83.78 284.56,-77.84 281.35,-80.55"/>
 </g>
 <!-- src/api/index.js -->
 <g id="node6" class="node">
@@ -212,8 +212,8 @@
 <g id="node8" class="node">
 <title>src/commands/game.js</title>
 <g id="a_node8"><a xlink:href="src/commands/game.js" xlink:title="game.js">
-<path fill="#ffffcc" stroke="black" d="M488,-222C488,-222 446,-222 446,-222 443,-222 440,-219 440,-216 440,-216 440,-210 440,-210 440,-207 443,-204 446,-204 446,-204 488,-204 488,-204 491,-204 494,-207 494,-210 494,-210 494,-216 494,-216 494,-219 491,-222 488,-222"/>
-<text text-anchor="middle" x="467" y="-210.8" font-family="Helvetica,sans-Serif" font-size="9.00">game.js</text>
+<path fill="#ffffcc" stroke="black" d="M488,-192C488,-192 446,-192 446,-192 443,-192 440,-189 440,-186 440,-186 440,-180 440,-180 440,-177 443,-174 446,-174 446,-174 488,-174 488,-174 491,-174 494,-177 494,-180 494,-180 494,-186 494,-186 494,-189 491,-192 488,-192"/>
+<text text-anchor="middle" x="467" y="-180.8" font-family="Helvetica,sans-Serif" font-size="9.00">game.js</text>
 </a>
 </g>
 </g>
@@ -229,19 +229,19 @@
 <!-- src/commands/game.js&#45;&gt;src/console/index.js -->
 <g id="edge6" class="edge">
 <title>src/commands/game.js&#45;&gt;src/console/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M491.28,-203.92C497.4,-200.62 503.52,-196.35 508,-191 544.13,-147.86 556.24,-79.19 559.97,-48.59"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="562.09,-48.53 560.68,-42.33 557.92,-48.05 562.09,-48.53"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M490.63,-173.94C496.87,-170.6 503.23,-166.31 508,-161 538.27,-127.31 552.94,-74.04 558.59,-48.14"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="560.67,-48.48 559.84,-42.17 556.56,-47.62 560.67,-48.48"/>
 </g>
 <!-- src/commands/game.js&#45;&gt;src/logic/game.service.js -->
 <g id="edge7" class="edge">
 <title>src/commands/game.js&#45;&gt;src/logic/game.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.02,-215.74C524.48,-218.94 575.45,-224.31 612.5,-228.21"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.59,-230.33 618.78,-228.87 613.03,-226.15 612.59,-230.33"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.02,-186.29C524.48,-190.13 575.45,-196.57 612.5,-201.25"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.56,-203.38 618.78,-202.05 613.09,-199.21 612.56,-203.38"/>
 </g>
 <!-- src/console/ConsoleIO.js -->
-<g id="node22" class="node">
+<g id="node21" class="node">
 <title>src/console/ConsoleIO.js</title>
-<g id="a_node22"><a xlink:href="src/console/ConsoleIO.js" xlink:title="ConsoleIO.js">
+<g id="a_node21"><a xlink:href="src/console/ConsoleIO.js" xlink:title="ConsoleIO.js">
 <path fill="#ffffcc" stroke="black" d="M687.5,-42C687.5,-42 630.5,-42 630.5,-42 627.5,-42 624.5,-39 624.5,-36 624.5,-36 624.5,-30 624.5,-30 624.5,-27 627.5,-24 630.5,-24 630.5,-24 687.5,-24 687.5,-24 690.5,-24 693.5,-27 693.5,-30 693.5,-30 693.5,-36 693.5,-36 693.5,-39 690.5,-42 687.5,-42"/>
 <text text-anchor="middle" x="659" y="-30.8" font-family="Helvetica,sans-Serif" font-size="9.00">ConsoleIO.js</text>
 </a>
@@ -256,13 +256,13 @@
 <!-- src/logic/game.service.js&#45;&gt;src/api/index.js -->
 <g id="edge44" class="edge">
 <title>src/logic/game.service.js&#45;&gt;src/api/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M664.21,-223.77C672.91,-205.28 694.24,-162.92 720,-133 728.85,-122.72 740.55,-112.99 750.23,-105.7"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="751.51,-107.37 755.09,-102.12 749.01,-103.99 751.51,-107.37"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M666.48,-197.86C676.95,-183.38 698.57,-154.61 720,-133 729.69,-123.23 741.59,-113.39 751.18,-105.91"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="752.49,-107.55 755.96,-102.23 749.93,-104.22 752.49,-107.55"/>
 </g>
 <!-- src/game/index.js -->
-<g id="node28" class="node">
+<g id="node27" class="node">
 <title>src/game/index.js</title>
-<g id="a_node28"><a xlink:href="src/game/index.js" xlink:title="index.js">
+<g id="a_node27"><a xlink:href="src/game/index.js" xlink:title="index.js">
 <path fill="#ffffcc" stroke="black" d="M790.5,-250C790.5,-250 748.5,-250 748.5,-250 745.5,-250 742.5,-247 742.5,-244 742.5,-244 742.5,-238 742.5,-238 742.5,-235 745.5,-232 748.5,-232 748.5,-232 790.5,-232 790.5,-232 793.5,-232 796.5,-235 796.5,-238 796.5,-238 796.5,-244 796.5,-244 796.5,-247 793.5,-250 790.5,-250"/>
 <text text-anchor="middle" x="769.5" y="-238.8" font-family="Helvetica,sans-Serif" font-size="9.00">index.js</text>
 </a>
@@ -271,135 +271,135 @@
 <!-- src/logic/game.service.js&#45;&gt;src/game/index.js -->
 <g id="edge45" class="edge">
 <title>src/logic/game.service.js&#45;&gt;src/game/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M699.17,-235.89C711.26,-236.78 724.43,-237.75 736.01,-238.6"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="736.13,-240.72 742.27,-239.07 736.44,-236.53 736.13,-240.72"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M692.24,-216.06C698.8,-217.97 705.63,-220.01 712,-222 719.95,-224.48 728.49,-227.28 736.45,-229.95"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="736.06,-232.04 742.42,-231.96 737.4,-228.06 736.06,-232.04"/>
 </g>
 <!-- src/store/index.js -->
-<g id="node33" class="node">
+<g id="node32" class="node">
 <title>src/store/index.js</title>
-<g id="a_node33"><a xlink:href="src/store/index.js" xlink:title="index.js">
-<path fill="#ffffcc" stroke="black" d="M790.5,-368C790.5,-368 748.5,-368 748.5,-368 745.5,-368 742.5,-365 742.5,-362 742.5,-362 742.5,-356 742.5,-356 742.5,-353 745.5,-350 748.5,-350 748.5,-350 790.5,-350 790.5,-350 793.5,-350 796.5,-353 796.5,-356 796.5,-356 796.5,-362 796.5,-362 796.5,-365 793.5,-368 790.5,-368"/>
-<text text-anchor="middle" x="769.5" y="-356.8" font-family="Helvetica,sans-Serif" font-size="9.00">index.js</text>
+<g id="a_node32"><a xlink:href="src/store/index.js" xlink:title="index.js">
+<path fill="#ffffcc" stroke="black" d="M790.5,-361C790.5,-361 748.5,-361 748.5,-361 745.5,-361 742.5,-358 742.5,-355 742.5,-355 742.5,-349 742.5,-349 742.5,-346 745.5,-343 748.5,-343 748.5,-343 790.5,-343 790.5,-343 793.5,-343 796.5,-346 796.5,-349 796.5,-349 796.5,-355 796.5,-355 796.5,-358 793.5,-361 790.5,-361"/>
+<text text-anchor="middle" x="769.5" y="-349.8" font-family="Helvetica,sans-Serif" font-size="9.00">index.js</text>
 </a>
 </g>
 </g>
 <!-- src/logic/game.service.js&#45;&gt;src/store/index.js -->
 <g id="edge46" class="edge">
 <title>src/logic/game.service.js&#45;&gt;src/store/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M699.17,-238.66C704.07,-240.88 708.56,-243.9 712,-248 722.77,-260.84 711.68,-308.45 720,-323 725.57,-332.74 734.95,-340.63 743.99,-346.51"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="743.03,-348.39 749.25,-349.74 745.24,-344.81 743.03,-348.39"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M699.02,-212.46C704,-214.7 708.55,-217.78 712,-222 726.24,-239.44 708.13,-303.87 720,-323 724.37,-330.04 731.14,-335.59 738.24,-339.87"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="737.44,-341.83 743.71,-342.9 739.48,-338.15 737.44,-341.83"/>
 </g>
 <!-- src/commands/index.js -->
 <g id="node11" class="node">
 <title>src/commands/index.js</title>
 <g id="a_node11"><a xlink:href="src/commands/index.js" xlink:title="index.js">
-<path fill="#ffffcc" stroke="black" d="M402.5,-222C402.5,-222 360.5,-222 360.5,-222 357.5,-222 354.5,-219 354.5,-216 354.5,-216 354.5,-210 354.5,-210 354.5,-207 357.5,-204 360.5,-204 360.5,-204 402.5,-204 402.5,-204 405.5,-204 408.5,-207 408.5,-210 408.5,-210 408.5,-216 408.5,-216 408.5,-219 405.5,-222 402.5,-222"/>
-<text text-anchor="middle" x="381.5" y="-210.8" font-family="Helvetica,sans-Serif" font-size="9.00">index.js</text>
+<path fill="#ffffcc" stroke="black" d="M402.5,-192C402.5,-192 360.5,-192 360.5,-192 357.5,-192 354.5,-189 354.5,-186 354.5,-186 354.5,-180 354.5,-180 354.5,-177 357.5,-174 360.5,-174 360.5,-174 402.5,-174 402.5,-174 405.5,-174 408.5,-177 408.5,-180 408.5,-180 408.5,-186 408.5,-186 408.5,-189 405.5,-192 402.5,-192"/>
+<text text-anchor="middle" x="381.5" y="-180.8" font-family="Helvetica,sans-Serif" font-size="9.00">index.js</text>
 </a>
 </g>
 </g>
 <!-- src/commands/index.js&#45;&gt;src/commands/game.js -->
 <g id="edge8" class="edge">
 <title>src/commands/index.js&#45;&gt;src/commands/game.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M408.92,-213C416.76,-213 425.44,-213 433.62,-213"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="433.75,-215.1 439.75,-213 433.75,-210.9 433.75,-215.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M408.92,-183C416.76,-183 425.44,-183 433.62,-183"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="433.75,-185.1 439.75,-183 433.75,-180.9 433.75,-185.1"/>
 </g>
 <!-- src/commands/plants.js -->
 <g id="node12" class="node">
 <title>src/commands/plants.js</title>
 <g id="a_node12"><a xlink:href="src/commands/plants.js" xlink:title="plants.js">
-<path fill="#ffffcc" stroke="black" d="M488,-252C488,-252 446,-252 446,-252 443,-252 440,-249 440,-246 440,-246 440,-240 440,-240 440,-237 443,-234 446,-234 446,-234 488,-234 488,-234 491,-234 494,-237 494,-240 494,-240 494,-246 494,-246 494,-249 491,-252 488,-252"/>
-<text text-anchor="middle" x="467" y="-240.8" font-family="Helvetica,sans-Serif" font-size="9.00">plants.js</text>
+<path fill="#ffffcc" stroke="black" d="M488,-222C488,-222 446,-222 446,-222 443,-222 440,-219 440,-216 440,-216 440,-210 440,-210 440,-207 443,-204 446,-204 446,-204 488,-204 488,-204 491,-204 494,-207 494,-210 494,-210 494,-216 494,-216 494,-219 491,-222 488,-222"/>
+<text text-anchor="middle" x="467" y="-210.8" font-family="Helvetica,sans-Serif" font-size="9.00">plants.js</text>
 </a>
 </g>
 </g>
 <!-- src/commands/index.js&#45;&gt;src/commands/plants.js -->
 <g id="edge9" class="edge">
 <title>src/commands/index.js&#45;&gt;src/commands/plants.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M407.55,-222C416.14,-225.09 425.86,-228.58 434.88,-231.82"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="434.32,-233.85 440.68,-233.9 435.74,-229.9 434.32,-233.85"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M407.55,-192C416.14,-195.09 425.86,-198.58 434.88,-201.82"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="434.32,-203.85 440.68,-203.9 435.74,-199.9 434.32,-203.85"/>
 </g>
 <!-- src/commands/plants.js&#45;&gt;src/console/index.js -->
 <g id="edge10" class="edge">
 <title>src/commands/plants.js&#45;&gt;src/console/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.29,-237.18C499.4,-235.02 504.3,-232.05 508,-228 520.44,-214.38 548.52,-91.65 558.17,-48.18"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="560.26,-48.45 559.51,-42.13 556.16,-47.54 560.26,-48.45"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.16,-207.05C499.27,-204.89 504.21,-201.97 508,-198 529.15,-175.87 550.46,-84.79 558.33,-48.26"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="560.44,-48.41 559.64,-42.1 556.33,-47.54 560.44,-48.41"/>
 </g>
 <!-- src/commands/plants.js&#45;&gt;src/logic/game.service.js -->
 <g id="edge11" class="edge">
 <title>src/commands/plants.js&#45;&gt;src/logic/game.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.11,-239.27C501.2,-238.39 508.88,-237.54 516,-237 548.24,-234.54 584.69,-233.55 612.59,-233.17"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.8,-235.27 618.77,-233.09 612.74,-231.07 612.8,-235.27"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.15,-211.85C501.24,-211.55 508.91,-211.25 516,-211 548.31,-209.87 584.76,-208.85 612.64,-208.12"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="612.87,-210.22 618.82,-207.96 612.77,-206.02 612.87,-210.22"/>
 </g>
 <!-- src/logic/plant.service.js -->
 <g id="node13" class="node">
 <title>src/logic/plant.service.js</title>
 <g id="a_node13"><a xlink:href="src/logic/plant.service.js" xlink:title="plant.service.js">
-<path fill="#ffffcc" stroke="black" d="M595,-272C595,-272 530,-272 530,-272 527,-272 524,-269 524,-266 524,-266 524,-260 524,-260 524,-257 527,-254 530,-254 530,-254 595,-254 595,-254 598,-254 601,-257 601,-260 601,-260 601,-266 601,-266 601,-269 598,-272 595,-272"/>
-<text text-anchor="middle" x="562.5" y="-260.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.service.js</text>
+<path fill="#ffffcc" stroke="black" d="M595,-246C595,-246 530,-246 530,-246 527,-246 524,-243 524,-240 524,-240 524,-234 524,-234 524,-231 527,-228 530,-228 530,-228 595,-228 595,-228 598,-228 601,-231 601,-234 601,-234 601,-240 601,-240 601,-243 598,-246 595,-246"/>
+<text text-anchor="middle" x="562.5" y="-234.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.service.js</text>
 </a>
 </g>
 </g>
 <!-- src/commands/plants.js&#45;&gt;src/logic/plant.service.js -->
 <g id="edge12" class="edge">
 <title>src/commands/plants.js&#45;&gt;src/logic/plant.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.04,-248.57C501.37,-250.14 509.53,-251.88 517.59,-253.61"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="517.41,-255.72 523.71,-254.92 518.28,-251.61 517.41,-255.72"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M494.04,-219.69C502.2,-221.78 511.41,-224.14 520.34,-226.44"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="519.83,-228.47 526.16,-227.93 520.87,-224.4 519.83,-228.47"/>
 </g>
 <!-- src/logic/plant.service.js&#45;&gt;src/logic/game.service.js -->
 <g id="edge49" class="edge">
 <title>src/logic/plant.service.js&#45;&gt;src/logic/game.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-254C601.76,-250.85 613,-247.29 623.36,-244"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="624.26,-245.92 629.34,-242.1 622.99,-241.91 624.26,-245.92"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-228C601.76,-224.85 613,-221.29 623.36,-218"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="624.26,-219.92 629.34,-216.1 622.99,-215.91 624.26,-219.92"/>
 </g>
 <!-- src/logic/plant.service.js&#45;&gt;src/game/index.js -->
 <g id="edge47" class="edge">
 <title>src/logic/plant.service.js&#45;&gt;src/game/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.32,-272.21C596.81,-273.84 599.1,-275.75 601,-278 618.62,-298.84 592.76,-320.87 614,-338 630.95,-351.67 693.12,-348.85 712,-338 713.02,-337.41 744.7,-282.43 760.17,-255.52"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="762.03,-256.48 763.2,-250.23 758.39,-254.39 762.03,-256.48"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.32,-246.21C596.81,-247.84 599.1,-249.75 601,-252 618.62,-272.84 592.76,-294.87 614,-312 630.95,-325.67 692.38,-321.46 712,-312 736.01,-300.42 752.97,-273.13 761.7,-255.95"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="763.8,-256.44 764.55,-250.13 760.03,-254.6 763.8,-256.44"/>
 </g>
 <!-- src/logic/plant.service.js&#45;&gt;src/store/index.js -->
 <g id="edge48" class="edge">
 <title>src/logic/plant.service.js&#45;&gt;src/store/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.38,-272.16C596.86,-273.8 599.13,-275.73 601,-278 620.58,-301.74 591.13,-325.41 614,-346 646.96,-375.67 701.48,-372.54 736.17,-366.53"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="736.88,-368.54 742.4,-365.38 736.12,-364.41 736.88,-368.54"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.38,-246.16C596.86,-247.8 599.13,-249.73 601,-252 620.58,-275.74 592.41,-298.08 614,-320 645.75,-352.25 700.87,-356.2 735.97,-354.95"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="736.38,-357.03 742.28,-354.66 736.19,-352.83 736.38,-357.03"/>
 </g>
 <!-- src/logic/plant.errors.js -->
-<g id="node34" class="node">
+<g id="node33" class="node">
 <title>src/logic/plant.errors.js</title>
-<g id="a_node34"><a xlink:href="src/logic/plant.errors.js" xlink:title="plant.errors.js">
-<path fill="#ffffcc" stroke="black" d="M689,-302C689,-302 629,-302 629,-302 626,-302 623,-299 623,-296 623,-296 623,-290 623,-290 623,-287 626,-284 629,-284 629,-284 689,-284 689,-284 692,-284 695,-287 695,-290 695,-290 695,-296 695,-296 695,-299 692,-302 689,-302"/>
-<text text-anchor="middle" x="659" y="-290.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.errors.js</text>
+<g id="a_node33"><a xlink:href="src/logic/plant.errors.js" xlink:title="plant.errors.js">
+<path fill="#ffffcc" stroke="black" d="M689,-276C689,-276 629,-276 629,-276 626,-276 623,-273 623,-270 623,-270 623,-264 623,-264 623,-261 626,-258 629,-258 629,-258 689,-258 689,-258 692,-258 695,-261 695,-264 695,-264 695,-270 695,-270 695,-273 692,-276 689,-276"/>
+<text text-anchor="middle" x="659" y="-264.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.errors.js</text>
 </a>
 </g>
 </g>
 <!-- src/logic/plant.service.js&#45;&gt;src/logic/plant.errors.js -->
 <g id="edge51" class="edge">
 <title>src/logic/plant.service.js&#45;&gt;src/logic/plant.errors.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-272C601.76,-275.15 613,-278.71 623.36,-282"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="622.99,-284.09 629.34,-283.9 624.26,-280.08 622.99,-284.09"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-246C601.76,-249.15 613,-252.71 623.36,-256"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="622.99,-258.09 629.34,-257.9 624.26,-254.08 622.99,-258.09"/>
 </g>
 <!-- src/logic/plant.js -->
-<g id="node35" class="node">
+<g id="node34" class="node">
 <title>src/logic/plant.js</title>
-<g id="a_node35"><a xlink:href="src/logic/plant.js" xlink:title="plant.js">
-<path fill="#ffffcc" stroke="black" d="M680,-272C680,-272 638,-272 638,-272 635,-272 632,-269 632,-266 632,-266 632,-260 632,-260 632,-257 635,-254 638,-254 638,-254 680,-254 680,-254 683,-254 686,-257 686,-260 686,-260 686,-266 686,-266 686,-269 683,-272 680,-272"/>
-<text text-anchor="middle" x="659" y="-260.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.js</text>
+<g id="a_node34"><a xlink:href="src/logic/plant.js" xlink:title="plant.js">
+<path fill="#ffffcc" stroke="black" d="M680,-246C680,-246 638,-246 638,-246 635,-246 632,-243 632,-240 632,-240 632,-234 632,-234 632,-231 635,-228 638,-228 638,-228 680,-228 680,-228 683,-228 686,-231 686,-234 686,-234 686,-240 686,-240 686,-243 683,-246 680,-246"/>
+<text text-anchor="middle" x="659" y="-234.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.js</text>
 </a>
 </g>
 </g>
 <!-- src/logic/plant.service.js&#45;&gt;src/logic/plant.js -->
 <g id="edge50" class="edge">
 <title>src/logic/plant.service.js&#45;&gt;src/logic/plant.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M601.12,-263C609.16,-263 617.59,-263 625.43,-263"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="625.85,-265.1 631.85,-263 625.85,-260.9 625.85,-265.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M601.12,-237C609.16,-237 617.59,-237 625.43,-237"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="625.85,-239.1 631.85,-237 625.85,-234.9 625.85,-239.1"/>
 </g>
 <!-- src/components/ButtonSpin.vue -->
 <g id="node14" class="node">
 <title>src/components/ButtonSpin.vue</title>
 <g id="a_node14"><a xlink:href="src/components/ButtonSpin.vue" xlink:title="ButtonSpin.vue">
-<path fill="#41f083" stroke="black" d="M415,-132C415,-132 348,-132 348,-132 345,-132 342,-129 342,-126 342,-126 342,-120 342,-120 342,-117 345,-114 348,-114 348,-114 415,-114 415,-114 418,-114 421,-117 421,-120 421,-120 421,-126 421,-126 421,-129 418,-132 415,-132"/>
-<text text-anchor="middle" x="381.5" y="-120.8" font-family="Helvetica,sans-Serif" font-size="9.00">ButtonSpin.vue</text>
+<path fill="#41f083" stroke="black" d="M415,-102C415,-102 348,-102 348,-102 345,-102 342,-99 342,-96 342,-96 342,-90 342,-90 342,-87 345,-84 348,-84 348,-84 415,-84 415,-84 418,-84 421,-87 421,-90 421,-90 421,-96 421,-96 421,-99 418,-102 415,-102"/>
+<text text-anchor="middle" x="381.5" y="-90.8" font-family="Helvetica,sans-Serif" font-size="9.00">ButtonSpin.vue</text>
 </a>
 </g>
 </g>
@@ -407,102 +407,93 @@
 <g id="node15" class="node">
 <title>src/components/Spinner.vue</title>
 <g id="a_node15"><a xlink:href="src/components/Spinner.vue" xlink:title="Spinner.vue">
-<path fill="#41f083" stroke="black" d="M494,-132C494,-132 440,-132 440,-132 437,-132 434,-129 434,-126 434,-126 434,-120 434,-120 434,-117 437,-114 440,-114 440,-114 494,-114 494,-114 497,-114 500,-117 500,-120 500,-120 500,-126 500,-126 500,-129 497,-132 494,-132"/>
-<text text-anchor="middle" x="467" y="-120.8" font-family="Helvetica,sans-Serif" font-size="9.00">Spinner.vue</text>
+<path fill="#41f083" stroke="black" d="M494,-102C494,-102 440,-102 440,-102 437,-102 434,-99 434,-96 434,-96 434,-90 434,-90 434,-87 437,-84 440,-84 440,-84 494,-84 494,-84 497,-84 500,-87 500,-90 500,-90 500,-96 500,-96 500,-99 497,-102 494,-102"/>
+<text text-anchor="middle" x="467" y="-90.8" font-family="Helvetica,sans-Serif" font-size="9.00">Spinner.vue</text>
 </a>
 </g>
 </g>
 <!-- src/components/ButtonSpin.vue&#45;&gt;src/components/Spinner.vue -->
 <g id="edge13" class="edge">
 <title>src/components/ButtonSpin.vue&#45;&gt;src/components/Spinner.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M421.32,-123C423.36,-123 425.41,-123 427.46,-123"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="427.54,-125.1 433.54,-123 427.54,-120.9 427.54,-125.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M421.32,-93C423.36,-93 425.41,-93 427.46,-93"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="427.54,-95.1 433.54,-93 427.54,-90.9 427.54,-95.1"/>
 </g>
 <!-- src/components/Console.vue&#45;&gt;src/console/index.js -->
 <g id="edge15" class="edge">
 <title>src/components/Console.vue&#45;&gt;src/console/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M329.09,-59.26C380.28,-53.48 478.06,-42.43 528.93,-36.68"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="529.47,-38.73 535.19,-35.97 529,-34.56 529.47,-38.73"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M329.09,-33C380.28,-33 478.06,-33 528.93,-33"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="529.19,-35.1 535.19,-33 529.19,-30.9 529.19,-35.1"/>
 </g>
 <!-- src/components/Console.vue&#45;&gt;src/commands/index.js -->
 <g id="edge14" class="edge">
 <title>src/components/Console.vue&#45;&gt;src/commands/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M304.81,-72.18C312.49,-80.74 323.27,-94.22 329,-108 343.34,-142.48 320.81,-160.26 342,-191 344.58,-194.75 348.03,-197.94 351.8,-200.63"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="350.9,-202.54 357.09,-203.99 353.15,-199 350.9,-202.54"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M304.81,-42.18C312.49,-50.74 323.27,-64.22 329,-78 343.34,-112.48 320.81,-130.26 342,-161 344.58,-164.75 348.03,-167.94 351.8,-170.63"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="350.9,-172.54 357.09,-173.99 353.15,-169 350.9,-172.54"/>
 </g>
 <!-- src/components/Login.vue&#45;&gt;src/components/ButtonSpin.vue -->
 <g id="edge22" class="edge">
 <title>src/components/Login.vue&#45;&gt;src/components/ButtonSpin.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M323.67,-123C327.55,-123 331.62,-123 335.72,-123"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="335.73,-125.1 341.73,-123 335.73,-120.9 335.73,-125.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M323.67,-93C327.55,-93 331.62,-93 335.72,-93"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="335.73,-95.1 341.73,-93 335.73,-90.9 335.73,-95.1"/>
 </g>
 <!-- src/logic/user.service.js -->
 <g id="node19" class="node">
 <title>src/logic/user.service.js</title>
 <g id="a_node19"><a xlink:href="src/logic/user.service.js" xlink:title="user.service.js">
-<path fill="#ffffcc" stroke="black" d="M594,-302C594,-302 531,-302 531,-302 528,-302 525,-299 525,-296 525,-296 525,-290 525,-290 525,-287 528,-284 531,-284 531,-284 594,-284 594,-284 597,-284 600,-287 600,-290 600,-290 600,-296 600,-296 600,-299 597,-302 594,-302"/>
-<text text-anchor="middle" x="562.5" y="-290.8" font-family="Helvetica,sans-Serif" font-size="9.00">user.service.js</text>
+<path fill="#ffffcc" stroke="black" d="M594,-276C594,-276 531,-276 531,-276 528,-276 525,-273 525,-270 525,-270 525,-264 525,-264 525,-261 528,-258 531,-258 531,-258 594,-258 594,-258 597,-258 600,-261 600,-264 600,-264 600,-270 600,-270 600,-273 597,-276 594,-276"/>
+<text text-anchor="middle" x="562.5" y="-264.8" font-family="Helvetica,sans-Serif" font-size="9.00">user.service.js</text>
 </a>
 </g>
 </g>
 <!-- src/components/Login.vue&#45;&gt;src/logic/user.service.js -->
 <g id="edge21" class="edge">
 <title>src/components/Login.vue&#45;&gt;src/logic/user.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M295.41,-132.06C294.15,-159.7 294.57,-243.34 342,-281 368.33,-301.91 462.41,-299.72 518.5,-296.32"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="518.95,-298.4 524.81,-295.93 518.69,-294.21 518.95,-298.4"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M295.44,-102.02C294.27,-129.55 294.91,-212.91 342,-251 368.17,-272.17 462.31,-271.78 518.45,-269.48"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="518.86,-271.56 524.76,-269.2 518.68,-267.36 518.86,-271.56"/>
 </g>
 <!-- src/logic/user.service.js&#45;&gt;src/api/index.js -->
 <g id="edge52" class="edge">
 <title>src/logic/user.service.js&#45;&gt;src/api/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M593.13,-302.18C595.99,-303.83 598.69,-305.75 601,-308 611.42,-318.13 601.85,-330.02 614,-338 650.41,-361.9 680.61,-368.19 712,-338 728.43,-322.2 709.88,-153.42 720,-133 725.7,-121.51 736.38,-112.14 746.28,-105.36"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="747.47,-107.09 751.35,-102.06 745.17,-103.57 747.47,-107.09"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M593.13,-276.18C595.99,-277.83 598.69,-279.75 601,-282 611.42,-292.13 601.85,-304.02 614,-312 650.41,-335.9 680.52,-342.1 712,-312 726.39,-298.24 711.11,-150.81 720,-133 725.73,-121.52 736.42,-112.15 746.31,-105.38"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="747.5,-107.11 751.37,-102.07 745.2,-103.59 747.5,-107.11"/>
 </g>
 <!-- src/logic/user.service.js&#45;&gt;src/logic/game.service.js -->
 <g id="edge55" class="edge">
 <title>src/logic/user.service.js&#45;&gt;src/logic/game.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M593.13,-283.82C595.99,-282.17 598.69,-280.25 601,-278 611.42,-267.87 603.32,-257.85 614,-248 615.01,-247.07 616.08,-246.19 617.21,-245.37"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="618.43,-247.08 622.39,-242.1 616.19,-243.53 618.43,-247.08"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M593.13,-257.82C595.99,-256.17 598.69,-254.25 601,-252 611.42,-241.87 603.32,-231.85 614,-222 615.01,-221.07 616.08,-220.19 617.21,-219.37"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="618.43,-221.08 622.39,-216.1 616.19,-217.53 618.43,-221.08"/>
 </g>
 <!-- src/logic/user.service.js&#45;&gt;src/game/index.js -->
 <g id="edge53" class="edge">
 <title>src/logic/user.service.js&#45;&gt;src/game/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.38,-302.15C596.86,-303.79 599.13,-305.73 601,-308 620.82,-332.1 589.98,-357.08 614,-377 630.76,-390.9 695.47,-391.18 712,-377 720.87,-369.39 716.12,-336.03 720,-325 729.23,-298.74 746.77,-271.37 758.03,-255.27"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="759.83,-256.37 761.59,-250.26 756.4,-253.93 759.83,-256.37"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.38,-276.15C596.86,-277.79 599.13,-279.73 601,-282 620.82,-306.1 589.98,-331.08 614,-351 630.76,-364.9 694.48,-363.94 712,-351 721.73,-343.82 715.17,-336.08 720,-325 731.12,-299.48 748.11,-271.89 758.74,-255.55"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="760.55,-256.62 762.09,-250.46 757.04,-254.32 760.55,-256.62"/>
 </g>
 <!-- src/logic/user.service.js&#45;&gt;src/store/index.js -->
 <g id="edge54" class="edge">
 <title>src/logic/user.service.js&#45;&gt;src/store/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.43,-302.11C596.9,-303.76 599.15,-305.71 601,-308 623.04,-335.38 587.18,-363.28 614,-386 652.69,-418.78 716.85,-389.58 748.95,-371.23"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="750.07,-373.01 754.19,-368.17 747.95,-369.38 750.07,-373.01"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M594.43,-276.11C596.9,-277.76 599.15,-279.71 601,-282 623.04,-309.38 587.18,-337.28 614,-360 649.6,-390.15 708.01,-375.71 741.89,-363.3"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="743.06,-365.11 747.92,-361.02 741.57,-361.18 743.06,-365.11"/>
 </g>
 <!-- src/logic/weather.service.js -->
-<g id="node36" class="node">
+<g id="node35" class="node">
 <title>src/logic/weather.service.js</title>
-<g id="a_node36"><a xlink:href="src/logic/weather.service.js" xlink:title="weather.service.js">
-<path fill="#ffffcc" stroke="black" d="M698,-332C698,-332 620,-332 620,-332 617,-332 614,-329 614,-326 614,-326 614,-320 614,-320 614,-317 617,-314 620,-314 620,-314 698,-314 698,-314 701,-314 704,-317 704,-320 704,-320 704,-326 704,-326 704,-329 701,-332 698,-332"/>
-<text text-anchor="middle" x="659" y="-320.8" font-family="Helvetica,sans-Serif" font-size="9.00">weather.service.js</text>
+<g id="a_node35"><a xlink:href="src/logic/weather.service.js" xlink:title="weather.service.js">
+<path fill="#ffffcc" stroke="black" d="M698,-306C698,-306 620,-306 620,-306 617,-306 614,-303 614,-300 614,-300 614,-294 614,-294 614,-291 617,-288 620,-288 620,-288 698,-288 698,-288 701,-288 704,-291 704,-294 704,-294 704,-300 704,-300 704,-303 701,-306 698,-306"/>
+<text text-anchor="middle" x="659" y="-294.8" font-family="Helvetica,sans-Serif" font-size="9.00">weather.service.js</text>
 </a>
 </g>
 </g>
 <!-- src/logic/user.service.js&#45;&gt;src/logic/weather.service.js -->
 <g id="edge56" class="edge">
 <title>src/logic/user.service.js&#45;&gt;src/logic/weather.service.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-302C601.76,-305.15 613,-308.71 623.36,-312"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="622.99,-314.09 629.34,-313.9 624.26,-310.08 622.99,-314.09"/>
-</g>
-<!-- src/components/RealInfo.vue -->
-<g id="node20" class="node">
-<title>src/components/RealInfo.vue</title>
-<g id="a_node20"><a xlink:href="src/components/RealInfo.vue" xlink:title="RealInfo.vue">
-<path fill="#ccffcc" stroke="black" d="M228.5,-42C228.5,-42 172.5,-42 172.5,-42 169.5,-42 166.5,-39 166.5,-36 166.5,-36 166.5,-30 166.5,-30 166.5,-27 169.5,-24 172.5,-24 172.5,-24 228.5,-24 228.5,-24 231.5,-24 234.5,-27 234.5,-30 234.5,-30 234.5,-36 234.5,-36 234.5,-39 231.5,-42 228.5,-42"/>
-<text text-anchor="middle" x="200.5" y="-30.8" font-family="Helvetica,sans-Serif" font-size="9.00">RealInfo.vue</text>
-</a>
-</g>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M591.85,-276C601.76,-279.15 613,-282.71 623.36,-286"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="622.99,-288.09 629.34,-287.9 624.26,-284.08 622.99,-288.09"/>
 </g>
 <!-- src/console/CommandReader.js -->
-<g id="node21" class="node">
+<g id="node20" class="node">
 <title>src/console/CommandReader.js</title>
-<g id="a_node21"><a xlink:href="src/console/CommandReader.js" xlink:title="CommandReader.js">
+<g id="a_node20"><a xlink:href="src/console/CommandReader.js" xlink:title="CommandReader.js">
 <path fill="#ffffcc" stroke="black" d="M813,-42C813,-42 726,-42 726,-42 723,-42 720,-39 720,-36 720,-36 720,-30 720,-30 720,-27 723,-24 726,-24 726,-24 813,-24 813,-24 816,-24 819,-27 819,-30 819,-30 819,-36 819,-36 819,-39 816,-42 813,-42"/>
 <text text-anchor="middle" x="769.5" y="-30.8" font-family="Helvetica,sans-Serif" font-size="9.00">CommandReader.js</text>
 </a>
@@ -515,18 +506,18 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="713.65,-35.1 719.65,-33 713.65,-30.9 713.65,-35.1"/>
 </g>
 <!-- src/game/coordinate.js -->
-<g id="node23" class="node">
+<g id="node22" class="node">
 <title>src/game/coordinate.js</title>
-<g id="a_node23"><a xlink:href="src/game/coordinate.js" xlink:title="coordinate.js">
+<g id="a_node22"><a xlink:href="src/game/coordinate.js" xlink:title="coordinate.js">
 <path fill="#ffffcc" stroke="black" d="M1089,-180C1089,-180 1032,-180 1032,-180 1029,-180 1026,-177 1026,-174 1026,-174 1026,-168 1026,-168 1026,-165 1029,-162 1032,-162 1032,-162 1089,-162 1089,-162 1092,-162 1095,-165 1095,-168 1095,-168 1095,-174 1095,-174 1095,-177 1092,-180 1089,-180"/>
 <text text-anchor="middle" x="1060.5" y="-168.8" font-family="Helvetica,sans-Serif" font-size="9.00">coordinate.js</text>
 </a>
 </g>
 </g>
 <!-- src/game/flowerpot.js -->
-<g id="node24" class="node">
+<g id="node23" class="node">
 <title>src/game/flowerpot.js</title>
-<g id="a_node24"><a xlink:href="src/game/flowerpot.js" xlink:title="flowerpot.js">
+<g id="a_node23"><a xlink:href="src/game/flowerpot.js" xlink:title="flowerpot.js">
 <path fill="#ffffcc" stroke="black" d="M1165,-171C1165,-171 1114,-171 1114,-171 1111,-171 1108,-168 1108,-165 1108,-165 1108,-159 1108,-159 1108,-156 1111,-153 1114,-153 1114,-153 1165,-153 1165,-153 1168,-153 1171,-156 1171,-159 1171,-159 1171,-165 1171,-165 1171,-168 1168,-171 1165,-171"/>
 <text text-anchor="middle" x="1139.5" y="-159.8" font-family="Helvetica,sans-Serif" font-size="9.00">flowerpot.js</text>
 </a>
@@ -539,9 +530,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1102.01,-168.38 1107.73,-165.6 1101.53,-164.21 1102.01,-168.38"/>
 </g>
 <!-- src/game/crop.js -->
-<g id="node25" class="node">
+<g id="node24" class="node">
 <title>src/game/crop.js</title>
-<g id="a_node25"><a xlink:href="src/game/crop.js" xlink:title="crop.js">
+<g id="a_node24"><a xlink:href="src/game/crop.js" xlink:title="crop.js">
 <path fill="#ffffcc" stroke="black" d="M995,-176C995,-176 953,-176 953,-176 950,-176 947,-173 947,-170 947,-170 947,-164 947,-164 947,-161 950,-158 953,-158 953,-158 995,-158 995,-158 998,-158 1001,-161 1001,-164 1001,-164 1001,-170 1001,-170 1001,-173 998,-176 995,-176"/>
 <text text-anchor="middle" x="974" y="-164.8" font-family="Helvetica,sans-Serif" font-size="9.00">crop.js</text>
 </a>
@@ -560,9 +551,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1101.47,-158.65 1107.66,-157.21 1101.92,-154.48 1101.47,-158.65"/>
 </g>
 <!-- src/game/entity.js -->
-<g id="node26" class="node">
+<g id="node25" class="node">
 <title>src/game/entity.js</title>
-<g id="a_node26"><a xlink:href="src/game/entity.js" xlink:title="entity.js">
+<g id="a_node25"><a xlink:href="src/game/entity.js" xlink:title="entity.js">
 <path fill="#ffffcc" stroke="black" d="M1081.5,-247C1081.5,-247 1039.5,-247 1039.5,-247 1036.5,-247 1033.5,-244 1033.5,-241 1033.5,-241 1033.5,-235 1033.5,-235 1033.5,-232 1036.5,-229 1039.5,-229 1039.5,-229 1081.5,-229 1081.5,-229 1084.5,-229 1087.5,-232 1087.5,-235 1087.5,-235 1087.5,-241 1087.5,-241 1087.5,-244 1084.5,-247 1081.5,-247"/>
 <text text-anchor="middle" x="1060.5" y="-235.8" font-family="Helvetica,sans-Serif" font-size="9.00">entity.js</text>
 </a>
@@ -575,9 +566,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1030.4,-227.35 1036.59,-228.81 1032.66,-223.81 1030.4,-227.35"/>
 </g>
 <!-- src/game/movable.js -->
-<g id="node27" class="node">
+<g id="node26" class="node">
 <title>src/game/movable.js</title>
-<g id="a_node27"><a xlink:href="src/game/movable.js" xlink:title="movable.js">
+<g id="a_node26"><a xlink:href="src/game/movable.js" xlink:title="movable.js">
 <path fill="#ffffcc" stroke="black" d="M1085,-215C1085,-215 1036,-215 1036,-215 1033,-215 1030,-212 1030,-209 1030,-209 1030,-203 1030,-203 1030,-200 1033,-197 1036,-197 1036,-197 1085,-197 1085,-197 1088,-197 1091,-200 1091,-203 1091,-203 1091,-209 1091,-209 1091,-212 1088,-215 1085,-215"/>
 <text text-anchor="middle" x="1060.5" y="-203.8" font-family="Helvetica,sans-Serif" font-size="9.00">movable.js</text>
 </a>
@@ -608,9 +599,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1023.35,-199.58 1029.63,-198.6 1024.11,-195.45 1023.35,-199.58"/>
 </g>
 <!-- src/game/matrix_index.js -->
-<g id="node29" class="node">
+<g id="node28" class="node">
 <title>src/game/matrix_index.js</title>
-<g id="a_node29"><a xlink:href="src/game/matrix_index.js" xlink:title="matrix_index.js">
+<g id="a_node28"><a xlink:href="src/game/matrix_index.js" xlink:title="matrix_index.js">
 <path fill="#ffffcc" stroke="black" d="M1007,-250C1007,-250 941,-250 941,-250 938,-250 935,-247 935,-244 935,-244 935,-238 935,-238 935,-235 938,-232 941,-232 941,-232 1007,-232 1007,-232 1010,-232 1013,-235 1013,-238 1013,-238 1013,-244 1013,-244 1013,-247 1010,-250 1007,-250"/>
 <text text-anchor="middle" x="974" y="-238.8" font-family="Helvetica,sans-Serif" font-size="9.00">matrix_index.js</text>
 </a>
@@ -623,9 +614,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="928.96,-243.1 934.96,-241 928.96,-238.9 928.96,-243.1"/>
 </g>
 <!-- src/game/plant_loader.js -->
-<g id="node30" class="node">
+<g id="node29" class="node">
 <title>src/game/plant_loader.js</title>
-<g id="a_node30"><a xlink:href="src/game/plant_loader.js" xlink:title="plant_loader.js">
+<g id="a_node29"><a xlink:href="src/game/plant_loader.js" xlink:title="plant_loader.js">
 <path fill="#ffffcc" stroke="black" d="M909.5,-272C909.5,-272 844.5,-272 844.5,-272 841.5,-272 838.5,-269 838.5,-266 838.5,-266 838.5,-260 838.5,-260 838.5,-257 841.5,-254 844.5,-254 844.5,-254 909.5,-254 909.5,-254 912.5,-254 915.5,-257 915.5,-260 915.5,-260 915.5,-266 915.5,-266 915.5,-269 912.5,-272 909.5,-272"/>
 <text text-anchor="middle" x="877" y="-260.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant_loader.js</text>
 </a>
@@ -638,9 +629,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="831.97,-255.96 838.27,-255.13 832.83,-251.85 831.97,-255.96"/>
 </g>
 <!-- src/game/plant_types.js -->
-<g id="node31" class="node">
+<g id="node30" class="node">
 <title>src/game/plant_types.js</title>
-<g id="a_node31"><a xlink:href="src/game/plant_types.js" xlink:title="plant_types.js">
+<g id="a_node30"><a xlink:href="src/game/plant_types.js" xlink:title="plant_types.js">
 <path fill="#ffffcc" stroke="black" d="M1004.5,-294C1004.5,-294 943.5,-294 943.5,-294 940.5,-294 937.5,-291 937.5,-288 937.5,-288 937.5,-282 937.5,-282 937.5,-279 940.5,-276 943.5,-276 943.5,-276 1004.5,-276 1004.5,-276 1007.5,-276 1010.5,-279 1010.5,-282 1010.5,-282 1010.5,-288 1010.5,-288 1010.5,-291 1007.5,-294 1004.5,-294"/>
 <text text-anchor="middle" x="974" y="-282.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant_types.js</text>
 </a>
@@ -677,9 +668,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="930.96,-277.42 937.27,-276.73 931.9,-273.33 930.96,-277.42"/>
 </g>
 <!-- src/game/plant.js -->
-<g id="node32" class="node">
+<g id="node31" class="node">
 <title>src/game/plant.js</title>
-<g id="a_node32"><a xlink:href="src/game/plant.js" xlink:title="plant.js">
+<g id="a_node31"><a xlink:href="src/game/plant.js" xlink:title="plant.js">
 <path fill="#ffffcc" stroke="black" d="M995,-220C995,-220 953,-220 953,-220 950,-220 947,-217 947,-214 947,-214 947,-208 947,-208 947,-205 950,-202 953,-202 953,-202 995,-202 995,-202 998,-202 1001,-205 1001,-208 1001,-208 1001,-214 1001,-214 1001,-217 998,-220 995,-220"/>
 <text text-anchor="middle" x="974" y="-208.8" font-family="Helvetica,sans-Serif" font-size="9.00">plant.js</text>
 </a>
@@ -710,9 +701,9 @@
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="1023.84,-210.21 1029.7,-207.76 1023.59,-206.02 1023.84,-210.21"/>
 </g>
 <!-- src/store/base.js -->
-<g id="node38" class="node">
+<g id="node37" class="node">
 <title>src/store/base.js</title>
-<g id="a_node38"><a xlink:href="src/store/base.js" xlink:title="base.js">
+<g id="a_node37"><a xlink:href="src/store/base.js" xlink:title="base.js">
 <path fill="#ffffcc" stroke="black" d="M995,-383C995,-383 953,-383 953,-383 950,-383 947,-380 947,-377 947,-377 947,-371 947,-371 947,-368 950,-365 953,-365 953,-365 995,-365 995,-365 998,-365 1001,-368 1001,-371 1001,-371 1001,-377 1001,-377 1001,-380 998,-383 995,-383"/>
 <text text-anchor="middle" x="974" y="-371.8" font-family="Helvetica,sans-Serif" font-size="9.00">base.js</text>
 </a>
@@ -721,13 +712,13 @@
 <!-- src/store/index.js&#45;&gt;src/store/base.js -->
 <g id="edge60" class="edge">
 <title>src/store/index.js&#45;&gt;src/store/base.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.56,-350.58C828.1,-341.73 882.52,-330.78 927,-344 938.35,-347.37 949.52,-354.54 958.01,-361.02"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.61,-345.44C828.2,-338.67 882.67,-330.82 927,-344 938.35,-347.37 949.52,-354.54 958.01,-361.02"/>
 <polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="956.92,-362.84 962.92,-364.93 959.53,-359.55 956.92,-362.84"/>
 </g>
 <!-- src/store/save.js -->
-<g id="node39" class="node">
+<g id="node38" class="node">
 <title>src/store/save.js</title>
-<g id="a_node39"><a xlink:href="src/store/save.js" xlink:title="save.js">
+<g id="a_node38"><a xlink:href="src/store/save.js" xlink:title="save.js">
 <path fill="#ffffcc" stroke="black" d="M898,-368C898,-368 856,-368 856,-368 853,-368 850,-365 850,-362 850,-362 850,-356 850,-356 850,-353 853,-350 856,-350 856,-350 898,-350 898,-350 901,-350 904,-353 904,-356 904,-356 904,-362 904,-362 904,-365 901,-368 898,-368"/>
 <text text-anchor="middle" x="877" y="-356.8" font-family="Helvetica,sans-Serif" font-size="9.00">save.js</text>
 </a>
@@ -736,13 +727,13 @@
 <!-- src/store/index.js&#45;&gt;src/store/save.js -->
 <g id="edge61" class="edge">
 <title>src/store/index.js&#45;&gt;src/store/save.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.58,-359C810.78,-359 828.48,-359 843.57,-359"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="843.86,-361.1 849.86,-359 843.86,-356.9 843.86,-361.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.58,-353.73C810.78,-354.67 828.48,-355.85 843.57,-356.85"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="843.73,-358.96 849.86,-357.27 844.01,-354.77 843.73,-358.96"/>
 </g>
 <!-- src/store/user.js -->
-<g id="node40" class="node">
+<g id="node39" class="node">
 <title>src/store/user.js</title>
-<g id="a_node40"><a xlink:href="src/store/user.js" xlink:title="user.js">
+<g id="a_node39"><a xlink:href="src/store/user.js" xlink:title="user.js">
 <path fill="#ffffcc" stroke="black" d="M898,-398C898,-398 856,-398 856,-398 853,-398 850,-395 850,-392 850,-392 850,-386 850,-386 850,-383 853,-380 856,-380 856,-380 898,-380 898,-380 901,-380 904,-383 904,-386 904,-386 904,-392 904,-392 904,-395 901,-398 898,-398"/>
 <text text-anchor="middle" x="877" y="-386.8" font-family="Helvetica,sans-Serif" font-size="9.00">user.js</text>
 </a>
@@ -751,13 +742,13 @@
 <!-- src/store/index.js&#45;&gt;src/store/user.js -->
 <g id="edge62" class="edge">
 <title>src/store/index.js&#45;&gt;src/store/user.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.58,-366.42C810.91,-370.49 828.8,-375.58 843.97,-379.89"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="843.51,-381.94 849.86,-381.57 844.66,-377.9 843.51,-381.94"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M796.31,-361.05C810.74,-366.11 828.85,-372.46 844.16,-377.83"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="843.74,-379.91 850.09,-379.91 845.13,-375.95 843.74,-379.91"/>
 </g>
 <!-- src/store/weather.js -->
-<g id="node41" class="node">
+<g id="node40" class="node">
 <title>src/store/weather.js</title>
-<g id="a_node41"><a xlink:href="src/store/weather.js" xlink:title="weather.js">
+<g id="a_node40"><a xlink:href="src/store/weather.js" xlink:title="weather.js">
 <path fill="#ffffcc" stroke="black" d="M900.5,-428C900.5,-428 853.5,-428 853.5,-428 850.5,-428 847.5,-425 847.5,-422 847.5,-422 847.5,-416 847.5,-416 847.5,-413 850.5,-410 853.5,-410 853.5,-410 900.5,-410 900.5,-410 903.5,-410 906.5,-413 906.5,-416 906.5,-416 906.5,-422 906.5,-422 906.5,-425 903.5,-428 900.5,-428"/>
 <text text-anchor="middle" x="877" y="-416.8" font-family="Helvetica,sans-Serif" font-size="9.00">weather.js</text>
 </a>
@@ -766,35 +757,35 @@
 <!-- src/store/index.js&#45;&gt;src/store/weather.js -->
 <g id="edge63" class="edge">
 <title>src/store/index.js&#45;&gt;src/store/weather.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M781.81,-368.25C794.25,-378.1 815.14,-393.66 835,-404 837.34,-405.22 839.81,-406.39 842.32,-407.49"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="841.88,-409.58 848.23,-409.95 843.5,-405.71 841.88,-409.58"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M779.82,-361.19C791.75,-372.54 813.46,-391.82 835,-404 837.03,-405.15 839.17,-406.24 841.36,-407.27"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="840.89,-409.36 847.23,-409.84 842.58,-405.51 840.89,-409.36"/>
 </g>
 <!-- src/logic/weather.service.js&#45;&gt;src/api/index.js -->
 <g id="edge57" class="edge">
 <title>src/logic/weather.service.js&#45;&gt;src/api/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M704.09,-314.99C707.09,-313.11 709.79,-310.8 712,-308 724.05,-292.72 711.3,-150.41 720,-133 725.73,-121.53 736.42,-112.16 746.31,-105.38"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="747.5,-107.11 751.38,-102.07 745.2,-103.59 747.5,-107.11"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M704.07,-288.97C707.07,-287.09 709.78,-284.79 712,-282 722.32,-269.02 712.53,-147.8 720,-133 725.78,-121.55 736.47,-112.18 746.35,-105.4"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="747.54,-107.13 751.41,-102.09 745.24,-103.62 747.54,-107.13"/>
 </g>
 <!-- src/logic/weather.service.js&#45;&gt;src/store/index.js -->
 <g id="edge58" class="edge">
 <title>src/logic/weather.service.js&#45;&gt;src/store/index.js</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M687.38,-332.08C702.23,-337.01 720.68,-343.13 736.23,-348.29"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="735.9,-350.39 742.25,-350.29 737.22,-346.41 735.9,-350.39"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M677.92,-306.08C696.29,-315.4 724.96,-329.93 745.11,-340.15"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="744.26,-342.06 750.56,-342.9 746.15,-338.32 744.26,-342.06"/>
 </g>
 <!-- src/main.js -->
-<g id="node37" class="node">
+<g id="node36" class="node">
 <title>src/main.js</title>
-<g id="a_node37"><a xlink:href="src/main.js" xlink:title="main.js">
-<path fill="#ffffcc" stroke="black" d="M64,-117C64,-117 22,-117 22,-117 19,-117 16,-114 16,-111 16,-111 16,-105 16,-105 16,-102 19,-99 22,-99 22,-99 64,-99 64,-99 67,-99 70,-102 70,-105 70,-105 70,-111 70,-111 70,-114 67,-117 64,-117"/>
-<text text-anchor="middle" x="43" y="-105.8" font-family="Helvetica,sans-Serif" font-size="9.00">main.js</text>
+<g id="a_node36"><a xlink:href="src/main.js" xlink:title="main.js">
+<path fill="#ffffcc" stroke="black" d="M64,-87C64,-87 22,-87 22,-87 19,-87 16,-84 16,-81 16,-81 16,-75 16,-75 16,-72 19,-69 22,-69 22,-69 64,-69 64,-69 67,-69 70,-72 70,-75 70,-75 70,-81 70,-81 70,-84 67,-87 64,-87"/>
+<text text-anchor="middle" x="43" y="-75.8" font-family="Helvetica,sans-Serif" font-size="9.00">main.js</text>
 </a>
 </g>
 </g>
 <!-- src/main.js&#45;&gt;src/App.vue -->
 <g id="edge59" class="edge">
 <title>src/main.js&#45;&gt;src/App.vue</title>
-<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M70.06,-108C72.32,-108 74.61,-108 76.9,-108"/>
-<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="76.93,-110.1 82.93,-108 76.93,-105.9 76.93,-110.1"/>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" d="M70.06,-78C72.32,-78 74.61,-78 76.9,-78"/>
+<polygon fill="#000000" fill-opacity="0.200000" stroke="#000000" stroke-width="2" stroke-opacity="0.200000" points="76.93,-80.1 82.93,-78 76.93,-75.9 76.93,-80.1"/>
 </g>
 <!-- src/store/save.js&#45;&gt;src/store/base.js -->
 <g id="edge64" class="edge">

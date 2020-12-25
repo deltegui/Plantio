@@ -1,10 +1,14 @@
 import { actions } from '../store';
-import { startMoving } from '../game';
+import {
+  startMoving,
+  stopMoving,
+} from '../game';
 import api from '../api';
 import weatherService from './weather.service';
 import gameService from './game.service';
 
 function handleLogin(res) {
+  stopMoving();
   actions.login(res);
   weatherService.refresh();
   gameService.loadGame();

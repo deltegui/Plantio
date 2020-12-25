@@ -1,7 +1,6 @@
 import store, { actions } from '../store';
 import {
   reload,
-  stopMoving,
   CropSize,
   plantTypes,
   createGame,
@@ -35,7 +34,6 @@ export default {
   async loadGame() {
     const game = await api.game.load(store.user.token);
     actions.loadGame(game);
-    stopMoving();
     reload(store.save);
   },
 
