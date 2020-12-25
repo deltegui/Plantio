@@ -6,7 +6,6 @@ import com.deltegui.plantio.game.application.LoadCase;
 import com.deltegui.plantio.game.application.LoadRequest;
 import com.deltegui.plantio.game.domain.*;
 import com.deltegui.plantio.weather.application.WeatherSnapshotRepository;
-import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.UserWeatherSnapshot;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 import com.deltegui.plantio.weather.domain.WeatherState;
@@ -16,6 +15,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -120,11 +120,38 @@ public class LoadCaseTest {
         assertEquals(4, gameRepo.getElement(0).getCrop().size());
     }
 
+    @Test
+    public void shouldGrowPlantsIfPassEnoughtHoursWet() {
+        var game = createGame(
+                new Plant(
+                        PlantType.WHEAT,
+                        WateredState.WET,
+                        0,
+                        new Position(0 ,0),
+                        100,
+                        24,
+                        LocalDateTime.now().minus(1, ChronoUnit.SECONDS)
+                )
+        );
+
+        var gameRepo = MemoryGameRepository.withGames(game);
+        var snapshotRepo = mock(WeatherSnapshotRepository.class);
+        when(snapshotRepo.getForUser(anyString())).thenReturn(Collections.singletonList(
+                toSnapshot(createReport(WeatherState.CLOUDS, 26, 4))
+        ));
+
+        var loadCase = new LoadCase(gameRepo, snapshotRepo);
+        var response = loadCase.handle(request);
+        var plants = response.getCrop().toArray();
+        var firstPlant = (Plant)plants[0];
+
+        assertEquals(1, firstPlant.getPhase());
+    }
+
     public static Game createGame(Plant... plants) {
         return new Game(
                 "manolo",
                 LocalDateTime.now(),
-                new Coordinate(0 ,0),
                 new HashSet<>(Arrays.asList(plants))
         );
     }

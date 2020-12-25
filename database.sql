@@ -7,14 +7,14 @@ drop table if exists users;
 
 create table users(
     name varchar(255) primary key,
-    password varchar(255) not null
+    password varchar(255) not null,
+    latitude double,
+    longitude double
 );
 
 create table saves(
     save_user varchar(255) primary key,
     last_update timestamp not null,
-    latitude float,
-    longitude float,
     
     foreign key (save_user) references users(name) on delete cascade
 );

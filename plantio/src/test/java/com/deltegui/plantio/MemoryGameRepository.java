@@ -45,11 +45,6 @@ public class MemoryGameRepository implements GameRepository {
         }
     }
 
-    @Override
-    public List<Game> getAllWithoutPlants() {
-        return this.games;
-    }
-
     public int size() {
         return this.games.size();
     }

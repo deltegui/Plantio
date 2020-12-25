@@ -37,8 +37,8 @@ public class SaveCase implements UseCase<SaveRequest, SaveResponse> {
     }
 
     private SaveResponse updateGame(Game game, SaveRequest req) {
-        var crop = req.merge(game.getCrop());
-        game.replaceCrop(crop);
+        var mergedCrop = req.merge(game.getCrop());
+        game.replaceCrop(mergedCrop);
         this.gameRepository.update(game);
         return SaveResponse.fromGame(game);
     }

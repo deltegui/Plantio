@@ -45,12 +45,12 @@ public class PlantTest {
                 arguments(
                         createPlant(100, PlantType.WHEAT, Duration.ofDays(3).toHours(), WateredState.WET),
                         createReport(WeatherState.RAIN, 20),
-                        1
+                        3
                 ),
                 arguments(
                         createPlant(100, PlantType.WHEAT, Duration.ofDays(5).toHours(), WateredState.WET),
                         createReport(WeatherState.RAIN, 20),
-                        2
+                        5
                 ),
                 arguments(
                         createPlant(100, PlantType.WHEAT, Duration.ofDays(5).toHours(), WateredState.WET, 4),
@@ -75,7 +75,7 @@ public class PlantTest {
         var later = createReport(WeatherState.RAIN, 22, Duration.ofDays(3).toHours());
         plant.applyWeather(report);
         plant.applyWeather(later);
-        assertEquals(1, plant.getPhase());
+        assertEquals(2, plant.getPhase());
     }
 
     @ParameterizedTest

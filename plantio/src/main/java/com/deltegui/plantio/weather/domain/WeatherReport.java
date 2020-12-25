@@ -91,7 +91,11 @@ public class WeatherReport {
     }
 
     public long calculateHoursFrom(LocalDateTime other) {
-        return ChronoUnit.HOURS.between(other, creation);
+        long result = ChronoUnit.HOURS.between(other, creation);
+        if (result < 0) {
+            return ChronoUnit.HOURS.between(creation, other);
+        }
+        return result;
     }
 
     public Coordinate getCoordinate() {
