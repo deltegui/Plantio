@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Plant {
     public static final int DEATH_PHASE = 6;
@@ -36,6 +37,18 @@ public class Plant {
         this.humidity = humidity;
         this.hoursWet = hoursWet;
         this.lastAppliedReportDate = lastAppliedReportDate;
+    }
+
+    public Plant copy() {
+        return new Plant(
+                this.type,
+                this.watered,
+                this.phase,
+                this.position,
+                this.humidity,
+                this.hoursWet,
+                this.lastAppliedReportDate
+        );
     }
 
     public void applyWeather(WeatherReport report) {
@@ -68,6 +81,21 @@ public class Plant {
             return;
         }
         this.phase = futurePhase;
+    }
+
+    public boolean haveAdvancedPhaseThan(Plant other) {
+        if (this.isDied() || other.isDied()) {
+            return false;
+        }
+        return this.phase > other.phase;
+    }
+
+    public boolean isDied() {
+        return this.phase == Plant.DEATH_PHASE;
+    }
+
+    public Optional<GameEventType> getDeadReason(WeatherReport report) {
+        return this.type.getDeadReason(report, this);
     }
 
     private void setWateredSateUsing(WeatherReport report) {
@@ -134,11 +162,7 @@ public class Plant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plant plant = (Plant) o;
-        return phase == plant.phase &&
-                Double.compare(plant.humidity, humidity) == 0 &&
-                type == plant.type &&
-                Objects.equals(position, plant.position) &&
-                watered == plant.watered;
+        return position.equals(plant.position);
     }
 
     @Override

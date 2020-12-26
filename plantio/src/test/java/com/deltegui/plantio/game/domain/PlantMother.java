@@ -1,7 +1,12 @@
 package com.deltegui.plantio.game.domain;
 
+import com.deltegui.plantio.weather.domain.UserWeatherSnapshot;
+import com.deltegui.plantio.weather.domain.WeatherReport;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class PlantMother {
     public static Plant createPlant(double initialHumidity, PlantType type) {
@@ -74,5 +79,17 @@ public class PlantMother {
                 0,
                 LocalDateTime.now()
         );
+    }
+
+    public static Game createGame(Plant... plants) {
+        return new Game(
+                "manolo",
+                LocalDateTime.now(),
+                new HashSet<>(Arrays.asList(plants))
+        );
+    }
+
+    public static UserWeatherSnapshot toSnapshot(WeatherReport report) {
+        return new UserWeatherSnapshot("manolo", report);
     }
 }

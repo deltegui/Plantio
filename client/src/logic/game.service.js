@@ -32,9 +32,10 @@ export default {
   },
 
   async loadGame() {
-    const game = await api.game.load(store.user.token);
-    actions.loadGame(game);
+    const response = await api.game.load(store.user.token);
+    actions.loadGame(response.crop);
     reload(store.save);
+    actions.loadEvents(response.events);
   },
 
   async saveGame() {

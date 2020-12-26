@@ -23,7 +23,7 @@ public class GameController {
     }
 
     @GetMapping
-    public Game loadGame(Principal user) {
+    public LoadResponse loadGame(Principal user) {
         return this.loadCase.handle(new LoadRequest(user.getName()));
     }
 

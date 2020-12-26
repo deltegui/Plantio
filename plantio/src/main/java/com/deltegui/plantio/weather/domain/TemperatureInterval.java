@@ -18,4 +18,12 @@ public class TemperatureInterval {
     public boolean includes(double other) {
         return other >= this.min && other <= this.max;
     }
+
+    public boolean isLower(double other) {
+        return other < this.min;
+    }
+
+    public boolean isUpper(double other) {
+        return this.max < other;
+    }
 }

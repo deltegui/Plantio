@@ -14,4 +14,5 @@ export default Vue.observable({
     sunrise: 0,
   },
   save: [],
+  events: [],
 });

@@ -3,12 +3,16 @@ package com.deltegui.plantio.game.application;
 import com.deltegui.plantio.common.DomainException;
 import com.deltegui.plantio.common.UseCase;
 import com.deltegui.plantio.game.domain.Game;
+import com.deltegui.plantio.game.domain.GameEventNoticer;
 import com.deltegui.plantio.weather.application.WeatherSnapshotRepository;
 import com.deltegui.plantio.weather.domain.UserWeatherSnapshot;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 @Service
-public class LoadCase implements UseCase<LoadRequest, Game> {
+public class LoadCase implements UseCase<LoadRequest, LoadResponse> {
     private final GameRepository gameRepository;
     private final WeatherSnapshotRepository snapshotRepository;
 
@@ -18,7 +22,7 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
     }
 
     @Override
-    public Game handle(LoadRequest request) throws DomainException {
+    public LoadResponse handle(LoadRequest request) throws DomainException {
         var user = request.getUser();
         var game = this.gameRepository.load(user)
                 .map(this::applyWeatherSnapshotsAndSave)
@@ -27,18 +31,21 @@ public class LoadCase implements UseCase<LoadRequest, Game> {
         return game;
     }
 
-    private Game createAndSaveNewGame(String user) {
+    private LoadResponse createAndSaveNewGame(String user) {
         Game game = Game.createEmpty(user);
         this.gameRepository.save(game);
-        return game;
+        return new LoadResponse(game, Collections.emptyList());
     }
 
-    private Game applyWeatherSnapshotsAndSave(Game game) {
-        this.snapshotRepository.getForUser(game.getOwner())
+    private LoadResponse applyWeatherSnapshotsAndSave(Game game) {
+        var eventNoticer = new GameEventNoticer(game);
+        var reports = this.snapshotRepository.getForUser(game.getOwner())
                 .stream()
                 .map(UserWeatherSnapshot::getReport)
-                .forEach(game::applyWeather);
+                .collect(Collectors.toList());
+        reports.forEach(game::applyWeather);
         this.gameRepository.update(game);
-        return game;
+        var events = eventNoticer.generateEvents(game, reports);
+        return new LoadResponse(game, events);
     }
 }

@@ -16,8 +16,8 @@ function gameToServer(plants) {
   }));
 }
 
-function gameToSystem({ crop }) {
-  return crop.map(({
+function gameToSystem({ game, events }) {
+  const adaptedCrop = game.crop.map(({
     type,
     phase,
     position,
@@ -30,6 +30,10 @@ function gameToSystem({ crop }) {
     watered: watered.toLowerCase(),
     humidity,
   }));
+  return {
+    crop: adaptedCrop,
+    events,
+  };
 }
 
 function toWeatherImage(weatherState) {

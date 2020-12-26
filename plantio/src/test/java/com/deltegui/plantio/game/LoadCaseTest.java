@@ -7,7 +7,6 @@ import com.deltegui.plantio.game.application.LoadRequest;
 import com.deltegui.plantio.game.domain.*;
 import com.deltegui.plantio.weather.application.WeatherSnapshotRepository;
 import com.deltegui.plantio.weather.domain.UserWeatherSnapshot;
-import com.deltegui.plantio.weather.domain.WeatherReport;
 import com.deltegui.plantio.weather.domain.WeatherState;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +18,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Stream;
 
-import static com.deltegui.plantio.game.domain.PlantMother.createPlant;
-import static com.deltegui.plantio.game.domain.PlantMother.deadPlant;
+import static com.deltegui.plantio.game.domain.PlantMother.*;
 import static com.deltegui.plantio.weather.domain.ReportMother.createReport;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -40,7 +38,7 @@ public class LoadCaseTest {
         when(gameRepo.load(anyString())).thenReturn(Optional.of(expectedGame));
         var snapshotRepo = mock(WeatherSnapshotRepository.class);
         var loadCase = new LoadCase(gameRepo, snapshotRepo);
-        assertEquals(expectedGame, loadCase.handle(request));
+        assertEquals(expectedGame, loadCase.handle(request).getGame());
     }
 
     @Test
@@ -50,8 +48,8 @@ public class LoadCaseTest {
         var snapshotRepo = mock(WeatherSnapshotRepository.class);
         var loadCase = new LoadCase(gameRepo, snapshotRepo);
         var response = loadCase.handle(request);
-        assertEquals("manolo", response.getOwner());
-        assertEquals(0, response.getCrop().size());
+        assertEquals("manolo", response.getGame().getOwner());
+        assertEquals(0, response.getGame().getCrop().size());
     }
 
     @ParameterizedTest
@@ -68,7 +66,7 @@ public class LoadCaseTest {
         var loadCase = new LoadCase(gameRepo, snapshotRepo);
         var response = loadCase.handle(request);
 
-        assertEquals(expectedGame.getCrop().toArray()[0], response.getCrop().toArray()[0]);
+        assertEquals(expectedGame.getCrop().toArray()[0], response.getGame().getCrop().toArray()[0]);
     }
 
     public static Stream<Arguments> shouldApplyWeatherSnapshots() {
@@ -142,21 +140,9 @@ public class LoadCaseTest {
 
         var loadCase = new LoadCase(gameRepo, snapshotRepo);
         var response = loadCase.handle(request);
-        var plants = response.getCrop().toArray();
+        var plants = response.getGame().getCrop().toArray();
         var firstPlant = (Plant)plants[0];
 
         assertEquals(1, firstPlant.getPhase());
-    }
-
-    public static Game createGame(Plant... plants) {
-        return new Game(
-                "manolo",
-                LocalDateTime.now(),
-                new HashSet<>(Arrays.asList(plants))
-        );
-    }
-
-    public static UserWeatherSnapshot toSnapshot(WeatherReport report) {
-        return new UserWeatherSnapshot("manolo", report);
     }
 }

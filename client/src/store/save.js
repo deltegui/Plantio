@@ -29,6 +29,10 @@ export function deletePlantSave({ x, y }) {
   store.save = store.save.filter((plant) => plant.position.x !== x || plant.position.y !== y);
 }
 
-export async function loadGame(game) {
+export function loadGame(game) {
   store.save = game;
+}
+
+export function loadEvents(events) {
+  store.events = events;
 }

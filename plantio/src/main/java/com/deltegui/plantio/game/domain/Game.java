@@ -5,6 +5,7 @@ import com.deltegui.plantio.weather.domain.WeatherReport;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Game {
     private final String owner;
@@ -24,6 +25,18 @@ public class Game {
 
     public static Game createEmpty(String owner) {
         return new Game(owner, LocalDateTime.now(), new HashSet<>());
+    }
+
+    public Game copy() {
+        var copiedCrop = this.crop
+                .stream()
+                .map(Plant::copy)
+                .collect(Collectors.toSet());
+        return new Game(
+                this.owner,
+                this.lastUpdate,
+                copiedCrop
+        );
     }
 
     public void replaceCrop(Set<Plant> crop) {

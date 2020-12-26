@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.Duration;
+import java.util.Optional;
 
 public enum PlantType {
     WHEAT(TemperatureInterval.withMinMax(-10, 28), 20, 30, Duration.ofDays(1), 0.05),
@@ -33,6 +34,19 @@ public enum PlantType {
 
     public boolean shouldBeDead(WeatherReport report, Plant plant) {
         return (! report.isInInterval(this.temperatureInterval)) || plant.getHumidity() <= this.humidityDeath;
+    }
+
+    public Optional<GameEventType> getDeadReason(WeatherReport report, Plant plant) {
+        if (this.temperatureInterval.isLower(report.getTemperature())) {
+            return Optional.of(GameEventType.KILLED_TEMPERATURE_LOW);
+        }
+        if (this.temperatureInterval.isUpper(report.getTemperature())) {
+            return Optional.of(GameEventType.KILLED_TEMPERATURE_HIGH);
+        }
+        if (plant.getHumidity() <= this.humidityDeath) {
+            return Optional.of(GameEventType.KILLED_DRY);
+        }
+        return Optional.empty();
     }
 
     public boolean shouldGrowth(Plant plant) {
