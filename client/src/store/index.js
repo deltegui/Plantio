@@ -9,27 +9,22 @@ import {
   addPlantSave,
   updatePlantSave,
   loadGame,
+  loadEvents,
   deletePlantSave,
 } from './save';
-
-Vue.prototype.$store = store;
-Vue.prototype.$actions = {
-  login,
-  logout,
-  refreshWeather,
-  addPlantSave,
-  updatePlantSave,
-  loadGame,
-};
-
-export default store;
 
 export const actions = {
   addPlantSave,
   updatePlantSave,
   deletePlantSave,
   loadGame,
+  loadEvents,
   login,
   logout,
   refreshWeather,
 };
+
+Vue.prototype.$store = store;
+Vue.prototype.$actions = actions;
+
+export default store;
