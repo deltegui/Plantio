@@ -60,6 +60,7 @@ public class Plant {
     }
 
     public void growth(int phases) {
+        this.hoursWet = 0;
         this.watered = WateredState.WET;
         var futurePhase = this.phase + phases;
         if (futurePhase >= END_PHASE) {
