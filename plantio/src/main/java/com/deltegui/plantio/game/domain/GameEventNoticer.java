@@ -28,6 +28,8 @@ public class GameEventNoticer {
     public List<GameEvent> generateEvents(Game current, List<WeatherReport> appliedReports) {
         var currentCrop = current.getCrop();
         List<GameEvent> events = new ArrayList<>();
+        // TODO this is a test
+        events.add(new GameEvent(GameEventType.WATERED, new Position(0 ,0)));
         for (Plant currentPlant : currentCrop) {
             getPreviousPlant(currentPlant).ifPresent(prev ->
                     events.addAll(this.applyPlantNoticers(prev, currentPlant, appliedReports)));

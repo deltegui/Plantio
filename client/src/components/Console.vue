@@ -44,15 +44,25 @@ export default {
       io.writeln('to exit.');
       io.writeColor('Dont forget to save your game!!!<br>', 'DarkCyan');
       io.writeln();
-      if (this.$store.events.length === 0) {
-        io.writeColor('Nothing happened since last save!', 'MediumPurple');
-        io.writeln();
-        io.writeln();
-      }
-      this.$store.events.forEach((evt) => {
-        io.writeln(`* Plant in position (${evt.position.x}, ${evt.position.y}) is ${evt.eventType}`);
-        io.writeln();
-      });
+    },
+  },
+  watch: {
+    '$store.events': {
+      handler() {
+        if (this.$store.events.length === 0) {
+          io.writeColor('Nothing happened since last save!', 'MediumPurple');
+          io.writeln();
+          io.writeln();
+        } else {
+          io.writeColor('Messages from last save:<br>', 'MediumPurple');
+          this.$store.events.forEach((evt) => {
+            io.writeln(`* Plant in position (${evt.position.x}, ${evt.position.y}) is ${evt.eventType}`);
+            io.writeln();
+          });
+        }
+        io.write('> ');
+      },
+      deep: true,
     },
   },
 };
