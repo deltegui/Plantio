@@ -10,7 +10,8 @@ import java.time.Duration;
 import java.util.Optional;
 
 public enum PlantType {
-    WHEAT(TemperatureInterval.withMinMax(-10, 28), 20, 30, Duration.ofDays(1), 0.05),
+    WHEAT(TemperatureInterval.withMinMax(16, 30), 20, 30, Duration.ofDays(1), 0.05),
+    LAVENDER(TemperatureInterval.withMinMax(-10, 17), 40, 55, Duration.ofDays(1), 0.11),
     CACTUS(TemperatureInterval.withMinMax(25, 50), 10, 23, Duration.ofDays(2), 0.01);
     private @NotNull final TemperatureInterval temperatureInterval;
     private @NotNull @Min(0) @Max(100) final int humidityDeath;
@@ -70,6 +71,7 @@ public enum PlantType {
     public static PlantType fromString(String type) {
         switch (type) {
             case "CACTUS": return PlantType.CACTUS;
+            case "LAVENDER": return PlantType.LAVENDER;
             default: return PlantType.WHEAT;
         }
     }

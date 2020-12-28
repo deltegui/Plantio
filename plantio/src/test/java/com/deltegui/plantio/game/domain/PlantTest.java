@@ -62,8 +62,8 @@ public class PlantTest {
 
     @Test
     public void dryPlantDontGrow() {
-        var plant = createPlant(100, PlantType.WHEAT, Duration.ofDays(3).toHours(), WateredState.DRY);
-        var report = createReport(WeatherState.CLEAR, 7);
+        var plant = createPlant(100, PlantType.WHEAT, Duration.ofDays(1).toHours(), WateredState.DRY);
+        var report = createReport(WeatherState.CLEAR, 17);
         plant.applyWeather(report);
         assertEquals(0, plant.getPhase());
     }

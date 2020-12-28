@@ -5,7 +5,7 @@ export default [
     any environment.`,
     image: 'wheat.png',
     temperature: {
-      min: -10,
+      min: 16,
       max: 28,
     },
     humidityDeath: 20,
@@ -21,5 +21,16 @@ export default [
     },
     humidityDeath: 10,
     humidityGrowth: 23,
+  },
+  {
+    key: 'lavender',
+    description: `A plant that resist cold`,
+    image: 'lavender.png',
+    temperature: {
+      min: -10,
+      max: 17,
+    },
+    humidityDeath: 40,
+    humidityGrowth: 55,
   },
 ];
