@@ -1,33 +1,16 @@
 import io from '../console';
 import plantService from '../logic/plant.service';
 import gameService from '../logic/game.service';
+import inputService from '../logic/input.service';
 
 function parseInputCoordinate({ x, y }) {
-  const numy = parseInt(y, 10);
-  if (isNaN(numy) || numy >= gameService.CropSize.y) {
-    io.writeColor(`Invalid position for y: "${y}". Must be 0, 1, 2 or 3`, 'red');
+  try {
+    return inputService.parseInputCoordinate({ x, y });
+  } catch (err) {
+    io.writeColor(err.msg, 'red');
     io.writeln();
     return false;
   }
-  switch (x) {
-    case 'a': case 'A':
-      return { x: numy, y: 3 };
-    case 'b': case 'B':
-      return { x: numy, y: 2 };
-    case 'c': case 'C':
-      return { x: numy, y: 1 };
-    case 'd': case 'D':
-      return { x: numy, y: 0 };
-    default:
-      io.writeColor(`Invalid position for x: "${x}". Must be A, B, C or D`, 'red');
-      io.writeln();
-      return false;
-  }
-}
-
-function passNumberToLetter(number) {
-  const letters = ['D', 'C', 'B', 'A'];
-  return letters[number];
 }
 
 function parsePositionFromArgs(args) {
@@ -120,7 +103,7 @@ io.onCommand('ls', {
   help: `List all planted plants`,
   handle() {
     plantService.getAll().forEach((p) => {
-      io.writeColor(`(${passNumberToLetter(p.position.x)}, ${p.position.y}) `, 'orange');
+      io.writeColor(`(${inputService.passNumberToLetter(p.position.x)}, ${p.position.y}) `, 'orange');
       io.writeln(p.plant);
     });
   },

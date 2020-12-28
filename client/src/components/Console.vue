@@ -7,6 +7,7 @@
 import io from '../console';
 import '../commands';
 import userService from '../logic/user.service';
+import inputService from '../logic/input.service';
 
 export default {
   name: 'Console',
@@ -56,7 +57,12 @@ export default {
         } else {
           io.writeColor('Messages from last save:<br>', 'MediumPurple');
           this.$store.events.forEach((evt) => {
-            io.writeln(`* Plant in position (${evt.position.x}, ${evt.position.y}) is ${evt.eventType}`);
+            const pos = {
+              x: evt.position.x,
+              y: inputService.passNumberToLetter(evt.position.y),
+            };
+            const msg = inputService.passGameEventTypeToMessage(evt.eventType);
+            io.writeln(`* Plant in position (${pos.y}, ${pos.x}) ${msg}`);
             io.writeln();
           });
         }
