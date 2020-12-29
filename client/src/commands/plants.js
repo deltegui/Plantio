@@ -164,7 +164,7 @@ io.onCommand('rm', {
 
 if (process.env.NODE_ENV !== 'production') {
   io.onCommand('grow', {
-    help: `Grows a plant. You need to pass the coordinate where
+    help: `[DEBUG] Grows a plant. You need to pass the coordinate where
     the plant lives.<br>
     Usage: grow [x] [y]<br>
     Example: grow d 3`,
@@ -174,7 +174,7 @@ if (process.env.NODE_ENV !== 'production') {
   });
 
   io.onCommand('dry', {
-    help: `Dry a plant. You need to pass the coordinate where
+    help: `[DEBUG] Dry a plant. You need to pass the coordinate where
     the plant lives.<br>
     Usage: dry [x] [y]<br>
     Example: dry d 3`,

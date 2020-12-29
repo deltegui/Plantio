@@ -39,7 +39,8 @@ export default {
   },
 
   async saveGame() {
-    return api.game.save(store.user.token, store.save);
+    return api.user.update(store.user.token, store.user)
+      .then(() => api.game.save(store.user.token, store.save));
   },
 
   createGame(canvas, size) {

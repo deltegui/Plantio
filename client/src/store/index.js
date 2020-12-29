@@ -4,6 +4,8 @@ import refreshWeather from './weather';
 import {
   login,
   logout,
+  addToBag,
+  substractFromBag,
 } from './user';
 import {
   addPlantSave,
@@ -21,6 +23,8 @@ export const actions = {
   loadEvents,
   login,
   logout,
+  addToBag,
+  substractFromBag,
   refreshWeather,
 };
 

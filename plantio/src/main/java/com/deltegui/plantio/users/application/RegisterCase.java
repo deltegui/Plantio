@@ -6,7 +6,7 @@ import com.deltegui.plantio.users.domain.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class RegisterCase implements UseCase<SessionRequest, SessionResponse> {
+public class RegisterCase implements UseCase<SessionRequest, SessionResponse> {
     private final UserRepository userRepository;
     private final PasswordHasher passwordHasher;
     private final TokenProvider tokenProvider;

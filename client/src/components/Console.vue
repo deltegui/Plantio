@@ -21,7 +21,7 @@ export default {
       io.startHandlingKeyEvents();
       if (process.env.NODE_ENV !== 'production') {
         io.onCommand('store', {
-          help: 'Shows custom data store',
+          help: '[DEBUG] Shows custom data store',
           handle: this.showStore.bind(this),
         });
       }

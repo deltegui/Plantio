@@ -1,6 +1,8 @@
 package com.deltegui.plantio.users.implementation;
 
+import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.users.application.UserRepository;
+import com.deltegui.plantio.users.domain.Seeds;
 import com.deltegui.plantio.users.domain.User;
 import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class MysqlUserRepository implements UserRepository {
@@ -56,6 +60,7 @@ public class MysqlUserRepository implements UserRepository {
                         user.getMoney()
                 )
         );
+        this.replaceBag(user);
     }
 
     @Transactional
@@ -77,6 +82,7 @@ public class MysqlUserRepository implements UserRepository {
                         user.getName()
                 )
         );
+        this.replaceBag(user);
     }
 
     @Transactional
@@ -88,6 +94,13 @@ public class MysqlUserRepository implements UserRepository {
     }
 
     private User parseUserFromQueryResult(ResultSet resultSet, int number) throws SQLException {
+        var user = this.readUserWithoutBag(resultSet);
+        var bag = this.loadBag(user);
+        user.setBag(bag);
+        return user;
+    }
+
+    private User readUserWithoutBag(ResultSet resultSet) throws SQLException {
         String name = resultSet.getNString("name");
         double money = resultSet.getDouble("money");
         String password = resultSet.getNString("password");
@@ -106,5 +119,24 @@ public class MysqlUserRepository implements UserRepository {
                 password,
                 money
         );
+    }
+
+    private void replaceBag(User user) {
+        this.jdbcTemplate.update("delete from user_bag where owner = ?", user.getName());
+        for (Seeds bagItem : user.getBag()) {
+            this.jdbcTemplate.update(
+                    "insert into user_bag (owner, item, amount) values(?, ?, ?)",
+                    user.getName(),
+                    bagItem.getItem(),
+                    bagItem.getAmount()
+            );
+        }
+    }
+
+    private Set<Seeds> loadBag(User user) {
+        return new HashSet<>(this.jdbcTemplate.query(
+                "select item, amount from user_bag where owner = ?",
+                (resultSet, number) -> new Seeds(PlantType.fromString(resultSet.getNString("item")), resultSet.getInt("amount")),
+                user.getName()));
     }
 }

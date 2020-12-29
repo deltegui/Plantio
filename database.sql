@@ -1,5 +1,6 @@
 create database if not exists plantio;
 use plantio;
+drop table if exists user_bag;
 drop table if exists weather_snapshots;
 drop table if exists saved_plants;
 drop table if exists saves;
@@ -11,6 +12,15 @@ create table users(
     latitude double,
     longitude double,
     money double default 0
+);
+
+create table user_bag(
+	owner varchar(255),
+    item varchar(255),
+    amount integer unsigned not null default 0,
+
+	primary key (owner, item),
+    foreign key (owner) references users(name) on delete cascade
 );
 
 create table saves(

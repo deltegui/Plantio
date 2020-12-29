@@ -1,4 +1,4 @@
-import { actions } from '../store';
+import store, { actions } from '../store';
 import {
   startMoving,
   stopMoving,
@@ -33,5 +33,17 @@ export default {
       user,
       password,
     }).then(handleLogin);
+  },
+
+  addToBag(item) {
+    actions.addToBag(item);
+  },
+
+  substractFrombag(item) {
+    actions.substractFromBag(item);
+  },
+
+  getBag() {
+    return store.user.bag;
   },
 };

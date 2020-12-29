@@ -26,6 +26,9 @@ async function handleResponse(raw) {
   if (isResponseError(res)) {
     throw res;
   }
+  if (raw.status !== 200) {
+    throw res;
+  }
   return res;
 }
 

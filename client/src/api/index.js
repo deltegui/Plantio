@@ -36,6 +36,24 @@ function gameToSystem({ game, events }) {
   };
 }
 
+const userBagToServer = (bag) => bag.map(({ item, amount }) => ({ item: item.toUpperCase(), amount }));
+
+const userBagToSystem = (bag) => bag.map(({ item, amount }) => ({ item: item.toLowerCase(), amount }));
+
+function userToSystem({
+  name,
+  money,
+  bag,
+  token,
+}) {
+  return {
+    name,
+    money,
+    bag: userBagToSystem(bag),
+    token,
+  };
+}
+
 function toWeatherImage(weatherState) {
   const images = {
     RAIN: 'rainy',
@@ -56,7 +74,7 @@ export default {
           name: user,
           password,
         },
-      });
+      }).then(userToSystem);
     },
 
     async register({ user, password }) {
@@ -67,6 +85,15 @@ export default {
           name: user,
           password,
         },
+      }).then(userToSystem);
+    },
+
+    async update(token, { bag }) {
+      return makeRequest({
+        method: 'POST',
+        endpoint: '/user/update',
+        token,
+        body: userBagToServer(bag),
       });
     },
   },

@@ -2,13 +2,16 @@ package com.deltegui.plantio.users.domain;
 
 import com.deltegui.plantio.weather.domain.Coordinate;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class User {
     private final String name;
     private final String password;
     private Coordinate lastPosition;
     private double money;
+    private Set<Seeds> bag;
 
     public User(String name, String password, Coordinate lastPosition, double money) {
         this.name = name;
@@ -61,5 +64,13 @@ public class User {
 
     public double getMoney() {
         return money;
+    }
+
+    public Set<Seeds> getBag() {
+        return bag;
+    }
+
+    public void setBag(Set<Seeds> bag) {
+        this.bag = bag;
     }
 }

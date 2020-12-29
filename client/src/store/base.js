@@ -5,6 +5,7 @@ export default Vue.observable({
   user: {
     name: '',
     money: 0,
+    bag: [],
     token: '',
   },
   weather: {

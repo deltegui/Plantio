@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 
-public class SessionRequest {
+public final class SessionRequest {
     @Length(max = 255, min = 2)
     @NotNull
     private final String name;
