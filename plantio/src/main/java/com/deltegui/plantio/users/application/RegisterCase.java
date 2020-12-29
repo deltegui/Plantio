@@ -26,6 +26,6 @@ public final class RegisterCase implements UseCase<SessionRequest, SessionRespon
         var user = new User(request.getName(), hashed);
         userRepository.save(user);
         var token = tokenProvider.generateToken(user);
-        return new SessionResponse(user.getName(), token);
+        return new SessionResponse(user, token);
     }
 }

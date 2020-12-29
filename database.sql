@@ -9,7 +9,8 @@ create table users(
     name varchar(255) primary key,
     password varchar(255) not null,
     latitude double,
-    longitude double
+    longitude double,
+    money double default 0
 );
 
 create table saves(

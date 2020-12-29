@@ -1,8 +1,5 @@
 package com.deltegui.plantio.game.domain;
 
-import com.deltegui.plantio.game.domain.Plant;
-import com.deltegui.plantio.game.domain.PlantType;
-import com.deltegui.plantio.game.domain.WateredState;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 import com.deltegui.plantio.weather.domain.WeatherState;
 import org.junit.jupiter.api.Test;

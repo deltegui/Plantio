@@ -1,9 +1,10 @@
 import store from './base';
 
-export function login({ name, token }) {
+export function login({ name, money, token }) {
   store.logged = true;
   store.user = {
     name,
+    money,
     token: token.value,
   };
 }

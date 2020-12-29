@@ -2,6 +2,7 @@
 <main>
   <DayNightCycle/>
   <InfoPanel/>
+  <StorePanel/>
   <div id="main-container">
     <Game/>
     <LeftPanel/>
@@ -10,11 +11,11 @@
 </template>
 
 <script>
-// import './store';
 import Game from './components/Game.vue';
 import LeftPanel from './components/LeftPanel.vue';
 import DayNightCycle from './components/DayNightCycle.vue';
 import InfoPanel from './components/InfoPanel.vue';
+import StorePanel from './components/StorePanel.vue';
 
 export default {
   name: 'App',
@@ -23,6 +24,7 @@ export default {
     LeftPanel,
     DayNightCycle,
     InfoPanel,
+    StorePanel,
   },
 };
 </script>

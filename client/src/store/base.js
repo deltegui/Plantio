@@ -4,6 +4,7 @@ export default Vue.observable({
   logged: false,
   user: {
     name: '',
+    money: 0,
     token: '',
   },
   weather: {

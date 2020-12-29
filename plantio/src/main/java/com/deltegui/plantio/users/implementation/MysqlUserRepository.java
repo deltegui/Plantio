@@ -23,7 +23,7 @@ public class MysqlUserRepository implements UserRepository {
     @Override
     public Optional<User> findByName(String name) {
         var userList = this.jdbcTemplate.query(
-                "select name, password, latitude, longitude from users where name = ?",
+                "select name, password, latitude, longitude, money from users where name = ?",
                 this::parseUserFromQueryResult,
                 name);
         return userList.isEmpty() ? Optional.empty() : Optional.of(userList.get(0));
@@ -42,16 +42,18 @@ public class MysqlUserRepository implements UserRepository {
     public void save(User user) {
         user.getLastPosition().ifPresentOrElse(
                 (lastPos) -> this.jdbcTemplate.update(
-                        "insert into users (name, password, latitude, longitude) values (?, ?, ?, ?)",
+                        "insert into users (name, password, latitude, longitude, money) values (?, ?, ?, ?)",
                         user.getName(),
                         user.getPassword(),
                         lastPos.getLatitude(),
-                        lastPos.getLongitude()
+                        lastPos.getLongitude(),
+                        user.getMoney()
                 ),
                 () -> this.jdbcTemplate.update(
-                        "insert into users (name, password) values(?, ?)",
+                        "insert into users (name, password, money) values(?, ?, ?)",
                         user.getName(),
-                        user.getPassword()
+                        user.getPassword(),
+                        user.getMoney()
                 )
         );
     }
@@ -61,15 +63,17 @@ public class MysqlUserRepository implements UserRepository {
     public void update(User user) {
         user.getLastPosition().ifPresentOrElse(
                 (lastPos) -> this.jdbcTemplate.update(
-                        "update users set password = ?, latitude = ?, longitude = ? where name = ?",
+                        "update users set password = ?, latitude = ?, longitude = ?, money = ? where name = ?",
                         user.getPassword(),
                         lastPos.getLatitude(),
                         lastPos.getLongitude(),
+                        user.getMoney(),
                         user.getName()
                 ),
                 () -> this.jdbcTemplate.update(
-                        "update users set password = ? where name = ?",
+                        "update users set password = ?, money = ? where name = ?",
                         user.getPassword(),
+                        user.getMoney(),
                         user.getName()
                 )
         );
@@ -79,12 +83,13 @@ public class MysqlUserRepository implements UserRepository {
     @Override
     public List<User> getAll() {
         return this.jdbcTemplate.query(
-                "select name, password, latitude, longitude from users",
+                "select name, password, latitude, longitude, money from users",
                 this::parseUserFromQueryResult);
     }
 
     private User parseUserFromQueryResult(ResultSet resultSet, int number) throws SQLException {
         String name = resultSet.getNString("name");
+        double money = resultSet.getDouble("money");
         String password = resultSet.getNString("password");
         Object latitude = resultSet.getObject("latitude");
         Object longitude = resultSet.getObject("longitude");
@@ -92,12 +97,14 @@ public class MysqlUserRepository implements UserRepository {
             return new User(
                     name,
                     password,
-                    new Coordinate((Double)latitude, (Double)longitude)
+                    new Coordinate((Double)latitude, (Double)longitude),
+                    money
             );
         }
         return new User(
                 name,
-                password
+                password,
+                money
         );
     }
 }

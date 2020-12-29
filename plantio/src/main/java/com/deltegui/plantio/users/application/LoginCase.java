@@ -24,6 +24,6 @@ public final class LoginCase implements UseCase<SessionRequest, SessionResponse>
             throw DomainException.fromError(UserErrors.InvalidPassword);
         }
         var token = tokenProvider.generateToken(user);
-        return new SessionResponse(user.getName(), token);
+        return new SessionResponse(user, token);
     }
 }

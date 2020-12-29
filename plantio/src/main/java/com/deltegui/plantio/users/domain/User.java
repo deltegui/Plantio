@@ -8,15 +8,39 @@ public class User {
     private final String name;
     private final String password;
     private Coordinate lastPosition;
+    private double money;
 
-    public User(String name, String password, Coordinate lastPosition) {
+    public User(String name, String password, Coordinate lastPosition, double money) {
         this.name = name;
         this.password = password;
         this.lastPosition = lastPosition;
+        this.money = money;
+    }
+
+    public User(String name, String password, Coordinate lastPosition) {
+        this(name, password, lastPosition, 0);
+    }
+
+    public User(String name, String password, double money) {
+        this(name, password, null, money);
     }
 
     public User(String name, String password) {
-        this(name, password, null);
+        this(name, password, null, 0);
+    }
+
+    public boolean canPay(Payable payable) {
+        return this.money >= payable.getCost();
+    }
+
+    public void payFor(Payable payable) {
+        if (this.canPay(payable)) {
+            this.money -= payable.getCost();
+        }
+    }
+
+    public void depositMoney(double income) {
+        this.money += income;
     }
 
     public String getName() {
@@ -33,5 +57,9 @@ public class User {
 
     public void setLastPosition(Coordinate updatedPosition) {
         this.lastPosition = updatedPosition;
+    }
+
+    public double getMoney() {
+        return money;
     }
 }
