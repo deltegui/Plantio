@@ -14,7 +14,7 @@ public class Order {
     }
 
     public String getItem() {
-        return this.storeItem.getItem();
+        return this.storeItem.getName();
     }
 
     public int getAmount() {

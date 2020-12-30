@@ -16,6 +16,10 @@ public class StoreItem {
         this.price = price;
     }
 
+    public static StoreItem createDefault(PlantType type) {
+        return new StoreItem(type, 0, 2);
+    }
+
     public boolean notHaveStock(int amount) {
         return this.amount < amount;
     }
@@ -31,7 +35,7 @@ public class StoreItem {
         this.amount -= amount;
     }
 
-    public String getItem() {
+    public String getName() {
         return this.item.name();
     }
     public int getAmount() {

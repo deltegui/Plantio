@@ -5,6 +5,7 @@ drop table if exists weather_snapshots;
 drop table if exists saved_plants;
 drop table if exists saves;
 drop table if exists users;
+drop table if exists store;
 
 create table users(
     name varchar(255) primary key,
@@ -58,4 +59,10 @@ create table weather_snapshots(
     
     primary key (user, creation),
     foreign key (user) references saves(save_user) on delete cascade
+);
+
+create table store(
+	item varchar(255) primary key,
+    amount int unsigned not null default 0,
+    price double not null default 0
 );

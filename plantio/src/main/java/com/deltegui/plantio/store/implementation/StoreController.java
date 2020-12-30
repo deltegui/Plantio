@@ -1,15 +1,13 @@
 package com.deltegui.plantio.store.implementation;
 
+import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.BuyCase;
 import com.deltegui.plantio.store.application.SellCase;
 import com.deltegui.plantio.store.application.TransactionRequest;
 import com.deltegui.plantio.store.domain.Order;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/store")
@@ -22,13 +20,21 @@ public final class StoreController {
         this.sellCase = sellCase;
     }
 
-    @PostMapping("/buy")
-    public Order buy(@Valid @RequestBody TransactionRequest transaction) {
-        return this.buyCase.handle(transaction);
+    @PostMapping("/buy/{item}/{amount}")
+    public Order buy(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
+        return this.buyCase.handle(new TransactionRequest(
+                user.getName(),
+                PlantType.fromString(item),
+                amount
+        ));
     }
 
-    @PostMapping("sell")
-    public Order sell(@Valid @RequestBody TransactionRequest transaction) {
-        return this.sellCase.handle(transaction);
+    @PostMapping("sell/{item}/{amount}")
+    public Order sell(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
+        return this.sellCase.handle(new TransactionRequest(
+                user.getName(),
+                PlantType.fromString(item),
+                amount
+        ));
     }
 }

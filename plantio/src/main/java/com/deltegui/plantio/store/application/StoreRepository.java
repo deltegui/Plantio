@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface StoreRepository {
     List<StoreItem> getAll();
-    StoreItem getByItem(PlantType item);
-    void update(StoreItem seeds);
+    StoreItem getByItem(PlantType itemType);
+    void update(StoreItem item);
+    void add(StoreItem item);
 }

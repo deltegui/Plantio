@@ -9,7 +9,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class PlantioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PlantioApplication.class, args);
+		var ctx = SpringApplication.run(PlantioApplication.class, args);
+		StoreInitializer.fromContext(ctx).ensureThereAreSeedsInStore();
 	}
+
+
 
 }
