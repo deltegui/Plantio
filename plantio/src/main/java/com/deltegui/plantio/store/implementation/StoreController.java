@@ -4,13 +4,14 @@ import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.BuyCase;
 import com.deltegui.plantio.store.application.SellCase;
 import com.deltegui.plantio.store.application.TransactionRequest;
+import com.deltegui.plantio.store.application.TransactionResult;
 import com.deltegui.plantio.store.domain.Order;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/api/store")
 public final class StoreController {
     private final BuyCase buyCase;
     private final SellCase sellCase;
@@ -21,7 +22,7 @@ public final class StoreController {
     }
 
     @PostMapping("/buy/{item}/{amount}")
-    public Order buy(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
+    public TransactionResult buy(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
         return this.buyCase.handle(new TransactionRequest(
                 user.getName(),
                 PlantType.fromString(item),
@@ -30,7 +31,7 @@ public final class StoreController {
     }
 
     @PostMapping("sell/{item}/{amount}")
-    public Order sell(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
+    public TransactionResult sell(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
         return this.sellCase.handle(new TransactionRequest(
                 user.getName(),
                 PlantType.fromString(item),

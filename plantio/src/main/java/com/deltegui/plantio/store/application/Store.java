@@ -14,7 +14,7 @@ public class Store {
         this.storeRepository = storeRepository;
     }
 
-    public synchronized Order buy(User user, Seeds seeds) throws DomainException {
+    public synchronized TransactionResult buy(User user, Seeds seeds) throws DomainException {
         var storeItem = storeRepository.getByItem(seeds.getType());
         var order = new Order(storeItem, seeds.getAmount());
         if (! user.canPay(order)) {
@@ -26,10 +26,10 @@ public class Store {
         user.payFor(order);
         storeItem.substract(seeds.getAmount());
         this.storeRepository.update(storeItem);
-        return order;
+        return new TransactionResult(user, order);
     }
 
-    public synchronized Order sell(User user, Seeds seeds) throws DomainException {
+    public synchronized TransactionResult sell(User user, Seeds seeds) throws DomainException {
         var storeItem = storeRepository.getByItem(seeds.getType());
         var order = new Order(storeItem, seeds.getAmount());
         if (! user.canSell(order)) {
@@ -38,6 +38,6 @@ public class Store {
         user.sell(order);
         storeItem.add(seeds.getAmount());
         this.storeRepository.update(storeItem);
-        return order;
+        return new TransactionResult(user, order);
     }
 }

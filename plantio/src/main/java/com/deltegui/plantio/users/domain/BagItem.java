@@ -14,6 +14,10 @@ public class BagItem {
         this.amount = amount;
     }
 
+    public void add(int amount) {
+        this.amount += amount;
+    }
+
     public boolean canSubstract(int amount) {
         return this.amount >= amount;
     }
@@ -21,6 +25,10 @@ public class BagItem {
     public void substract(int amount) {
         if (! this.canSubstract(amount)) return;
         this.amount -= amount;
+    }
+
+    public boolean amountIsZero() {
+        return this.amount == 0;
     }
 
     public String getItem() {

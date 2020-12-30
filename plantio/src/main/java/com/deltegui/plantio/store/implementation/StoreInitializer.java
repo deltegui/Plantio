@@ -1,9 +1,8 @@
-package com.deltegui.plantio;
+package com.deltegui.plantio.store.implementation;
 
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.StoreRepository;
 import com.deltegui.plantio.store.domain.StoreItem;
-import com.deltegui.plantio.store.implementation.MysqlStoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -37,7 +36,7 @@ public class StoreInitializer {
     private void createIfNotExists(PlantType type) {
         existingItems
                 .stream()
-                .filter(item -> item.getName().equals(type.name()))
+                .filter(item -> item.isOfType(type))
                 .findFirst()
                 .or(() -> this.createDefaultItem(type));
     }

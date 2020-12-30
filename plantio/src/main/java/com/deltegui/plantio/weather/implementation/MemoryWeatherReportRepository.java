@@ -5,16 +5,16 @@ import com.deltegui.plantio.weather.domain.Coordinate;
 import com.deltegui.plantio.weather.domain.WeatherReport;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Repository
 public class MemoryWeatherReportRepository implements WeatherReportRepository {
-    private final Set<WeatherReport> data;
+    private final List<WeatherReport> data;
 
     public MemoryWeatherReportRepository() {
-        this.data = new HashSet<>();
+        this.data = new ArrayList<>();
     }
 
     @Override

@@ -4,12 +4,12 @@ import com.deltegui.plantio.users.domain.BagItem;
 import com.deltegui.plantio.users.domain.Token;
 import com.deltegui.plantio.users.domain.User;
 
-import java.util.Set;
+import java.util.List;
 
 public final class SessionResponse {
     private final String name;
     private final double money;
-    private final Set<BagItem> bag;
+    private final List<BagItem> bag;
     private final Token token;
 
     public SessionResponse(User user, Token token) {
@@ -31,7 +31,7 @@ public final class SessionResponse {
         return token;
     }
 
-    public Set<BagItem> getBag() {
+    public List<BagItem> getBag() {
         return bag;
     }
 }

@@ -20,6 +20,10 @@ public class StoreItem {
         return new StoreItem(type, 0, 2);
     }
 
+    public boolean isOfType(PlantType type) {
+        return this.item == type;
+    }
+
     public boolean notHaveStock(int amount) {
         return this.amount < amount;
     }

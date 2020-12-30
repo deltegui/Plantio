@@ -4,13 +4,13 @@ import com.deltegui.plantio.users.domain.BagItem;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 public final class UpdateRequest {
     private final @Length(max = 255, min = 2) @NotNull String name;
-    private final @NotNull Set<BagItem> bag;
+    private final @NotNull List<BagItem> bag;
 
-    public UpdateRequest(String name, Set<BagItem> bag) {
+    public UpdateRequest(String name, List<BagItem> bag) {
         this.name = name;
         this.bag = bag;
     }
@@ -19,7 +19,7 @@ public final class UpdateRequest {
         return name;
     }
 
-    public Set<BagItem> getBag() {
+    public List<BagItem> getBag() {
         return bag;
     }
 }

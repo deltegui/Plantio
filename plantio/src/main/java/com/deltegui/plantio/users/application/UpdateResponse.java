@@ -3,12 +3,12 @@ package com.deltegui.plantio.users.application;
 import com.deltegui.plantio.users.domain.BagItem;
 import com.deltegui.plantio.users.domain.User;
 
-import java.util.Set;
+import java.util.List;
 
 public final class UpdateResponse {
     private final String name;
     private final double money;
-    private final Set<BagItem> bag;
+    private final List<BagItem> bag;
 
     public UpdateResponse(User user) {
         this.name = user.getName();
@@ -24,7 +24,7 @@ public final class UpdateResponse {
         return money;
     }
 
-    public Set<BagItem> getBag() {
+    public List<BagItem> getBag() {
         return bag;
     }
 }

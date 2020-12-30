@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public UpdateResponse update(Principal user, @Valid @RequestBody @NotNull Set<BagItem> bag) {
+    public UpdateResponse update(Principal user, @Valid @RequestBody @NotNull List<BagItem> bag) {
         return this.updateCase.handle(new UpdateRequest(user.getName(), bag));
     }
 }

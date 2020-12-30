@@ -11,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Repository
 public class MysqlUserRepository implements UserRepository {
@@ -133,10 +131,10 @@ public class MysqlUserRepository implements UserRepository {
         }
     }
 
-    private Set<BagItem> loadBag(User user) {
-        return new HashSet<>(this.jdbcTemplate.query(
+    private List<BagItem> loadBag(User user) {
+        return this.jdbcTemplate.query(
                 "select item, amount from user_bag where owner = ?",
                 (resultSet, number) -> new BagItem(PlantType.fromString(resultSet.getNString("item")), resultSet.getInt("amount")),
-                user.getName()));
+                user.getName());
     }
 }

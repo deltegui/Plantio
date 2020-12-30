@@ -40,6 +40,11 @@ const userBagToServer = (bag) => bag.map(({ item, amount }) => ({ item: item.toU
 
 const userBagToSystem = (bag) => bag.map(({ item, amount }) => ({ item: item.toLowerCase(), amount }));
 
+const transactionToSystem = ({ order, user }) => ({
+  order: Object.assign(order, { item: order.item.toLowerCase() }),
+  user,
+});
+
 function userToSystem({
   name,
   money,
@@ -65,6 +70,23 @@ function toWeatherImage(weatherState) {
 }
 
 export default {
+  store: {
+    async buy(token, { item, amount }) {
+      return makeRequest({
+        method: 'POST',
+        endpoint: `/store/buy/${item.toUpperCase()}/${amount}`,
+        token,
+      }).then(transactionToSystem);
+    },
+
+    async sell(token, { item, amount }) {
+      return makeRequest({
+        method: 'POST',
+        endpoint: `/store/sell/${item.toUpperCase()}/${amount}`,
+        token,
+      }).then(transactionToSystem);
+    },
+  },
   user: {
     async login({ user, password }) {
       return makeRequest({

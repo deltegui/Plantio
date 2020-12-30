@@ -8,7 +8,7 @@ import com.deltegui.plantio.users.application.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class SellCase implements UseCase<TransactionRequest, Order> {
+public final class SellCase implements UseCase<TransactionRequest, TransactionResult> {
     private final Store store;
     private final UserRepository userRepository;
 
@@ -18,9 +18,11 @@ public final class SellCase implements UseCase<TransactionRequest, Order> {
     }
 
     @Override
-    public Order handle(TransactionRequest request) throws DomainException {
+    public TransactionResult handle(TransactionRequest request) throws DomainException {
         var user = this.userRepository.findByName(request.getUser())
                 .orElseThrow(() -> DomainException.fromError(UserErrors.NotFound));
-        return this.store.sell(user, request.getSeeds());
+        var result = this.store.sell(user, request.getSeeds());
+        this.userRepository.update(user);
+        return result;
     }
 }

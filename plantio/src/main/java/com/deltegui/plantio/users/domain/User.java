@@ -3,21 +3,21 @@ package com.deltegui.plantio.users.domain;
 import com.deltegui.plantio.store.domain.Order;
 import com.deltegui.plantio.weather.domain.Coordinate;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class User {
     private final String name;
     private final String password;
     private Coordinate lastPosition;
     private double money;
-    private Set<BagItem> bag;
+    private List<BagItem> bag;
 
     public User(String name, String password, Coordinate lastPosition, double money) {
         this.name = name;
         this.password = password;
         this.lastPosition = lastPosition;
         this.money = money;
+        this.bag = new ArrayList<>();
     }
 
     public User(String name, String password, Coordinate lastPosition) {
@@ -33,9 +33,14 @@ public class User {
     }
 
     public void payFor(Order order) {
-        if (this.canPay(order)) {
-            this.money -= order.getTotalPrice();
+        if (! this.canPay(order)) {
+            return;
         }
+        this.money -= order.getTotalPrice();
+        getItemFromBag(order.getItem()).ifPresentOrElse(
+                item -> item.add(order.getAmount()),
+                () -> bag.add(order.toBagItem())
+        );
     }
 
     public boolean canPay(Order order) {
@@ -56,6 +61,9 @@ public class User {
         }
         this.getItemFromBag(order.getItem()).ifPresent((BagItem item) -> {
             item.substract(order.getAmount());
+            if (item.amountIsZero()) {
+                this.bag.remove(item);
+            }
             this.depositMoney(order.getTotalPrice());
         });
     }
@@ -93,11 +101,11 @@ public class User {
         return money;
     }
 
-    public Set<BagItem> getBag() {
+    public List<BagItem> getBag() {
         return bag;
     }
 
-    public void setBag(Set<BagItem> bag) {
+    public void setBag(List<BagItem> bag) {
         this.bag = bag;
     }
 }
