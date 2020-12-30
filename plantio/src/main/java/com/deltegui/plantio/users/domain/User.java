@@ -1,8 +1,8 @@
 package com.deltegui.plantio.users.domain;
 
+import com.deltegui.plantio.store.domain.Order;
 import com.deltegui.plantio.weather.domain.Coordinate;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -11,7 +11,7 @@ public class User {
     private final String password;
     private Coordinate lastPosition;
     private double money;
-    private Set<Seeds> bag;
+    private Set<BagItem> bag;
 
     public User(String name, String password, Coordinate lastPosition, double money) {
         this.name = name;
@@ -32,14 +32,41 @@ public class User {
         this(name, password, null, 0);
     }
 
-    public boolean canPay(Payable payable) {
-        return this.money >= payable.getCost();
+    public void payFor(Order order) {
+        if (this.canPay(order)) {
+            this.money -= order.getTotalPrice();
+        }
     }
 
-    public void payFor(Payable payable) {
-        if (this.canPay(payable)) {
-            this.money -= payable.getCost();
+    public boolean canPay(Order order) {
+        return this.money >= order.getTotalPrice();
+    }
+
+    public boolean canSell(Order order) {
+        var optionalItem = this.getItemFromBag(order.getItem());
+        if (optionalItem.isEmpty()) {
+            return false;
         }
+        return optionalItem.get().canSubstract(order.getAmount());
+    }
+
+    public void sell(Order order) {
+        if (! canSell(order)) {
+            return;
+        }
+        this.getItemFromBag(order.getItem()).ifPresent((BagItem item) -> {
+            item.substract(order.getAmount());
+            this.depositMoney(order.getTotalPrice());
+        });
+    }
+
+    private Optional<BagItem> getItemFromBag(String item) {
+        for (BagItem seeds : this.bag) {
+            if (seeds.getItem().equals(item)) {
+                return Optional.of(seeds);
+            }
+        }
+        return Optional.empty();
     }
 
     public void depositMoney(double income) {
@@ -66,11 +93,11 @@ public class User {
         return money;
     }
 
-    public Set<Seeds> getBag() {
+    public Set<BagItem> getBag() {
         return bag;
     }
 
-    public void setBag(Set<Seeds> bag) {
+    public void setBag(Set<BagItem> bag) {
         this.bag = bag;
     }
 }

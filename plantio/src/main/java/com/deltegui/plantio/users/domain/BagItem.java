@@ -5,18 +5,28 @@ import com.deltegui.plantio.game.domain.PlantType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class Seeds {
+public class BagItem {
     private final @NotNull PlantType item;
-    private final @NotNull @Min(1) int amount;
+    private @NotNull @Min(1) int amount;
 
-    public Seeds(PlantType item, int amount) {
+    public BagItem(PlantType item, int amount) {
         this.item = item;
         this.amount = amount;
+    }
+
+    public boolean canSubstract(int amount) {
+        return this.amount >= amount;
+    }
+
+    public void substract(int amount) {
+        if (! this.canSubstract(amount)) return;
+        this.amount -= amount;
     }
 
     public String getItem() {
         return this.item.name();
     }
+
     public int getAmount() {
         return this.amount;
     }

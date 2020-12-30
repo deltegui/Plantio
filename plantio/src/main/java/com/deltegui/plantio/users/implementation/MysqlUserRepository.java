@@ -2,7 +2,7 @@ package com.deltegui.plantio.users.implementation;
 
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.users.application.UserRepository;
-import com.deltegui.plantio.users.domain.Seeds;
+import com.deltegui.plantio.users.domain.BagItem;
 import com.deltegui.plantio.users.domain.User;
 import com.deltegui.plantio.weather.domain.Coordinate;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -123,7 +123,7 @@ public class MysqlUserRepository implements UserRepository {
 
     private void replaceBag(User user) {
         this.jdbcTemplate.update("delete from user_bag where owner = ?", user.getName());
-        for (Seeds bagItem : user.getBag()) {
+        for (BagItem bagItem : user.getBag()) {
             this.jdbcTemplate.update(
                     "insert into user_bag (owner, item, amount) values(?, ?, ?)",
                     user.getName(),
@@ -133,10 +133,10 @@ public class MysqlUserRepository implements UserRepository {
         }
     }
 
-    private Set<Seeds> loadBag(User user) {
+    private Set<BagItem> loadBag(User user) {
         return new HashSet<>(this.jdbcTemplate.query(
                 "select item, amount from user_bag where owner = ?",
-                (resultSet, number) -> new Seeds(PlantType.fromString(resultSet.getNString("item")), resultSet.getInt("amount")),
+                (resultSet, number) -> new BagItem(PlantType.fromString(resultSet.getNString("item")), resultSet.getInt("amount")),
                 user.getName()));
     }
 }

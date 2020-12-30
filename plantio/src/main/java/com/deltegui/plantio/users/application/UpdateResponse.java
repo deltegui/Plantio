@@ -1,6 +1,6 @@
 package com.deltegui.plantio.users.application;
 
-import com.deltegui.plantio.users.domain.Seeds;
+import com.deltegui.plantio.users.domain.BagItem;
 import com.deltegui.plantio.users.domain.User;
 
 import java.util.Set;
@@ -8,7 +8,7 @@ import java.util.Set;
 public final class UpdateResponse {
     private final String name;
     private final double money;
-    private final Set<Seeds> bag;
+    private final Set<BagItem> bag;
 
     public UpdateResponse(User user) {
         this.name = user.getName();
@@ -24,7 +24,7 @@ public final class UpdateResponse {
         return money;
     }
 
-    public Set<Seeds> getBag() {
+    public Set<BagItem> getBag() {
         return bag;
     }
 }

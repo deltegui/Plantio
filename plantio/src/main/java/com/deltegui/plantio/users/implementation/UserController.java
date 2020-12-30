@@ -1,7 +1,7 @@
 package com.deltegui.plantio.users.implementation;
 
 import com.deltegui.plantio.users.application.*;
-import com.deltegui.plantio.users.domain.Seeds;
+import com.deltegui.plantio.users.domain.BagItem;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public UpdateResponse update(Principal user, @Valid @RequestBody @NotNull Set<Seeds> bag) {
+    public UpdateResponse update(Principal user, @Valid @RequestBody @NotNull Set<BagItem> bag) {
         return this.updateCase.handle(new UpdateRequest(user.getName(), bag));
     }
 }
