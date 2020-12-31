@@ -1,5 +1,5 @@
 <template>
-<div v-if="$store.logged">
+<span v-if="$store.logged">
   <StoreWindow v-if="showStoreWindow" @close="closeWindow"/>
   <div class="store-panel">
     <div class="store-line">
@@ -10,7 +10,7 @@
       <img class="credit-icon" src="credito.png"/>
     </div>
   </div>
-</div>
+</span>
 </template>
 
 <script>
@@ -44,8 +44,8 @@ export default {
   left: 10px;
   top: 150px;
 
-  width: 300px;
-  height: 150px;
+  width: 130px;
+  height: auto;
 
   font-size: 20px;
 
@@ -55,7 +55,6 @@ export default {
 .store-line {
   margin-bottom: 10px;
   width: 100%;
-  vertical-align: middle;
 }
 
 .credit-icon {
@@ -76,11 +75,9 @@ export default {
 @media only screen and (max-width: 890px) {
   .store-panel {
     font-size: 15px;
-  }
-
-  .store-panel {
-    display: block;
-    top: 90px;
+    left: auto;
+    right: 10px;
+    top: 10px;
   }
 }
 </style>

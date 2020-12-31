@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      amount: 0,
+      amount: 1,
       haveMessage: false,
       message: '',
     };
