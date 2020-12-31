@@ -42,7 +42,9 @@ export default {
   },
 
   async substractFrombag(item) {
-    if (!this.findItemInBag(item)) {
+    const itemToRemove = this.findItemInBag(item);
+    console.log(itemToRemove);
+    if (!itemToRemove) {
       throw new MissingItemInBag(item);
     }
     actions.substractFromBag(item);

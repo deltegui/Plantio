@@ -72,7 +72,7 @@ io.onCommand('plant', {
   the plant will live.<br>
   Usage: plant [name] [x] [y]<br>
   Example: plant wheat d 3`,
-  handle(args) {
+  async handle(args) {
     if (args.length < 3) {
       io.writeColor('Usage: plant [name] [x coordinate] [y coordinate]. Example: plant wheat d 2<br>', 'red');
       return;
@@ -83,7 +83,7 @@ io.onCommand('plant', {
       return;
     }
     try {
-      userService.substractFrombag(name);
+      await userService.substractFrombag(name);
       plantService.add(name, numericPos);
     } catch (err) {
       io.writeColor(`${err.msg}<br>`, 'red');
