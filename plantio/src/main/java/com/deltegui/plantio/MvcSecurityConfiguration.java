@@ -28,7 +28,7 @@ public class MvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .addFilterAfter(new JwtAuthorizationFilter(createTokenProvider()), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                    .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/api/user/login", "/api/user/register").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .sessionManagement()
