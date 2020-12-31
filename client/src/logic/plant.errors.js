@@ -23,3 +23,9 @@ export class UnknownPlantType {
     this.msg = `Unknown plant name "${name}"`;
   }
 }
+
+export class CannotRecollect {
+  constructor(name) {
+    this.msg = `Cannot recollet plant "${name}". Isn't plant at maximum growth or is it dead?`;
+  }
+}

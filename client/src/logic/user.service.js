@@ -6,6 +6,7 @@ import {
 import api from '../api';
 import weatherService from './weather.service';
 import gameService from './game.service';
+import { MissingItemInBag } from './store.errors';
 
 function handleLogin(res) {
   stopMoving();
@@ -35,12 +36,21 @@ export default {
     }).then(handleLogin);
   },
 
-  addToBag(item) {
+  async addToBag(item) {
     actions.addToBag(item);
+    return api.user.update(store.user.token, store.user);
   },
 
-  substractFrombag(item) {
+  async substractFrombag(item) {
+    if (!this.findItemInBag(item)) {
+      throw new MissingItemInBag(item);
+    }
     actions.substractFromBag(item);
+    return api.user.update(store.user.token, store.user);
+  },
+
+  findItemInBag(item) {
+    return store.user.bag.find((element) => element.item === item);
   },
 
   getBag() {

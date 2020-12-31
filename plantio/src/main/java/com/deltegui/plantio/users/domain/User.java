@@ -6,6 +6,8 @@ import com.deltegui.plantio.weather.domain.Coordinate;
 import java.util.*;
 
 public class User {
+    private static final double DEFAULT_MONEY = 10;
+
     private final String name;
     private final String password;
     private Coordinate lastPosition;
@@ -21,7 +23,7 @@ public class User {
     }
 
     public User(String name, String password, Coordinate lastPosition) {
-        this(name, password, lastPosition, 0);
+        this(name, password, lastPosition, DEFAULT_MONEY);
     }
 
     public User(String name, String password, double money) {
@@ -29,7 +31,7 @@ public class User {
     }
 
     public User(String name, String password) {
-        this(name, password, null, 0);
+        this(name, password, null, DEFAULT_MONEY);
     }
 
     public void payFor(Order order) {

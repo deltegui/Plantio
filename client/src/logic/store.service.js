@@ -4,10 +4,7 @@ import {
   MissingItemInBag,
 } from './store.errors';
 import ApiError from './api.errors';
-
-function findItemInBag(item) {
-  return store.user.bag.find((element) => element.item === item);
-}
+import userService from './user.service';
 
 function updateUser(result) {
   store.user.bag = result.user.bag;
@@ -25,7 +22,7 @@ export default {
   },
 
   async sell({ item, amount }) {
-    const bagItem = findItemInBag(item);
+    const bagItem = userService.findItemInBag(item);
     if (!bagItem) {
       throw new MissingItemInBag(item);
     }

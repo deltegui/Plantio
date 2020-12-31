@@ -2,6 +2,7 @@ import io from '../console';
 import plantService from '../logic/plant.service';
 import gameService from '../logic/game.service';
 import inputService from '../logic/input.service';
+import userService from '../logic/user.service';
 
 function parseInputCoordinate({ x, y }) {
   try {
@@ -82,6 +83,7 @@ io.onCommand('plant', {
       return;
     }
     try {
+      userService.substractFrombag(name);
       plantService.add(name, numericPos);
     } catch (err) {
       io.writeColor(`${err.msg}<br>`, 'red');
@@ -159,6 +161,23 @@ io.onCommand('rm', {
   Example: rm d 3`,
   handle(args) {
     callExtractingPosFromArgs(args, plantService.deleteForPosition.bind(plantService));
+  },
+});
+
+io.onCommand('recoll', {
+  help: `Recollects a plant. It'll give you seeds. You need to pass the coordinate where
+  the plant lives.<br>
+  Usage: recoll [x] [y]<br>
+  Example: recoll d 3`,
+  handle(args) {
+    const pos = parsePositionFromArgs(args);
+    if (!pos) return;
+    try {
+      const amount = plantService.recollectPlant(pos);
+      io.writeln(`Plant gives you ${amount} seeds!`);
+    } catch (err) {
+      io.writeColor(`${err.msg}<br>`, 'orange');
+    }
   },
 });
 
