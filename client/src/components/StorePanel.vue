@@ -1,15 +1,39 @@
 <template>
-<div class="store-panel" v-if="$store.logged">
-  <div class="store-line">
+<div v-if="$store.logged">
+  <StoreWindow v-if="showStoreWindow" @close="closeWindow"/>
+  <div class="store-panel">
+    <div class="store-line">
+      <button class="field fynd-btn store-button " v-on:click="openWindow">
+        <img class="store-icon" src="store-icon.png"/>
+      </button>
       {{ $store.user.money }}
-      <img src="credito.png"/>
+      <img class="credit-icon" src="credito.png"/>
+    </div>
   </div>
 </div>
 </template>
 
 <script>
+import StoreWindow from './StoreWindow.vue';
+
 export default {
   name: 'StorePanel',
+  components: {
+    StoreWindow,
+  },
+  data() {
+    return {
+      showStoreWindow: false,
+    };
+  },
+  methods: {
+    closeWindow() {
+      this.showStoreWindow = false;
+    },
+    openWindow() {
+      this.showStoreWindow = true;
+    },
+  },
 };
 </script>
 
@@ -18,7 +42,7 @@ export default {
 .store-panel {
   position: absolute;
   left: 10px;
-  top: 130px;
+  top: 150px;
 
   width: 300px;
   height: 150px;
@@ -34,8 +58,23 @@ export default {
   vertical-align: middle;
 }
 
-.store-line > img {
-    height: 17px;
+.store-line button {
+  display: inline;
+}
+
+.credit-icon {
+  height: 17px;
+}
+
+.store-icon {
+  height: 37px;
+}
+
+.store-button {
+  background-color: rgba(0, 0, 0, 0);
+  width: auto;
+  height: auto;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 890px) {
@@ -45,6 +84,7 @@ export default {
 
   .store-panel {
     display: block;
+    top: 90px;
   }
 }
 </style>
