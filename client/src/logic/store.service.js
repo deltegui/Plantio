@@ -9,13 +9,16 @@ function findItemInBag(item) {
   return store.user.bag.find((element) => element.item === item);
 }
 
+function updateUser(result) {
+  store.user.bag = result.user.bag;
+  store.user.money = result.user.money;
+  return result;
+}
+
 export default {
   async buy({ item, amount }) {
     return api.store.buy(store.user.token, { item, amount })
-      .then((result) => {
-        console.log(result);
-        return result;
-      })
+      .then(updateUser)
       .catch((error) => {
         throw new ApiError(error);
       });
@@ -27,12 +30,13 @@ export default {
       throw new MissingItemInBag(item);
     }
     return api.store.sell(store.user.token, { item, amount })
-      .then((result) => {
-        console.log(result);
-        return result;
-      })
+      .then(updateUser)
       .catch((error) => {
         throw new ApiError(error);
       });
+  },
+
+  async getAll() {
+    return api.store.getAll(store.user.token);
   },
 };

@@ -11,27 +11,31 @@
       </span>
     </div>
     <div id="cards">
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
-      <StoreCard/>
+      <span :key=name v-for="{ amount, price, name } in storeItems">
+        <StoreCard :max=amount :price=price :seedsType=name />
+      </span>
     </div>
   </div>
 </template>
 
 <script>
 import StoreCard from './StoreCard.vue';
+import storeService from '../logic/store.service';
 
 export default {
   name: 'StoreWindow',
+  data() {
+    return {
+      storeItems: [],
+    };
+  },
   components: {
     StoreCard,
+  },
+  mounted() {
+    storeService.getAll().then((items) => {
+      this.storeItems = items;
+    });
   },
   methods: {
     handleClose() {
@@ -96,6 +100,13 @@ export default {
   border-radius: 10px;
   box-shadow: #404040 0px 0px 20px;
   padding: 20px;
+}
+
+.btn-spin {
+  display: inline;
+  width: 49px;
+  margin-left: 30px;
+  padding-left: 5px;
 }
 
 @media only screen and (max-width: 890px) {

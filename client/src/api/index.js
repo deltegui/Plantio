@@ -40,10 +40,16 @@ const userBagToServer = (bag) => bag.map(({ item, amount }) => ({ item: item.toU
 
 const userBagToSystem = (bag) => bag.map(({ item, amount }) => ({ item: item.toLowerCase(), amount }));
 
-const transactionToSystem = ({ order, user }) => ({
+const transactionToSystem = ({ order, user: { name, money, bag } }) => ({
   order: Object.assign(order, { item: order.item.toLowerCase() }),
-  user,
+  user: {
+    name,
+    money,
+    bag: userBagToSystem(bag),
+  },
 });
+
+const storeItemsToSystem = (items) => items.map(({ amount, price, name }) => ({ amount, price, name: name.toLowerCase() }));
 
 function userToSystem({
   name,
@@ -85,6 +91,14 @@ export default {
         endpoint: `/store/sell/${item.toUpperCase()}/${amount}`,
         token,
       }).then(transactionToSystem);
+    },
+
+    async getAll(token) {
+      return makeRequest({
+        method: 'GET',
+        endpoint: '/store',
+        token,
+      }).then(storeItemsToSystem);
     },
   },
   user: {

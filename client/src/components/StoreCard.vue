@@ -1,22 +1,84 @@
 <template>
-  <div class='store-card'>
-    <img src="bag_cactus.png"/>
-    <h4>Cactus seeds</h4>
-    <p>2 <img src="credito.png"/> / unit</p>
-    <span>
-      <input type="number" class="field" min="1" value="0"/>
-      <ButtonSpin text="Buy"/>
-    </span>
+  <div class="store-card" v-if="haveMessage">
+    <div class="field danger-field">
+      {{message}}
+    </div>
+    <span></span>
+    <button v-on:click="messageOkClick" class="field fynd-btn">Ok</button>
+  </div>
+  <div class='store-card' v-else>
+    <img :src="imgName"/>
+    <h4>{{seedsType}} seeds</h4>
+    <p>{{price}} <img src="credito.png"/> / unit</p>
+    <NumericInput :max="max" :min="0" v-on:change="amountChange" />
+    <p>Total {{total}} <img src="credito.png"/></p>
+    <ButtonSpin text="Buy" v-on:click="buyClick"/>
   </div>
 </template>
 
 <script>
 import ButtonSpin from './ButtonSpin.vue';
+import NumericInput from './NumericInput.vue';
+import storeService from '../logic/store.service';
 
 export default {
   name: 'StoreCard',
   components: {
+    NumericInput,
     ButtonSpin,
+  },
+  props: {
+    price: {
+      type: Number,
+      required: true,
+    },
+    max: {
+      type: Number,
+      required: true,
+    },
+    seedsType: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      amount: 0,
+      haveMessage: false,
+      message: '',
+    };
+  },
+  methods: {
+    amountChange(value) {
+      this.amount = value;
+    },
+
+    buyClick(stop) {
+      storeService.buy({ item: this.seedsType, amount: this.amount })
+        .then(() => {
+          this.message = 'Done!';
+        })
+        .catch((err) => {
+          this.message = err.msg;
+        })
+        .then(() => {
+          this.haveMessage = true;
+          stop();
+          this.amount = 0;
+        });
+    },
+
+    messageOkClick() {
+      this.haveMessage = false;
+    },
+  },
+  computed: {
+    total() {
+      return this.amount * this.price;
+    },
+    imgName() {
+      return `bag_${this.seedsType.toLowerCase()}.png`;
+    },
   },
 };
 </script>
@@ -25,12 +87,12 @@ export default {
 .store-card {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 150px 40px 50px 160px;
+  grid-template-rows: 150px 40px 50px 40px 50px;
 
   background-color: #444444;
 
   justify-content: stretch;
-  height: 360px;
+  height: 400px;
   padding: 10px;
 
   border-style: solid;
@@ -53,6 +115,10 @@ export default {
 .store-card img {
   height: 150px;
   width: auto;
+  justify-self: center;
+}
+
+.store-card span {
   justify-self: center;
 }
 

@@ -1,24 +1,25 @@
 package com.deltegui.plantio.store.implementation;
 
 import com.deltegui.plantio.game.domain.PlantType;
-import com.deltegui.plantio.store.application.BuyCase;
-import com.deltegui.plantio.store.application.SellCase;
-import com.deltegui.plantio.store.application.TransactionRequest;
-import com.deltegui.plantio.store.application.TransactionResult;
+import com.deltegui.plantio.store.application.*;
 import com.deltegui.plantio.store.domain.Order;
+import com.deltegui.plantio.store.domain.StoreItem;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/store")
 public final class StoreController {
     private final BuyCase buyCase;
     private final SellCase sellCase;
+    private final StoreRepository storeRepository;
 
-    public StoreController(BuyCase buyCase, SellCase sellCase) {
+    public StoreController(BuyCase buyCase, SellCase sellCase, StoreRepository storeRepository) {
         this.buyCase = buyCase;
         this.sellCase = sellCase;
+        this.storeRepository = storeRepository;
     }
 
     @PostMapping("/buy/{item}/{amount}")
@@ -37,5 +38,10 @@ public final class StoreController {
                 PlantType.fromString(item),
                 amount
         ));
+    }
+
+    @GetMapping()
+    public List<StoreItem> getAll() {
+        return this.storeRepository.getAll();
     }
 }

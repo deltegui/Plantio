@@ -118,6 +118,23 @@ public class StoreTest {
         assertEquals(6, storeItem.getAmount());
     }
 
+    @Test
+    public void shouldSellAllItemsOfType() {
+        var storeItem = createStoreItemWithAmountPrice(1, 4);
+        var user = createUserWithMoneyBag(1, createBagItem(8));
+        var seeds = createSeeds(8);
+
+        var storeRepo = mock(StoreRepository.class);
+        when(storeRepo.getByItem(any())).thenReturn(storeItem);
+        var store = new Store(storeRepo);
+
+        store.sell(user, seeds);
+
+        assertEquals(0, user.getBag().size());
+        assertEquals(33, user.getMoney());
+        assertEquals(9, storeItem.getAmount());
+    }
+
     private User createUserWithMoney(double money) {
         return new User("manolo", "manolo", money);
     }

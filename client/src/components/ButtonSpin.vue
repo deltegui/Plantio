@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="doWork" class="field fynd-btn">
+  <button v-on:click="doWork" class="field fynd-btn btn-spin">
     <div class="centered-spinner" v-if="working">
     <Spinner/>
     </div>
@@ -39,6 +39,7 @@ export default {
 
 <style scoped>
 .centered-spinner {
+  width: 20px;
   margin-left: auto;
   margin-right: auto;
 }

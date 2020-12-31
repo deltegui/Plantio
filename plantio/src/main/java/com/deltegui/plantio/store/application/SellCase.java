@@ -2,7 +2,6 @@ package com.deltegui.plantio.store.application;
 
 import com.deltegui.plantio.common.DomainException;
 import com.deltegui.plantio.common.UseCase;
-import com.deltegui.plantio.store.domain.Order;
 import com.deltegui.plantio.users.application.UserErrors;
 import com.deltegui.plantio.users.application.UserRepository;
 import org.springframework.stereotype.Service;

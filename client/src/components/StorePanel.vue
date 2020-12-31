@@ -3,7 +3,7 @@
   <StoreWindow v-if="showStoreWindow" @close="closeWindow"/>
   <div class="store-panel">
     <div class="store-line">
-      <button class="field fynd-btn store-button " v-on:click="openWindow">
+      <button class="field fynd-btn store-button" v-on:click="openWindow">
         <img class="store-icon" src="store-icon.png"/>
       </button>
       {{ $store.user.money }}
@@ -58,10 +58,6 @@ export default {
   vertical-align: middle;
 }
 
-.store-line button {
-  display: inline;
-}
-
 .credit-icon {
   height: 17px;
 }
@@ -71,7 +67,7 @@ export default {
 }
 
 .store-button {
-  background-color: rgba(0, 0, 0, 0);
+  display: inline;
   width: auto;
   height: auto;
   padding: 5px;

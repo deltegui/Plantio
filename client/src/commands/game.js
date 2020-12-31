@@ -23,6 +23,40 @@ io.onCommand('save', {
   },
 });
 
+io.onCommand('bag', {
+  help: 'Shows items in your bag',
+  handle() {
+    userService.getBag().forEach((item) => {
+      io.writeColor(item.item, 'green');
+      io.write(': ');
+      io.writeColor(item.amount, 'orange');
+      io.writeln();
+    });
+  },
+});
+
+io.onCommand('sell', {
+  help: `sell items from your bag
+  Usage: sell [item] [amount]`,
+  async handle(args) {
+    if (args.length < 2) {
+      io.writeColor('You must pass an item name and an amount to buy<br>', 'red');
+      return;
+    }
+    const [item, rawAmount] = args;
+    const amount = parseAmount(rawAmount);
+    if (!amount) {
+      io.writeColor('Amount must be a positive number!<br>', 'red');
+      return;
+    }
+    try {
+      await storeService.sell({ item, amount });
+    } catch (err) {
+      io.writeColor(`${err.msg}<br>`, 'red');
+    }
+  },
+});
+
 if (process.env.NODE_ENV !== 'production') {
   io.onCommand('add-bag', {
     help: `[DEBUG] add bag an item.
@@ -56,9 +90,9 @@ if (process.env.NODE_ENV !== 'production') {
     },
   });
 
-  io.onCommand('buym', {
-    help: `[DEBUG] buy manually from store
-    Usage: buym [item] [amount]`,
+  io.onCommand('buy', {
+    help: `[DEBUG] buy items from store
+    Usage: buy [item] [amount]`,
     async handle(args) {
       if (args.length < 2) {
         io.writeColor('You must pass an item name and an amount to buy<br>', 'red');
@@ -72,28 +106,6 @@ if (process.env.NODE_ENV !== 'production') {
       }
       try {
         await storeService.buy({ item, amount });
-      } catch (err) {
-        io.writeColor(`${err.msg}<br>`, 'red');
-      }
-    },
-  });
-
-  io.onCommand('sellm', {
-    help: `[DEBUG] sell manually from your bag
-    Usage: sellm [item] [amount]`,
-    async handle(args) {
-      if (args.length < 2) {
-        io.writeColor('You must pass an item name and an amount to buy<br>', 'red');
-        return;
-      }
-      const [item, rawAmount] = args;
-      const amount = parseAmount(rawAmount);
-      if (!amount) {
-        io.writeColor('Amount must be a positive number!<br>', 'red');
-        return;
-      }
-      try {
-        await storeService.sell({ item, amount });
       } catch (err) {
         io.writeColor(`${err.msg}<br>`, 'red');
       }
