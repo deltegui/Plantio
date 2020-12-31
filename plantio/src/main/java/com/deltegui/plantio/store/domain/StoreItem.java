@@ -17,7 +17,7 @@ public class StoreItem {
     }
 
     public static StoreItem createDefault(PlantType type) {
-        return new StoreItem(type, 0, 2);
+        return new StoreItem(type, 10, 2);
     }
 
     public boolean isOfType(PlantType type) {

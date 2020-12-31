@@ -10,7 +10,7 @@
     <img :src="imgName"/>
     <h4>{{seedsType}} seeds</h4>
     <p>{{price}} <img src="credito.png"/> / unit</p>
-    <NumericInput :max="max" :min="0" v-on:change="amountChange" />
+    <NumericInput :max="max" :min="1" v-on:change="amountChange" />
     <p>Total {{total}} <img src="credito.png"/></p>
     <ButtonSpin text="Buy" v-on:click="buyClick"/>
   </div>
