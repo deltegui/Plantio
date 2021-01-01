@@ -1,6 +1,7 @@
 <template>
 <main>
   <DayNightCycle/>
+  <LogoPanel/>
   <InfoPanel/>
   <StorePanel/>
   <div id="main-container">
@@ -16,6 +17,7 @@ import LeftPanel from './components/LeftPanel.vue';
 import DayNightCycle from './components/DayNightCycle.vue';
 import InfoPanel from './components/InfoPanel.vue';
 import StorePanel from './components/StorePanel.vue';
+import LogoPanel from './components/LogoPanel.vue';
 
 export default {
   name: 'App',
@@ -25,6 +27,7 @@ export default {
     DayNightCycle,
     InfoPanel,
     StorePanel,
+    LogoPanel,
   },
 };
 </script>
