@@ -84,8 +84,14 @@ io.onCommand('plant', {
     }
     try {
       await userService.substractFrombag(name);
+    } catch (err) {
+      io.writeColor(`${err.msg}<br>`, 'red');
+      return;
+    }
+    try {
       plantService.add(name, numericPos);
     } catch (err) {
+      await userService.addToBag(name);
       io.writeColor(`${err.msg}<br>`, 'red');
     }
   },

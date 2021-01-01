@@ -63,6 +63,7 @@ create table weather_snapshots(
 
 create table store(
 	item varchar(255) primary key,
-    amount int unsigned not null default 0,
+    amount int unsigned not null default 50,
+    old_amount int unsigned not null default 50,
     price double not null default 2
 );

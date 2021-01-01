@@ -13,6 +13,7 @@ import {
 } from './plant.errors';
 import gameService from './game.service';
 import userService from './user.service';
+import api from '../api';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max)) + 1;
@@ -93,6 +94,7 @@ export default {
       userService.addToBag(plant.plant);
     }
     this.deleteForPosition(position);
+    api.user.update(store.user.token, store.user);
     return seeds;
   },
 

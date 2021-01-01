@@ -21,14 +21,14 @@ public class MysqlStoreRepository implements StoreRepository {
     @Override
     public List<StoreItem> getAll() {
         return this.jdbcTemplate.query(
-                "select item, amount, price from store",
+                "select item, amount, old_amount, price from store",
                 this::parseStoreItem);
     }
 
     @Override
     public StoreItem getByItem(PlantType itemType) {
         var itemList = this.jdbcTemplate.query(
-                "select item, amount, price from store where item = ?",
+                "select item, amount, old_amount, price from store where item = ?",
                 this::parseStoreItem,
                 itemType.name()
         );
@@ -42,6 +42,7 @@ public class MysqlStoreRepository implements StoreRepository {
         return new StoreItem(
                 PlantType.fromString(rs.getNString("item")),
                 rs.getInt("amount"),
+                rs.getInt("old_amount"),
                 rs.getDouble("price")
         );
     }
@@ -49,9 +50,10 @@ public class MysqlStoreRepository implements StoreRepository {
     @Override
     public void update(StoreItem item) {
         this.jdbcTemplate.update(
-                "update store set amount = ?, price = ? where item = ?",
+                "update store set amount = ?, price = ?, old_amount = ? where item = ?",
                 item.getAmount(),
                 item.getPrice(),
+                item.getOldAmount(),
                 item.getName()
         );
     }
@@ -59,8 +61,9 @@ public class MysqlStoreRepository implements StoreRepository {
     @Override
     public void add(StoreItem item) {
         this.jdbcTemplate.update(
-                "insert into store (amount, price, item) values (?, ? ,?)",
+                "insert into store (amount, old_amount, price, item) values (?, ?, ?, ?)",
                 item.getAmount(),
+                item.getOldAmount(),
                 item.getPrice(),
                 item.getName()
         );

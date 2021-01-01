@@ -146,7 +146,7 @@ public class StoreTest {
     }
 
     private StoreItem createStoreItemWithAmountPrice(int amount, double price) {
-        return new StoreItem(PlantType.CACTUS, amount, price);
+        return new StoreItem(PlantType.CACTUS, amount, amount, price);
     }
 
     private Seeds createSeeds(int amount) {
