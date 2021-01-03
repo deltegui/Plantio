@@ -32,6 +32,8 @@ export default {
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
+
+  z-index: 1;
 }
 
 @media only screen and (max-width: 890px) {

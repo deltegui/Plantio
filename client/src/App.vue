@@ -1,6 +1,7 @@
 <template>
 <main>
   <DayNightCycle/>
+  <Rain/>
   <LogoPanel/>
   <InfoPanel/>
   <StorePanel/>
@@ -15,6 +16,7 @@
 import Game from './components/Game.vue';
 import LeftPanel from './components/LeftPanel.vue';
 import DayNightCycle from './components/DayNightCycle.vue';
+import Rain from './components/Rain.vue';
 import InfoPanel from './components/InfoPanel.vue';
 import StorePanel from './components/StorePanel.vue';
 import LogoPanel from './components/LogoPanel.vue';
@@ -25,6 +27,7 @@ export default {
     Game,
     LeftPanel,
     DayNightCycle,
+    Rain,
     InfoPanel,
     StorePanel,
     LogoPanel,

@@ -11,7 +11,7 @@ export default Vue.observable({
   weather: {
     poblation: 'Unkown',
     temperature: 0,
-    state: 'rainy',
+    state: 'clear',
     sunset: 0,
     sunrise: 0,
   },
