@@ -27,17 +27,17 @@ public class WeatherReportTest {
                 arguments(
                         createPlant(100, PlantType.WHEAT, 6),
                         createReport(WeatherState.CLEAR, 24),
-                        85.35
+                        79.35
                 ),
                 arguments(
                         createPlant(100, PlantType.WHEAT, 1),
                         createReport(WeatherState.CLEAR, 24),
-                        97.35
+                        96.15
                 ),
                 arguments(
                         createPlant(50, PlantType.CACTUS, 6),
                         createReport(WeatherState.RAIN, 30),
-                        85.99
+                        100.0
                 ),
                 arguments(
                         createPlant(50, PlantType.WHEAT, 20),
@@ -62,7 +62,7 @@ public class WeatherReportTest {
                 arguments(
                         createPlant(50, PlantType.WHEAT, 6),
                         createReport(WeatherState.CLEAR, -2),
-                        49.4
+                        49.16
                 )
         );
     }

@@ -127,7 +127,7 @@ public class LoadCaseTest {
                         0,
                         new Position(0 ,0),
                         100,
-                        24,
+                        9,
                         LocalDateTime.now().minus(1, ChronoUnit.SECONDS)
                 )
         );

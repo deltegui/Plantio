@@ -27,12 +27,12 @@ public class PlantTest {
 
     @ParameterizedTest
     @MethodSource
-    public void plantShouldGrowIfIsWetAndPassEnoughtTime(Plant plant, WeatherReport report, int expectedPhase) {
+    public void plantShouldGrowIfIsWetAndPassEnoughTime(Plant plant, WeatherReport report, int expectedPhase) {
         plant.applyWeather(report);
         assertEquals(expectedPhase, plant.getPhase());
     }
 
-    public static Stream<Arguments> plantShouldGrowIfIsWetAndPassEnoughtTime() {
+    public static Stream<Arguments> plantShouldGrowIfIsWetAndPassEnoughTime() {
         return Stream.of(
                 arguments(
                         createPlant(100, PlantType.WHEAT, 6, WateredState.WET),
@@ -40,7 +40,7 @@ public class PlantTest {
                         0
                 ),
                 arguments(
-                        createPlant(100, PlantType.WHEAT, Duration.ofDays(3).toHours(), WateredState.WET),
+                        createPlant(100, PlantType.WHEAT, Duration.ofHours(27).toHours(), WateredState.WET),
                         createReport(WeatherState.RAIN, 20),
                         3
                 ),
@@ -72,7 +72,7 @@ public class PlantTest {
         var later = createReport(WeatherState.RAIN, 22, Duration.ofDays(3).toHours());
         plant.applyWeather(report);
         plant.applyWeather(later);
-        assertEquals(2, plant.getPhase());
+        assertEquals(5, plant.getPhase());
     }
 
     @ParameterizedTest
