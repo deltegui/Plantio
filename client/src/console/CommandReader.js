@@ -1,5 +1,3 @@
-import config from '../config';
-
 function createTyper() {
   const typer = document.createElement('textarea');
   typer.autocomplete = 'off';
@@ -10,7 +8,23 @@ function createTyper() {
   return typer;
 }
 
+function isInMobile() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/windows phone/i.test(userAgent)) {
+    return true;
+  }
+  if (/android/i.test(userAgent)) {
+    return true;
+  }
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return true;
+  }
+  return false;
+}
+
 const body = document.getElementsByTagName('body')[0];
+const isMobile = isInMobile();
+console.log(`Mobile? ${isMobile}`);
 
 const timestampComparer = {
   minimumTimePassed: 50,
@@ -23,8 +37,7 @@ const timestampComparer = {
   },
 
   notPassedEnoughTime() {
-    const delayConfig = config.get('delay');
-    if (delayConfig) {
+    if (isMobile) {
       return this.lastDifference <= this.minimumTimePassed;
     }
     return false;
