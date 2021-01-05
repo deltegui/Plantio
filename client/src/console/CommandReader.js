@@ -10,6 +10,21 @@ function createTyper() {
 
 const body = document.getElementsByTagName('body')[0];
 
+const timestampComparer = {
+  minimumTimePassed: 50,
+  lastEventTimeStamp: 0,
+  lastDifference: 0,
+
+  updateDifference(evt) {
+    this.lastDifference = evt.timeStamp - this.lastEventTimeStamp;
+    this.lastEventTimeStamp = evt.timeStamp;
+  },
+
+  notPassedEnoughTime() {
+    return this.lastDifference <= this.minimumTimePassed;
+  },
+};
+
 export default class CommandReader {
   constructor(commandRootElement) {
     this.consoleIO = commandRootElement;
@@ -45,6 +60,10 @@ export default class CommandReader {
       this.handleBackspace();
       return;
     }
+    timestampComparer.updateDifference(evt);
+    if (timestampComparer.notPassedEnoughTime()) {
+      return;
+    }
     this.readedCommand += key;
     this.consoleIO.innerHTML += key;
   }
@@ -74,7 +93,7 @@ export default class CommandReader {
 
   async emitCommand(command) {
     const args = command.split(' ').filter((str) => str.length !== 0);
-    const name = args.shift();
+    const name = args.shift().toLowerCase();
     await this.enterPressed(name, args);
   }
 }
