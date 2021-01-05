@@ -2,6 +2,7 @@ import io from '../console';
 import gameService from '../logic/game.service';
 import userService from '../logic/user.service';
 import storeService from '../logic/store.service';
+import config from '../config';
 
 function parseAmount(rawAmount) {
   const value = parseInt(rawAmount, 10);
@@ -20,6 +21,22 @@ io.onCommand('save', {
     return gameService.saveGame()
       .then(() => io.writeln('Game saved!'))
       .catch(() => io.writeColor('Failed!<br>', 'red'));
+  },
+});
+
+io.onCommand('enable-delay', {
+  help: 'Enables delay mode. Usefull in mobile devices',
+  async handle() {
+    config.set('delay', 1);
+    io.writeColor('Delay mode enabled!<br>', 'green');
+  },
+});
+
+io.onCommand('disable-delay', {
+  help: 'Disables delay mode.',
+  async handle() {
+    config.delete('delay');
+    io.writeColor('Delay mode disabled!<br>', 'green');
   },
 });
 

@@ -1,3 +1,5 @@
+import config from '../config';
+
 function createTyper() {
   const typer = document.createElement('textarea');
   typer.autocomplete = 'off';
@@ -21,7 +23,11 @@ const timestampComparer = {
   },
 
   notPassedEnoughTime() {
-    return this.lastDifference <= this.minimumTimePassed;
+    const delayConfig = config.get('delay');
+    if (delayConfig) {
+      return this.lastDifference <= this.minimumTimePassed;
+    }
+    return false;
   },
 };
 
