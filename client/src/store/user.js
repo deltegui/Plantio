@@ -4,6 +4,7 @@ export function login({
   name,
   money,
   bag,
+  bagSize,
   token,
 }) {
   store.logged = true;
@@ -11,6 +12,7 @@ export function login({
     name,
     money,
     bag,
+    bagSize,
     token: token.value,
   };
 }

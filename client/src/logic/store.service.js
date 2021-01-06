@@ -9,6 +9,7 @@ import userService from './user.service';
 function updateUser(result) {
   store.user.bag = result.user.bag;
   store.user.money = result.user.money;
+  store.user.bagSize = result.user.bagSize;
   return result;
 }
 

@@ -40,12 +40,21 @@ const userBagToServer = (bag) => bag.map(({ item, amount }) => ({ item: item.toU
 
 const userBagToSystem = (bag) => bag.map(({ item, amount }) => ({ item: item.toLowerCase(), amount }));
 
-const transactionToSystem = ({ order, user: { name, money, bag } }) => ({
+const transactionToSystem = ({
+  order,
+  user: {
+    name,
+    money,
+    bag,
+    bagSize,
+  },
+}) => ({
   order: Object.assign(order, { item: order.item.toLowerCase() }),
   user: {
     name,
     money,
     bag: userBagToSystem(bag),
+    bagSize,
   },
 });
 
@@ -56,12 +65,14 @@ function userToSystem({
   money,
   bag,
   token,
+  bagSize,
 }) {
   return {
     name,
     money,
     bag: userBagToSystem(bag),
     token,
+    bagSize,
   };
 }
 

@@ -58,4 +58,17 @@ export default {
   getBag() {
     return store.user.bag;
   },
+
+  getBagMaxSize() {
+    return store.user.bagSize;
+  },
+
+  sumElementsInBag() {
+    return store.user.bag.reduce((sum, current) => current.amount + sum, 0);
+  },
+
+  getBagOccupation() {
+    const currentElements = this.sumElementsInBag();
+    return Math.round((currentElements / store.user.bagSize) * 100);
+  },
 };

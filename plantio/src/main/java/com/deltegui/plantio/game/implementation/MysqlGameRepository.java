@@ -76,8 +76,8 @@ public class MysqlGameRepository implements GameRepository {
         return this.jdbcTemplate.query(
                 "select pos_x, pos_y, plant_name, phase, watered, humidity, hours_wet, last_applied_report_date from saved_plants where save_user = ?",
                 (resultSet, number) -> new Plant(
-                        PlantType.fromString(resultSet.getNString("plant_name")),
-                        WateredState.fromString(resultSet.getNString("watered")),
+                        PlantType.valueOf(resultSet.getNString("plant_name")),
+                        WateredState.valueOf(resultSet.getNString("watered")),
                         resultSet.getInt("phase"),
                         new Position(resultSet.getInt("pos_x"), resultSet.getInt("pos_y")),
                         resultSet.getDouble("humidity"),

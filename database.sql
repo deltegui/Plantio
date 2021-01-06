@@ -12,7 +12,8 @@ create table users(
     password varchar(255) not null,
     latitude double,
     longitude double,
-    money double default 0
+    money double default 0,
+    bag_size int unsigned default 10
 );
 
 create table user_bag(

@@ -10,12 +10,14 @@ public final class SessionResponse {
     private final String name;
     private final double money;
     private final List<BagItem> bag;
+    private final int bagSize;
     private final Token token;
 
     public SessionResponse(User user, Token token) {
         this.name = user.getName();
         this.money = user.getMoney();
         this.bag = user.getBag();
+        this.bagSize = user.getBagSize();
         this.token = token;
     }
 
@@ -33,5 +35,9 @@ public final class SessionResponse {
 
     public List<BagItem> getBag() {
         return bag;
+    }
+
+    public int getBagSize() {
+        return bagSize;
     }
 }

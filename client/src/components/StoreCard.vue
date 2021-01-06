@@ -8,7 +8,7 @@
   </div>
   <div class='store-card' v-else>
     <img :src="imgName"/>
-    <h4>{{seedsType}} seeds</h4>
+    <h4>{{name}}</h4>
     <p>{{price}} <img src="credito.png"/> / unit</p>
     <NumericInput :max="max" :min="1" v-on:change="amountChange" />
     <p>Total {{total}} <img src="credito.png"/></p>
@@ -64,7 +64,7 @@ export default {
         .then(() => {
           this.haveMessage = true;
           stop();
-          this.amount = 0;
+          this.amount = 1;
         });
     },
 
@@ -77,7 +77,10 @@ export default {
       return this.amount * this.price;
     },
     imgName() {
-      return `bag_${this.seedsType.toLowerCase()}.png`;
+      return `store_${this.seedsType.toLowerCase()}.png`;
+    },
+    name() {
+      return this.seedsType.split('_').join(' ');
     },
   },
 };

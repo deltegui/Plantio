@@ -29,3 +29,9 @@ export class CannotRecollect {
     this.msg = `Cannot recollet plant "${name}". Isn't plant at maximum growth or is it dead?`;
   }
 }
+
+export class ReachedBagMaxOccupation {
+  constructor() {
+    this.msg = 'You reached your bag maximum size. Buy more.';
+  }
+}

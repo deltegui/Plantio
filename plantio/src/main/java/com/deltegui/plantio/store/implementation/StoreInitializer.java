@@ -1,7 +1,7 @@
 package com.deltegui.plantio.store.implementation;
 
-import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.StoreRepository;
+import com.deltegui.plantio.store.domain.ItemType;
 import com.deltegui.plantio.store.domain.StoreItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +25,15 @@ public class StoreInitializer {
         return new StoreInitializer(new MysqlStoreRepository(jdbcTemplate));
     }
 
-    public void ensureThereAreSeedsInStore() {
+    public void ensureThereAreItemsInStore() {
         this.existingItems = storeRepository.getAll();
-        PlantType[] availableTypes = PlantType.values();
-        for (PlantType type : availableTypes) {
+        ItemType[] availableTypes = ItemType.values();
+        for (ItemType type : availableTypes) {
             createIfNotExists(type);
         }
     }
 
-    private void createIfNotExists(PlantType type) {
+    private void createIfNotExists(ItemType type) {
         existingItems
                 .stream()
                 .filter(item -> item.isOfType(type))
@@ -41,7 +41,7 @@ public class StoreInitializer {
                 .or(() -> this.createDefaultItem(type));
     }
 
-    private Optional<StoreItem> createDefaultItem(PlantType type) {
+    private Optional<StoreItem> createDefaultItem(ItemType type) {
         logger.info("Creating store item for " + type.name());
         var storeItem = StoreItem.createDefault(type);
         storeRepository.add(storeItem);

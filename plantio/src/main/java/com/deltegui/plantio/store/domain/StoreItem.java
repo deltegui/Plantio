@@ -1,32 +1,32 @@
 package com.deltegui.plantio.store.domain;
 
-import com.deltegui.plantio.game.domain.PlantType;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import com.deltegui.plantio.users.domain.User;
 
 public class StoreItem {
-    private final static double BASE_PRICE = 2;
-    private final static int INITIAL_AMOUNT = 50;
-
-    private final @NotNull PlantType item;
-    private @NotNull @Min(1) int amount;
+    private final ItemType item;
+    private int amount;
     private int oldAmount;
-    private @NotNull @Min(0) double price;
+    private double price;
 
-    public StoreItem(PlantType item, int amount, int oldAmount, double price) {
+    public StoreItem(ItemType item, int amount, int oldAmount, double price) {
         this.item = item;
         this.amount = amount;
         this.oldAmount = oldAmount;
         this.price = price;
     }
 
-    public static StoreItem createDefault(PlantType type) {
-        return new StoreItem(type, INITIAL_AMOUNT, INITIAL_AMOUNT, BASE_PRICE);
+    public static StoreItem createDefault(ItemType type) {
+        final int initialAmount = type.getInitialAmount();
+        final double basePrice = type.getBasePrice();
+        return new StoreItem(type, initialAmount, initialAmount, basePrice);
     }
 
-    public boolean isOfType(PlantType type) {
+    public boolean isOfType(ItemType type) {
         return this.item == type;
+    }
+
+    public void apply(User user, Order order) {
+        this.item.apply(user, order);
     }
 
     public boolean notHaveStock(int amount) {
@@ -46,9 +46,10 @@ public class StoreItem {
 
     public void adjustPrice() {
         final double adjustment = (this.oldAmount - this.amount) * 0.1;
+        final double basePrice = this.item.getBasePrice();
         this.price += adjustment;
-        if (this.price < BASE_PRICE) {
-            this.price = BASE_PRICE;
+        if (this.price < basePrice) {
+            this.price = basePrice;
         }
         this.oldAmount = this.amount;
     }

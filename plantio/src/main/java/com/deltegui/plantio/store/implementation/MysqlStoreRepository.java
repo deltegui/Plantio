@@ -2,6 +2,7 @@ package com.deltegui.plantio.store.implementation;
 
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.StoreRepository;
+import com.deltegui.plantio.store.domain.ItemType;
 import com.deltegui.plantio.store.domain.StoreItem;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,7 @@ public class MysqlStoreRepository implements StoreRepository {
     }
 
     @Override
-    public StoreItem getByItem(PlantType itemType) {
+    public StoreItem getByItem(ItemType itemType) {
         var itemList = this.jdbcTemplate.query(
                 "select item, amount, old_amount, price from store where item = ?",
                 this::parseStoreItem,
@@ -40,7 +41,7 @@ public class MysqlStoreRepository implements StoreRepository {
 
     private StoreItem parseStoreItem(ResultSet rs, int number) throws SQLException {
         return new StoreItem(
-                PlantType.fromString(rs.getNString("item")),
+                ItemType.valueOf(rs.getNString("item")),
                 rs.getInt("amount"),
                 rs.getInt("old_amount"),
                 rs.getDouble("price")

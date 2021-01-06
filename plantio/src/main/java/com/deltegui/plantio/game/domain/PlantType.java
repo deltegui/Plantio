@@ -67,12 +67,4 @@ public enum PlantType {
     public double getHumidityGrowthFactor() {
         return humidityGrowthFactor;
     }
-
-    public static PlantType fromString(String type) {
-        switch (type) {
-            case "CACTUS": return PlantType.CACTUS;
-            case "LAVENDER": return PlantType.LAVENDER;
-            default: return PlantType.WHEAT;
-        }
-    }
 }

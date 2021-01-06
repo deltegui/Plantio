@@ -5,7 +5,8 @@ import com.deltegui.plantio.common.DomainError;
 public enum UserErrors implements DomainError {
     NotFound(100, "User not found"),
     AlreadyExsists(101, "User already exists"),
-    InvalidPassword(101, "Invalid password");
+    InvalidPassword(102, "Invalid password"),
+    BagOverflow(103, "Too many items in bag");
     private final int code;
     private final String message;
 

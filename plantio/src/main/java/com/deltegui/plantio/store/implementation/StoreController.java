@@ -2,7 +2,7 @@ package com.deltegui.plantio.store.implementation;
 
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.*;
-import com.deltegui.plantio.store.domain.Order;
+import com.deltegui.plantio.store.domain.ItemType;
 import com.deltegui.plantio.store.domain.StoreItem;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ public final class StoreController {
     public TransactionResult buy(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
         return this.buyCase.handle(new TransactionRequest(
                 user.getName(),
-                PlantType.fromString(item),
+                ItemType.valueOf(item),
                 amount
         ));
     }
@@ -35,7 +35,7 @@ public final class StoreController {
     public TransactionResult sell(Principal user, @PathVariable("item") String item, @PathVariable("amount") int amount) {
         return this.sellCase.handle(new TransactionRequest(
                 user.getName(),
-                PlantType.fromString(item),
+                ItemType.valueOf(item),
                 amount
         ));
     }

@@ -17,6 +17,9 @@ public class UpdateCase implements UseCase<UpdateRequest, UpdateResponse> {
         var user = userRepository.findByName(request.getName()).orElseThrow(() -> {
             throw DomainException.fromError(UserErrors.AlreadyExsists);
         });
+        if (! user.isValidBagSize(request.getBag())) {
+            throw DomainException.fromError(UserErrors.BagOverflow);
+        }
         user.setBag(request.getBag());
         userRepository.update(user);
         return new UpdateResponse(user);

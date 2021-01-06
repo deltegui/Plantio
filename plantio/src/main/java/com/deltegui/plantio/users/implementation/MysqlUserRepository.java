@@ -25,7 +25,7 @@ public class MysqlUserRepository implements UserRepository {
     @Override
     public Optional<User> findByName(String name) {
         var userList = this.jdbcTemplate.query(
-                "select name, password, latitude, longitude, money from users where name = ?",
+                "select name, password, latitude, longitude, money, bag_size from users where name = ?",
                 this::parseUserFromQueryResult,
                 name);
         return userList.isEmpty() ? Optional.empty() : Optional.of(userList.get(0));
@@ -44,18 +44,20 @@ public class MysqlUserRepository implements UserRepository {
     public void save(User user) {
         user.getLastPosition().ifPresentOrElse(
                 (lastPos) -> this.jdbcTemplate.update(
-                        "insert into users (name, password, latitude, longitude, money) values (?, ?, ?, ?)",
+                        "insert into users (name, password, latitude, longitude, money, bag_size) values (?, ?, ?, ?, ?, ?)",
                         user.getName(),
                         user.getPassword(),
                         lastPos.getLatitude(),
                         lastPos.getLongitude(),
-                        user.getMoney()
+                        user.getMoney(),
+                        user.getBagSize()
                 ),
                 () -> this.jdbcTemplate.update(
-                        "insert into users (name, password, money) values(?, ?, ?)",
+                        "insert into users (name, password, money, bag_size) values(?, ?, ?, ?)",
                         user.getName(),
                         user.getPassword(),
-                        user.getMoney()
+                        user.getMoney(),
+                        user.getBagSize()
                 )
         );
         this.replaceBag(user);
@@ -66,17 +68,19 @@ public class MysqlUserRepository implements UserRepository {
     public void update(User user) {
         user.getLastPosition().ifPresentOrElse(
                 (lastPos) -> this.jdbcTemplate.update(
-                        "update users set password = ?, latitude = ?, longitude = ?, money = ? where name = ?",
+                        "update users set password = ?, latitude = ?, longitude = ?, money = ?, bag_size = ? where name = ?",
                         user.getPassword(),
                         lastPos.getLatitude(),
                         lastPos.getLongitude(),
                         user.getMoney(),
+                        user.getBagSize(),
                         user.getName()
                 ),
                 () -> this.jdbcTemplate.update(
-                        "update users set password = ?, money = ? where name = ?",
+                        "update users set password = ?, money = ?, bag_size = ? where name = ?",
                         user.getPassword(),
                         user.getMoney(),
+                        user.getBagSize(),
                         user.getName()
                 )
         );
@@ -87,7 +91,7 @@ public class MysqlUserRepository implements UserRepository {
     @Override
     public List<User> getAll() {
         return this.jdbcTemplate.query(
-                "select name, password, latitude, longitude, money from users",
+                "select name, password, latitude, longitude, money, bag_size from users",
                 this::parseUserFromQueryResult);
     }
 
@@ -104,12 +108,14 @@ public class MysqlUserRepository implements UserRepository {
         String password = resultSet.getNString("password");
         Object latitude = resultSet.getObject("latitude");
         Object longitude = resultSet.getObject("longitude");
+        int bagSize = resultSet.getInt("bag_size");
         if (latitude != null && longitude != null) {
             return new User(
                     name,
                     password,
                     new Coordinate((Double)latitude, (Double)longitude),
-                    money
+                    money,
+                    bagSize
             );
         }
         return new User(
@@ -134,7 +140,7 @@ public class MysqlUserRepository implements UserRepository {
     private List<BagItem> loadBag(User user) {
         return this.jdbcTemplate.query(
                 "select item, amount from user_bag where owner = ?",
-                (resultSet, number) -> new BagItem(PlantType.fromString(resultSet.getNString("item")), resultSet.getInt("amount")),
+                (resultSet, number) -> new BagItem(PlantType.valueOf(resultSet.getNString("item")), resultSet.getInt("amount")),
                 user.getName());
     }
 }

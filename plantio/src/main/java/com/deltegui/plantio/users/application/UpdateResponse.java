@@ -8,12 +8,14 @@ import java.util.List;
 public final class UpdateResponse {
     private final String name;
     private final double money;
+    private final int bagSize;
     private final List<BagItem> bag;
 
     public UpdateResponse(User user) {
         this.name = user.getName();
         this.money = user.getMoney();
         this.bag = user.getBag();
+        this.bagSize = user.getBagSize();
     }
 
     public String getName() {
@@ -26,5 +28,9 @@ public final class UpdateResponse {
 
     public List<BagItem> getBag() {
         return bag;
+    }
+
+    public int getBagSize() {
+        return bagSize;
     }
 }

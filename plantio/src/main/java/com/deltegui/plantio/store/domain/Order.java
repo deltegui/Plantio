@@ -2,6 +2,7 @@ package com.deltegui.plantio.store.domain;
 
 import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.users.domain.BagItem;
+import com.deltegui.plantio.users.domain.User;
 
 public class Order {
     private final StoreItem storeItem;
@@ -13,7 +14,7 @@ public class Order {
     }
 
     public BagItem toBagItem() {
-        return new BagItem(PlantType.fromString(this.storeItem.getName()), this.amount);
+        return new BagItem(PlantType.valueOf(this.storeItem.getName()), this.amount);
     }
 
     public double getTotalPrice() {
@@ -26,5 +27,9 @@ public class Order {
 
     public int getAmount() {
         return amount;
+    }
+
+    public void applyTo(User user) {
+        this.storeItem.apply(user, this);
     }
 }

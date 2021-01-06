@@ -5,7 +5,8 @@ import com.deltegui.plantio.common.DomainError;
 public enum StoreErrors implements DomainError {
     UNAFFORDABLE(300, "You cant afford the item"),
     OUT_OF_STOCK(301, "Out of stock"),
-    NOT_ENOUGH_ELEMENTS_TO_SELL(302, "Not enough element to sell");
+    NOT_ENOUGH_ELEMENTS_TO_SELL(302, "Not enough element to sell"),
+    CANT_BE_APPLIED(303, "This item cant be applied to you");
     private final int code;
     private final String message;
 

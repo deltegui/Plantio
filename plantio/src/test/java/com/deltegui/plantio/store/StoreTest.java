@@ -5,7 +5,8 @@ import com.deltegui.plantio.game.domain.PlantType;
 import com.deltegui.plantio.store.application.Store;
 import com.deltegui.plantio.store.application.StoreErrors;
 import com.deltegui.plantio.store.application.StoreRepository;
-import com.deltegui.plantio.store.domain.Seeds;
+import com.deltegui.plantio.store.domain.ItemType;
+import com.deltegui.plantio.store.domain.TransactionItem;
 import com.deltegui.plantio.store.domain.StoreItem;
 import com.deltegui.plantio.users.domain.BagItem;
 import com.deltegui.plantio.users.domain.User;
@@ -146,11 +147,11 @@ public class StoreTest {
     }
 
     private StoreItem createStoreItemWithAmountPrice(int amount, double price) {
-        return new StoreItem(PlantType.CACTUS, amount, amount, price);
+        return new StoreItem(ItemType.CACTUS, amount, amount, price);
     }
 
-    private Seeds createSeeds(int amount) {
-        return new Seeds(PlantType.CACTUS, amount);
+    private TransactionItem createSeeds(int amount) {
+        return new TransactionItem(ItemType.CACTUS, amount);
     }
 
     private BagItem createBagItem(int amount) {

@@ -19,13 +19,21 @@ io.onCommand('save', {
   async handle() {
     return gameService.saveGame()
       .then(() => io.writeln('Game saved!'))
-      .catch(() => io.writeColor('Failed!<br>', 'red'));
+      .catch((err) => io.writeColor(`Failed: ${err.message}!<br>`, 'red'));
   },
 });
 
 io.onCommand('bag', {
   help: 'Shows items in your bag',
   handle() {
+    const occupation = userService.getBagOccupation();
+    let color = 'green';
+    if (occupation > 60 && occupation < 80) {
+      color = 'orange';
+    } else if (occupation >= 80) {
+      color = 'red';
+    }
+    io.writeColor(`${occupation}% (${userService.sumElementsInBag()}/${userService.getBagMaxSize()}) full bag!<br>`, color);
     userService.getBag().forEach((item) => {
       io.writeColor(item.item, 'green');
       io.write(': ');
@@ -59,32 +67,38 @@ io.onCommand('sell', {
 
 if (process.env.NODE_ENV !== 'production') {
   io.onCommand('add-bag', {
-    help: `[DEBUG] add bag an item.
-    Usage: add-bag [item-name]
+    help: `[DEBUG] add bag an item. Optionally you can pass the amount.
+    Usage: add-bag [item-name] or add-bag [item-name] [amount]
     `,
     handle(args) {
       if (args.lenght <= 0) {
         io.writeColor('You must pass an item name', 'red');
         return;
       }
-      const itemName = args[0];
-      userService.addToBag(itemName);
+      const [itemName, times] = args;
+      const max = times || 0;
+      for (let i = 0; i <= max; i++) {
+        userService.addToBag(itemName);
+      }
       io.writeColor('Now bag have:<br>', 'DarkSeaGreen');
       io.writeln(JSON.stringify(userService.getBag()));
     },
   });
 
   io.onCommand('sub-bag', {
-    help: `[DEBUG] substracts an item from bag.
-    Usage: sub-bag [item-name]
+    help: `[DEBUG] substracts an item from bag. Optionally you can pass the amount.
+    Usage: sub-bag [item-name] or sub-bag [item-name] [amount]
     `,
     handle(args) {
       if (args.lenght < 1) {
         io.writeColor('You must pass an item name', 'red');
         return;
       }
-      const itemName = args[0];
-      userService.substractFrombag(itemName);
+      const [itemName, times] = args;
+      const max = times || 0;
+      for (let i = 0; i <= max; i++) {
+        userService.substractFrombag(itemName);
+      }
       io.writeColor('Now bag have:<br>', 'DarkSeaGreen');
       io.writeln(JSON.stringify(userService.getBag()));
     },

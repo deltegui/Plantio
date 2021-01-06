@@ -10,6 +10,7 @@ import {
   NotFound,
   UnknownPlantType,
   CannotRecollect,
+  ReachedBagMaxOccupation,
 } from './plant.errors';
 import gameService from './game.service';
 import userService from './user.service';
@@ -17,6 +18,18 @@ import api from '../api';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max)) + 1;
+}
+
+function getRandomAmountSeeds() {
+  let seeds = getRandomInt(4);
+  const finalBagSize = seeds + userService.sumElementsInBag();
+  if (finalBagSize > userService.getBagMaxSize()) {
+    seeds = userService.getBagMaxSize() - userService.sumElementsInBag();
+  }
+  if (seeds <= 0) {
+    throw new ReachedBagMaxOccupation();
+  }
+  return seeds;
 }
 
 export default {
@@ -89,7 +102,7 @@ export default {
     if (plant.phase !== Plant.phaseLimit) {
       throw new CannotRecollect(plant.plant);
     }
-    const seeds = getRandomInt(4);
+    const seeds = getRandomAmountSeeds();
     for (let i = 0; i < seeds; i++) {
       userService.addToBag(plant.plant);
     }
