@@ -66,14 +66,17 @@ public class LoadCaseTest {
         var loadCase = new LoadCase(gameRepo, snapshotRepo);
         var response = loadCase.handle(request);
 
-        assertEquals(expectedGame.getCrop().toArray()[0], response.getGame().getCrop().toArray()[0]);
+        var expectedPlant = (Plant)expectedGame.getCrop().toArray()[0];
+        var responsePlant = (Plant)response.getGame().getCrop().toArray()[0];
+        assertEquals(expectedPlant, responsePlant);
+        assertEquals(expectedPlant.getHumidity(), responsePlant.getHumidity());
     }
 
     public static Stream<Arguments> shouldApplyWeatherSnapshots() {
         return Stream.of(
                 arguments(
                         createPlant(100, PlantType.CACTUS, 6, WateredState.WET, 1),
-                        createPlant(98.32, PlantType.CACTUS, 4, WateredState.WET, 1),
+                        createPlant(91.18, PlantType.CACTUS, 4, WateredState.WET, 1),
                         new UserWeatherSnapshot[]{
                                 toSnapshot(createReport(WeatherState.CLOUDS, 26, 4)),
                                 toSnapshot(createReport(WeatherState.CLEAR, 26, 2))
@@ -81,10 +84,18 @@ public class LoadCaseTest {
                 ),
                 arguments(
                         createPlant(50, PlantType.WHEAT, 7, WateredState.DRY, 2),
-                        createPlant(39.62, PlantType.WHEAT, 2, WateredState.WET, 2),
+                        createPlant(35.19, PlantType.WHEAT, 2, WateredState.WET, 2),
                         new UserWeatherSnapshot[]{
                                 toSnapshot(createReport(WeatherState.CLOUDS, 26, 4)),
                                 toSnapshot(createReport(WeatherState.CLEAR, 26, 2))
+                        }
+                ),
+                arguments(
+                        createPlant(50, PlantType.LAVENDER, 7, WateredState.DRY, 2),
+                        createPlant(58.75, PlantType.LAVENDER, 2, WateredState.WET, 2),
+                        new UserWeatherSnapshot[]{
+                                toSnapshot(createReport(WeatherState.SNOW, -1, 4)),
+                                toSnapshot(createReport(WeatherState.SNOW, -2, 2))
                         }
                 ),
                 arguments(

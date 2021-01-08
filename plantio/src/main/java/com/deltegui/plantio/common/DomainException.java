@@ -1,7 +1,9 @@
 package com.deltegui.plantio.common;
 
 public class DomainException extends RuntimeException {
-    private final DomainError error;
+	private static final long serialVersionUID = 1L;
+
+	private final DomainError error;
 
     private DomainException(DomainError error) {
         super(error.getMessage());
